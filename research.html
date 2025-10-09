@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Whitestone Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        /* Header */
+        header {
+            background: rgba(245, 245, 240, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 12px 0;
+            background: rgba(245, 245, 240, 0.98);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            transition: background 0.3s ease;
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: drop-shadow(0 2px 4px rgba(44, 95, 127, 0.2));
+        }
+        .logo:hover .logo-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .contact-btn:hover {
+            box-shadow: 0 6px 20px rgba(44, 95, 127, 0.2);
+            transform: translateY(-2px);
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+            z-index: 101;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 500px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInLeft 0.3s forwards;
+        }
+        .mobile-menu.active ul li:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-menu.active ul li:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-menu.active ul li:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-menu.active ul li:nth-child(4) { animation-delay: 0.25s; }
+        .mobile-menu.active ul li:nth-child(5) { animation-delay: 0.3s; }
+        .mobile-menu.active ul li:nth-child(6) { animation-delay: 0.35s; }
+        .mobile-menu.active ul li:nth-child(7) { animation-delay: 0.4s; }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: #2c5f7f;
+            transform: translateX(5px);
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
+            padding: 90px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #2c5f7f22 60%, transparent 100%);
+            z-index: 0;
+            pointer-events: none;
+            animation: float 8s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #4a8bb322 50%, transparent 100%);
+            z-index: 0;
+            pointer-events: none;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 44px;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-content p {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+        }
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            opacity: 0.18;
+            transform: scaleX(0);
+            animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+        }
+        /* Stats Section */
+        .stats-section {
+            padding: 60px 0;
+            background: white;
+            position: relative;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        .stat-item {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .stat-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .stat-item:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+        }
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+        }
+        /* Research Section */
+        .research-section {
+            padding: 60px 0 40px 0;
+            background: white;
+            position: relative;
+        }
+        .research-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .research-content h2 {
+            font-size: 34px;
+            margin-bottom: 18px;
+            color: #2c5f7f;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .research-content h2.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .research-content > p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .research-content > p.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .portfolio-card {
+            background: #f8f9fa;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(44,95,127,0.08);
+            padding: 38px 30px 30px 30px;
+            text-align: left;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(40px);
+            overflow: hidden;
+        }
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            transform: scaleX(0);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .portfolio-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .portfolio-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(44,95,127,0.2);
+        }
+        .portfolio-card:hover::before {
+            transform: scaleX(1);
+        }
+        .portfolio-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2c5f7f;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+        .portfolio-card:hover .portfolio-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .portfolio-title {
+            font-size: 26px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .portfolio-card:hover .portfolio-title {
+            color: #2c5f7f;
+        }
+        .portfolio-desc {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        .features-list {
+            margin-bottom: 18px;
+        }
+        .features-list li {
+            margin-bottom: 8px;
+            color: #2c5f7f;
+            font-size: 15px;
+            list-style: disc inside;
+            transition: all 0.3s;
+            transform: translateX(0);
+        }
+        .features-list li:hover {
+            color: #4a8bb3;
+            transform: translateX(5px);
+        }
+        .portfolio-actions {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+        .portfolio-actions a, .portfolio-actions button {
+            background: #2c5f7f;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 18px;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 8px rgba(44,95,127,0.10);
+            position: relative;
+            overflow: hidden;
+        }
+        .portfolio-actions a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        .portfolio-actions a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .portfolio-actions a:hover {
+            background: #4a8bb3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44,95,127,0.25);
+        }
+        .portfolio-meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .portfolio-who {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 0;
+        }
+        /* Process Section */
+        .process-section {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+        }
+        .process-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .process-header h2 {
+            font-size: 40px;
+            color: #2c5f7f;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .process-header h2.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .process-header p {
+            color: #666;
+            font-size: 18px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .process-header p.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            position: relative;
+        }
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            opacity: 0.2;
+        }
+        .step {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            opacity: 0;
+            transform: translateY(40px) scale(0.9);
+            position: relative;
+            z-index: 1;
+        }
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .step:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(44,95,127,0.2);
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2c5f7f, #4a8bb3);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 15px rgba(44,95,127,0.3);
+        }
+        .step:hover .step-number {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 6px 25px rgba(44,95,127,0.4);
+        }
+        .step h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            transition: color 0.3s;
+        }
+        .step:hover h3 {
+            color: #2c5f7f;
+        }
+        .step p {
+            color: #666;
+        }
+        /* Why Choose Us */
+        .why-choose {
+            background: #fafafa;
+            padding: 60px 0 40px 0;
+            position: relative;
+        }
+        .why-choose-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .why-choose-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c5f7f;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .why-choose-content h2.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .why-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .why-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,95,127,0.07);
+            padding: 22px 28px;
+            font-size: 16px;
+            color: #2c5f7f;
+            font-weight: 500;
+            min-width: 220px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        .why-item.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .why-item:hover {
+            box-shadow: 0 10px 35px rgba(44,95,127,0.25);
+            transform: scale(1.08) translateY(-5px);
+            color: #4a8bb3;
+        }
+        .why-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .why-item:hover .why-icon {
+            transform: rotate(360deg) scale(1.2);
+        }
+        .why-choose-content .cta {
+            margin-top: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .why-choose-content .cta.visible {
+            animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+        }
+        .why-choose-content .cta a {
+            background: #2c5f7f;
+            color: #fff;
+            border-radius: 6px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 2px 8px rgba(44,95,127,0.10);
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+        .why-choose-content .cta a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+        .why-choose-content .cta a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .why-choose-content .cta a:hover {
+            background: #4a8bb3;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(44,95,127,0.25);
+        }
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+            transform: translateX(0);
+            transition: transform 0.3s;
+        }
+        .footer-section ul li:hover {
+            transform: translateX(5px);
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #fff;
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+        .footer-social a:hover {
+            color: #fff;
+            transform: translateY(-5px) scale(1.2);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes slideInLeft {
+            100% { opacity: 1; transform: translateX(0);}
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes scaleIn {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
+        }
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .portfolio-grid { gap: 30px; }
+            .footer-content { gap: 30px; }
+        }
+        @media (max-width: 968px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .process-steps::before { display: none; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 800px) {
+            .nav-links, .contact-btn { display: none; }
+            .hamburger { display: flex; }
+            .hero-content h1 { font-size: 36px; }
+            .hero-content p { font-size: 18px; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 20px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 28px; }
+            .hero-content p { font-size: 16px; }
+            .research-content h2 { font-size: 26px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 30px; }
+            .process-steps { grid-template-columns: 1fr; }
+            .process-header h2 { font-size: 28px; }
+            .portfolio-title { font-size: 22px; }
+            .portfolio-actions { flex-direction: column; }
+            .portfolio-actions a { width: 100%; text-align: center; }
+            .why-list { gap: 15px; }
+            .why-item { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">
+                <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                Whitestone Capital
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="research.html" aria-current="page">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="investerCharter.html">Investor Charter</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="research.html" aria-current="page">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn mobile-contact-btn">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Research</h1>
+                <p>Empowering investors with high-quality, research-backed investment insights.<br>
+                As a <b>SEBI-registered Research Analyst</b>, we are committed to delivering unbiased and actionable recommendations tailored to help you build long-term wealth.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Research Reports</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Research Section -->
+    <section class="research-section">
+        <div class="container">
+            <div class="research-content">
+                <h2>Explore Our Model Portfolios</h2>
+                <p>Our services are crafted to suit diverse investor profiles and financial goals.</p>
+                <div class="portfolio-grid">
+                    <!-- Alpha Builder -->
+                    <div class="portfolio-card">
+                        <div class="portfolio-icon">📈</div>
+                        <div class="portfolio-title">Alpha Builder</div>
+                        <div class="portfolio-desc">
+                            A curated basket of fundamentally strong stocks designed to outperform the market over the long term.
+                        </div>
+                        <ul class="features-list">
+                            <li>Publicly traded multi cap companies are included in the universe</li>
+                            <li>Handpicked stocks with in-depth research and rationale</li>
+                            <li>Diversified across sectors to manage risk</li>
+                            <li>Periodical reviews and rebalancing suggestions</li>
+                            <li>Ideal for medium to long-term investors (3+ years)</li>
+                        </ul>
+                        <div class="portfolio-meta"><b>Who Should Subscribe:</b></div>
+                        <div class="portfolio-who">
+                            Retail investors, HNIs, and professionals seeking guided equity exposure with a structured portfolio.
+                        </div>
+                        <div class="portfolio-actions">
+                            <a href="tel:9226060600">Subscribe Now</a>
+                            <a href="#">Download Factsheet</a>
+                        </div>
+                    </div>
+                    <!-- Ready to Launch -->
+                    <div class="portfolio-card">
+                        <div class="portfolio-icon">🚀</div>
+                        <div class="portfolio-title">Ready to Launch</div>
+                        <div class="portfolio-desc">
+                            A dynamic, high-conviction portfolio combining technical chart patterns, valuation comfort, and fundamental filters.
+                        </div>
+                        <ul class="features-list">
+                            <li>Nifty 500 companies are included in the universe</li>
+                            <li>Entry based on breakout patterns, volume trends, and price action</li>
+                            <li>Supported by sound fundamentals and attractive valuations</li>
+                            <li>Short-term holding period with fortnightly/monthly rebalancing</li>
+                            <li>High flexibility to adapt to market momentum</li>
+                        </ul>
+                        <div class="portfolio-meta"><b>Who Should Subscribe:</b></div>
+                        <div class="portfolio-who">
+                            Active investors or traders looking for structured, research-guided short-term investment opportunities.
+                        </div>
+                        <div class="portfolio-actions">
+                            <a href="tel:9226060600">Subscribe Now</a>
+                            <a href="#">Download Factsheet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="process-header">
+                <h2>Our Research Process</h2>
+                <p>Systematic approach to deliver reliable investment insights</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Data Collection</h3>
+                    <p>Gather comprehensive market data and company fundamentals</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Analysis</h3>
+                    <p>In-depth technical and fundamental analysis</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Recommendation</h3>
+                    <p>Provide actionable investment recommendations</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Monitoring</h3>
+                    <p>Continuous monitoring and periodic updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <div class="container">
+            <div class="why-choose-content">
+                <h2>Why Choose Us?</h2>
+                <div class="why-list">
+                    <div class="why-item"><span class="why-icon">🏆</span> SEBI-Registered Expertise</div>
+                    <div class="why-item"><span class="why-icon">🔍</span> Research-Driven & Transparent Methodology</div>
+                    <div class="why-item"><span class="why-icon">👥</span> Personalized Investor Support</div>
+                    <div class="why-item"><span class="why-icon">📞</span> Regular Updates & FAQs</div>
+                </div>
+                <div class="cta">
+                    <a href="tel:9226060600">Contact Us - 9226060600</a>
+                    <a href="mailto:invest@whitestonecapital.in" style="margin-left:18px;">Email Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a class="active" href="research.html" aria-current="page">Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html">Insurance</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Stats animation
+            document.querySelectorAll('.stat-item').forEach((el, index) => {
+                setTimeout(() => observer.observe(el), index * 100);
+            });
+
+            // Research section headers
+            const researchH2 = document.querySelector('.research-content h2');
+            const researchP = document.querySelector('.research-content > p');
+            if (researchH2) observer.observe(researchH2);
+            if (researchP) observer.observe(researchP);
+
+            // Portfolio cards
+            document.querySelectorAll('.portfolio-card').forEach((el, index) => {
+                setTimeout(() => observer.observe(el), index * 200);
+            });
+
+            // Process section
+            const processH2 = document.querySelector('.process-header h2');
+            const processP = document.querySelector('.process-header p');
+            if (processH2) observer.observe(processH2);
+            if (processP) observer.observe(processP);
+
+            document.querySelectorAll('.step').forEach((el, index) => {
+                setTimeout(() => observer.observe(el), index * 150);
+            });
+
+            // Why choose section
+            const whyH2 = document.querySelector('.why-choose-content h2');
+            const whyCta = document.querySelector('.why-choose-content .cta');
+            if (whyH2) observer.observe(whyH2);
+            if (whyCta) observer.observe(whyCta);
+
+            document.querySelectorAll('.why-item').forEach((el, index) => {
+                setTimeout(() => observer.observe(el), index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

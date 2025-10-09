@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance - Whitestone Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        /* Header */
+        header {
+            background: #f5f5f0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+
+            
+            transition: background 0.3s ease;
+        }
+   
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .logo-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: #2c5f7f;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7f;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(44,95,127,0.06);
+        }
+        .contact-btn:hover {
+            box-shadow: 0 4px 16px rgba(44,95,127,0.13);
+            color: #2c5f7f;
+            transform: translateY(-2px) scale(1.04);
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 400px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: #2c5f7f;
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
+            padding: 90px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 44px;
+            color: #1a1a1a;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+            animation: fadeIn 1.2s;
+        }
+        .hero-content p {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            animation: fadeIn 1.4s;
+        }
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            opacity: 0.18;
+        }
+        /* Insurance Section */
+        .insurance-section {
+            padding: 60px 0 40px 0;
+            background: white;
+            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
+        }
+        .insurance-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .insurance-content h2 {
+            font-size: 34px;
+            margin-bottom: 18px;
+            color: #2c5f7f;
+        }
+        .insurance-content p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .insurance-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .ins-card {
+            background: #f8f9fa;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(44,95,127,0.08);
+            padding: 38px 30px 30px 30px;
+            text-align: left;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.3s cubic-bezier(.22,1,.36,1);
+        }
+        .ins-card:hover {
+            transform: translateY(-10px) scale(1.03) rotate(-1deg);
+            box-shadow: 0 12px 40px rgba(44,95,127,0.15);
+        }
+        .ins-title {
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .ins-desc {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 18px;
+        }
+        .ins-list {
+            margin-bottom: 18px;
+        }
+        .ins-list li {
+            margin-bottom: 8px;
+            color: #2c5f7f;
+            font-size: 15px;
+            list-style: disc inside;
+            transition: color 0.3s;
+        }
+        .ins-list li:hover {
+            color: #4a8bb3;
+        }
+        .ins-meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .ins-value, .ins-promise, .ins-why {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 0;
+        }
+        /* Why Choose Us */
+        .why-choose {
+            background: #fafafa;
+            padding: 60px 0 40px 0;
+            animation: fadeInUp 1.4s cubic-bezier(.22,1,.36,1);
+        }
+        .why-choose-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .why-choose-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c5f7f;
+        }
+        .why-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .why-item {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,95,127,0.07);
+            padding: 22px 28px;
+            font-size: 16px;
+            color: #2c5f7f;
+            font-weight: 500;
+            min-width: 220px;
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .why-item:hover {
+            box-shadow: 0 8px 32px rgba(44,95,127,0.18);
+            transform: scale(1.04) rotate(-2deg);
+            color: #4a8bb3;
+        }
+        .why-choose-content .cta {
+            margin-top: 30px;
+        }
+        .why-choose-content .cta a {
+            background: #2c5f7f;
+            color: #fff;
+            border-radius: 6px;
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(44,95,127,0.10);
+        }
+        .why-choose-content .cta a:hover {
+            background: #4a8bb3;
+            transform: scale(1.05);
+        }
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #fff;
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: color 0.3s;
+        }
+        .footer-social a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0;}
+            100% { opacity: 1;}
+        }
+        .animate { opacity: 0; transform: translateY(40px); }
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s cubic-bezier(.22,1,.36,1);
+        }
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .insurance-grid { gap: 20px; }
+            .footer-content { gap: 24px; }
+        }
+        @media (max-width: 968px) {
+            .insurance-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 10px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 28px; }
+            .insurance-content h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+   <header>
+    <nav class="container">
+        <div class="logo">
+            <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+            Whitestone Capital
+        </div>
+        <ul class="nav-links">
+            <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="investerCharter.html">Investor Charter</a></li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Contact Us</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#contact" class="contact-btn mobile-contact-btn">Contact Us</a>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero animate">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Insurance</h1>
+                <p>Insurance Solutions that Protect what Matters<br>
+                We don’t just help you grow your wealth — we help you protect it. As licensed insurance distributors, we offer a curated range of Life, Health (Medical), and General Insurance solutions tailored to your financial goals, lifestyle, and risk profile.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Insurance Section -->
+    <section class="insurance-section animate">
+        <div class="container">
+            <div class="insurance-content">
+                <h2>Our Insurance Solutions</h2>
+                <p>Our mission is to simplify insurance, ensure adequate coverage, and provide honest, need-based advice — not just sell a policy.</p>
+                <div class="insurance-grid">
+                    <!-- Life Insurance -->
+                    <div class="ins-card animate">
+                        <div class="ins-title">A. Life Insurance</div>
+                        <div class="ins-desc">
+                            Secure your family's future, even in your absence.<br>
+                            We help you choose life cover that not only protects your dependents but also aligns with your income, liabilities, and financial goals.
+                        </div>
+                        <div class="ins-meta"><b>What We Offer:</b></div>
+                        <ul class="ins-list">
+                            <li>Term Insurance Plans (Pure protection)</li>
+                            <li>Savings & Investment Plans (Endowment / ULIPs)</li>
+                            <li>Retirement & Pension Plans</li>
+                            <li>Child Education & Future Plans</li>
+                        </ul>
+                        <div class="ins-meta"><b>Our Promise:</b></div>
+                        <div class="ins-promise">
+                            Human life value-based coverage guidance, claim assistance, and unbiased product comparisons across insurers.
+                        </div>
+                    </div>
+                    <!-- Medical Insurance -->
+                    <div class="ins-card animate">
+                        <div class="ins-title">B. Medical Insurance</div>
+                        <div class="ins-desc">
+                            Because health emergencies don’t come with a warning.<br>
+                            We help you select the right medical cover based on age, family size, pre-existing conditions, and hospital network preference.
+                        </div>
+                        <div class="ins-meta"><b>What We Offer:</b></div>
+                        <ul class="ins-list">
+                            <li>Individual & Family Floater Plans</li>
+                            <li>Senior Citizen Health Plans</li>
+                            <li>Maternity & Newborn Add-ons</li>
+                            <li>Corporate/Group Health Cover</li>
+                            <li>Critical Illness Riders</li>
+                        </ul>
+                        <div class="ins-meta"><b>Our Value:</b></div>
+                        <div class="ins-value">
+                            End-to-end support — from quote comparison to hospital cashless claim coordination.
+                        </div>
+                    </div>
+                    <!-- General Insurance -->
+                    <div class="ins-card animate">
+                        <div class="ins-title">C. General Insurance</div>
+                        <div class="ins-desc">
+                            Safeguard your assets and lifestyle.<br>
+                            From motor vehicles to your dream home or overseas trips — our general insurance offerings provide complete peace of mind.
+                        </div>
+                        <div class="ins-meta"><b>What We Offer:</b></div>
+                        <ul class="ins-list">
+                            <li>Motor Insurance (Car & Bike)</li>
+                            <li>Home Insurance (Structure + Contents)</li>
+                            <li>Travel Insurance (Domestic & International)</li>
+                            <li>Office & Shop Insurance</li>
+                            <li>Asset/Property/Fire/Marine Insurance</li>
+                        </ul>
+                        <div class="ins-meta"><b>Why Us:</b></div>
+                        <div class="ins-why">
+                            Tailored coverage, easy renewals, and proactive claim support with trusted partners.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose animate">
+        <div class="container">
+            <div class="why-choose-content">
+                <h2>Why Choose Us for Insurance?</h2>
+                <div class="why-list">
+                    <div class="why-item">Licensed Insurance Distribution with Advisory Approach</div>
+                    <div class="why-item">Multi-Insurer Tie-ups (No Bias)</div>
+                    <div class="why-item">Claim Support & Service Assistance</div>
+                    <div class="why-item">Transparent Comparison & Quote Assistance</div>
+                    <div class="why-item">Insurance Planning as Part of Holistic Wealth Strategy</div>
+                </div>
+                <div class="cta">
+                    <a href="tel:9226060600">Contact Us - 9226060600</a>
+                    <a href="mailto:insurance@whitestonecapital.in" style="margin-left:18px;">Email Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html" class="active" aria-current="page">Insurance</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        // Section and card animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        document.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitestone Capital - Expert Financial Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Animated Background Elements */
+        .bg-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(44, 95, 127, 0.08) 0%, transparent 70%);
+            animation: float-rotate 20s ease-in-out infinite;
+        }
+
+        .bg-circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: 100px;
+            left: -50px;
+            animation-delay: 5s;
+        }
+
+        .bg-circle-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            right: 10%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float-rotate {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -30px) rotate(90deg); }
+            50% { transform: translate(-20px, 20px) rotate(180deg); }
+            75% { transform: translate(20px, 30px) rotate(270deg); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(245, 245, 240, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 50%; right: 50%;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #2c5f7f, transparent);
+            transform-origin: center;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            left: 0;
+            right: 0;
+        }
+
+        .nav-links a:hover {
+            color: #2c5f7f;
+            transform: translateY(-2px);
+        }
+
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(44, 95, 127, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(44, 95, 127, 0.2);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f5f0 0%, #fafafa 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(44, 95, 127, 0.08) 0%, transparent 70%);
+            animation: pulse-rotate 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse-rotate {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.6; }
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            min-height: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            z-index: 2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c5f7f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-subtext {
+            color: #2c5f7f;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeInUp 0.8s ease 0.1s both;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtext::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7f, transparent);
+            animation: expand 1s ease 0.5s both;
+        }
+
+        @keyframes expand {
+            from { width: 0; }
+            to { width: 50px; }
+        }
+
+        .credentials {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            animation: fadeInUp 0.8s ease 0.3s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .credentials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44, 95, 127, 0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .credentials p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .credentials strong {
+            color: #2c5f7f;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .hero-services {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .service-tag {
+            background: white;
+            padding: 20px 24px;
+            border-radius: 12px;
+            border-left: 4px solid #2c5f7f;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44, 95, 127, 0.05), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-tag:hover::before {
+            left: 100%;
+        }
+
+        .service-tag:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(44, 95, 127, 0.15);
+            border-left-width: 6px;
+        }
+
+        .service-tag:nth-child(1) {
+            animation: slideInRight 0.6s ease 0.4s both;
+        }
+
+        .service-tag:nth-child(2) {
+            animation: slideInRight 0.6s ease 0.5s both;
+        }
+
+        .service-tag:nth-child(3) {
+            animation: slideInRight 0.6s ease 0.6s both;
+        }
+
+        .service-tag h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+            transition: color 0.3s;
+        }
+
+        .service-tag:hover h3 {
+            color: #2c5f7f;
+        }
+
+        .service-tag p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            animation: fadeInUp 0.8s ease 0.7s both;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2c5f7f 0%, #1a3a4f 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(44, 95, 127, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(44, 95, 127, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2c5f7f;
+            border: 2px solid #2c5f7f;
+        }
+
+        .btn-secondary:hover {
+            background: #2c5f7f;
+            color: white;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(44, 95, 127, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            min-width: 350px;
+            max-width: 500px;
+            animation: fadeInRight 0.8s ease 0.4s both;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(44, 95, 127, 0.2), rgba(44, 95, 127, 0.05));
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(44,95,127,0.25);
+            position: relative;
+            z-index: 1;
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            animation: float-delayed 4s ease-in-out infinite;
+            transition: transform 0.3s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+
+        @keyframes float-delayed {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .trust-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .trust-image {
+            position: relative;
+        }
+
+        .trust-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(44, 95, 127, 0.1), rgba(44, 95, 127, 0.05));
+            z-index: 0;
+            transition: all 0.3s;
+        }
+
+        .trust-image:hover::before {
+            top: 30px;
+            left: 30px;
+        }
+
+        .trust-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+
+        .trust-image:hover img {
+            transform: translate(-10px, -10px);
+        }
+
+        .trust-text h2 {
+            font-size: 44px;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        .trust-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f, transparent);
+            border-radius: 2px;
+        }
+
+        .trust-text p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .highlight-points {
+            display: flex;
+            gap: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px 30px;
+            border-radius: 16px;
+            margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+
+        .highlight-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(44,95,127,0.1);
+            padding: 30px 20px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            cursor: pointer;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(44,95,127,0.2);
+        }
+
+        .highlight-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(44, 95, 127, 0.3);
+        }
+
+        .highlight-item:hover .highlight-icon {
+            transform: rotateY(360deg);
+            box-shadow: 0 12px 30px rgba(44, 95, 127, 0.4);
+        }
+
+        .highlight-item p {
+            font-size: 12px;
+            color: #2c5f7f;
+            font-weight: 600;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f0 100%);
+            position: relative;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .services-header h2 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        .services-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #2c5f7f, transparent);
+            border-radius: 2px;
+        }
+
+        .services-header p {
+            color: #666;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 50px 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44, 95, 127, 0.05), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .service-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 25px 60px rgba(44,95,127,0.2);
+        }
+
+        .service-icon {
+            margin-bottom: 25px;
+            font-size: 48px;
+            transition: all 0.4s;
+            display: inline-block;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotateY(360deg);
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover h3 {
+            color: #2c5f7f;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .reviews-header h2 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+        }
+
+        .reviews-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #2c5f7f, transparent);
+            border-radius: 2px;
+        }
+
+        .reviews-header p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px 35px;
+            border-radius: 16px;
+            border-left: 5px solid #2c5f7f;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .review-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 120px;
+            color: rgba(44, 95, 127, 0.05);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .review-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(44,95,127,0.18);
+            border-left-width: 8px;
+        }
+
+        .review-stars {
+            color: #ffa500;
+            font-size: 22px;
+            margin-bottom: 20px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .review-text {
+            color: #555;
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(44, 95, 127, 0.3);
+        }
+
+        .review-card:hover .author-avatar {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .author-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+            color: #1a1a1a;
+        }
+
+        .author-info p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a3a4f 0%, #2c5f7f 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-section h2 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white {
+            background: white;
+            color: #1a3a4f;
+            padding: 18px 45px;
+            font-size: 16px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 15px 40px rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 25px;
+            font-size: 18px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7f, transparent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+
+        .footer-section ul li:hover {
+            transform: translateX(5px);
+        }
+
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .footer-section a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #2c5f7f;
+            transition: width 0.3s;
+        }
+
+        .footer-section a:hover::after {
+            width: 100%;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .footer-social {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(44, 95, 127, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0c4d4;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .footer-social a:hover {
+            background: #2c5f7f;
+            color: #fff;
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Scroll Animations */
+        .animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .animate-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animate-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating Action Button */
+        .fab-contact {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 26px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(44, 95, 127, 0.4);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .fab-contact:hover {
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 0 12px 35px rgba(44, 95, 127, 0.5);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                gap: 50px;
+                min-height: unset;
+                        margin-top: -80px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .hero-image {
+                margin-left: 0;
+                max-width: 100%;
+            }
+
+            .trust-content {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-points {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .nav-links, .contact-btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+            .hero-image img{
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .services-header h2,
+            .trust-text h2,
+            .reviews-header h2,
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .fab-contact {
+                right: 20px;
+                bottom: 20px;
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInMobile 0.3s forwards;
+        }
+
+        .mobile-menu.active ul li:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-menu.active ul li:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-menu.active ul li:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-menu.active ul li:nth-child(4) { animation-delay: 0.25s; }
+        .mobile-menu.active ul li:nth-child(5) { animation-delay: 0.3s; }
+        .mobile-menu.active ul li:nth-child(6) { animation-delay: 0.35s; }
+        .mobile-menu.active ul li:nth-child(7) { animation-delay: 0.4s; }
+
+        @keyframes slideInMobile {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: rgba(44, 95, 127, 0.1);
+            color: #2c5f7f;
+            transform: translateX(10px);
+        }
+
+        .mobile-contact-btn {
+            margin: 10px 20px 20px;
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 968px) {
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-decoration">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="bg-circle bg-circle-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">
+                <!-- <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon"> -->
+                Whitestone Capital
+            </div>
+            <ul class="nav-links">
+                <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="investerCharter.html">Investor Charter</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="#contact" class="contact-btn mobile-contact-btn">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <p class="hero-subtext">Expert Financial Services for You</p>
+                    <h1>Your Trusted Partner in Financial Growth</h1>
+                    
+                    <div class="credentials">
+                        <p><strong>SEBI Registered Research Analyst</strong></p>
+                        <p><strong>AMFI Registered Mutual Fund Distributor</strong></p>
+                    </div>
+
+                    <div class="hero-services">
+                        <div class="service-tag">
+                            <h3>Investment Research</h3>
+                            <p>Tailored strategies for your financial growth</p>
+                        </div>
+                        <div class="service-tag">
+                            <h3>Mutual Funds</h3>
+                            <p>Trusted mutual fund distribution for investors</p>
+                        </div>
+                        <div class="service-tag">
+                            <h3>Insurance Services</h3>
+                            <p>Comprehensive insurance solutions for your need</p>
+                        </div>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Get Started</button>
+                        <button class="btn btn-secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop" alt="Financial planning">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section" id="about">
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-image animate-left">
+                    <img src="image/image copy.png" alt="Professional team">
+                </div>
+                <div class="trust-text animate-right">
+                    <h2>Your Trusted Financial Partner</h2>
+                    <p>At Whitestone Capital, we are SEBI registered research analysts, AMFI registered mutual fund distributors, and insurance policy distributors dedicated to helping you achieve your financial goals.</p>
+                    <p>With our expertise and personalized approach, we provide comprehensive financial solutions tailored to your unique needs. Your financial success is our priority.</p>
+                    
+                    <div class="highlight-points">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">100+</div>
+                            <p><strong>Number of Investment Clients</strong></p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">2</div>
+                            <p><strong>Model Portfolios</strong></p>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">50+</div>
+                            <p><strong>Number of Insurance Clients</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-header animate">
+                <h2>Our Services</h2>
+                <p>We provide expert financial research, mutual fund distribution, and insurance policy solutions for clients.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate">
+                    <div class="service-icon">📊</div>
+                    <h3>Research Analysis Services</h3>
+                    <p>Expert insights and analysis for informed investment decisions and financial planning.</p>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-icon">💼</div>
+                    <h3>Mutual Fund Distribution</h3>
+                    <p>Comprehensive mutual fund solutions tailored to meet your investment goals and needs.</p>
+                </div>
+                <div class="service-card animate">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Insurance Policy Distribution</h3>
+                    <p>Trusted insurance policy options to safeguard your future and manage risks effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="reviews-header animate">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from our satisfied clients about their experience with Whitestone Capital</p>
+            </div>
+            <div class="reviews-container">
+                <div class="review-card animate">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Excellent service and expert guidance. They helped me build a diversified portfolio that perfectly aligns with my financial goals. Highly recommended for anyone looking for professional investment advice."</p>
+                    <div class="review-author">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Investment Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card animate">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"The mutual fund recommendations have been outstanding. The team at Whitestone Capital takes time to understand your needs and provides personalized solutions. My portfolio has shown consistent growth."</p>
+                    <div class="review-author">
+                        <div class="author-avatar">PS</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Mutual Fund Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card animate">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Professional, transparent, and reliable. They helped me choose the right insurance policies for my family. The entire process was smooth and hassle-free. Thank you for the excellent service!"</p>
+                    <div class="review-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h4>Amit Mehta</h4>
+                            <p>Insurance Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Start Your Financial Journey?</h2>
+            <p>Let's work together to achieve your financial goals</p>
+            <button class="btn btn-white">Schedule a Consultation</button>
+        </div>
+    </section>
+
+    <!-- Floating Contact Button -->
+    <a href="#contact" class="fab-contact" title="Contact Us">✉️</a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate, .animate-left, .animate-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.hero-image img');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

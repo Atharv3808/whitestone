@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Charter - Whitestone Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f0 0%, #e8e8e0 100%);
+            color: #222;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        header {
+            background: rgba(245, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(44,95,127,0.08);
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 4px 30px rgba(44,95,127,0.15);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: fadeInLeft 0.8s ease;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .logo-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            animation: fadeInDown 0.8s ease 0.2s both;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7f;
+            transform: translateY(-2px);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(44,95,127,0.06);
+            animation: fadeInRight 0.8s ease 0.4s both;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(44,95,127,0.1), transparent);
+            transition: left 0.5s;
+        }
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+        .contact-btn:hover {
+            box-shadow: 0 6px 20px rgba(44,95,127,0.2);
+            color: #2c5f7f;
+            transform: translateY(-3px);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 400px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+            animation: slideInRight 0.3s ease forwards;
+            opacity: 0;
+        }
+        .mobile-menu.active ul li {
+            animation: slideInRight 0.3s ease forwards;
+        }
+        .mobile-menu.active ul li:nth-child(1) { animation-delay: 0.1s; }
+        .mobile-menu.active ul li:nth-child(2) { animation-delay: 0.15s; }
+        .mobile-menu.active ul li:nth-child(3) { animation-delay: 0.2s; }
+        .mobile-menu.active ul li:nth-child(4) { animation-delay: 0.25s; }
+        .mobile-menu.active ul li:nth-child(5) { animation-delay: 0.3s; }
+        .mobile-menu.active ul li:nth-child(6) { animation-delay: 0.35s; }
+        .mobile-menu.active ul li:nth-child(7) { animation-delay: 0.4s; }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: #2c5f7f;
+            transform: translateX(5px);
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44,95,127,0.05) 0%, rgba(74,139,179,0.05) 100%);
+            padding: 80px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(44,95,127,0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(74,139,179,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-content h1 {
+            font-size: 52px;
+            color: #2c5f7f;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .breadcrumb span {
+            transition: color 0.3s;
+        }
+        .breadcrumb a {
+            color: #2c5f7f;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .breadcrumb a:hover {
+            color: #4a8bb3;
+            transform: translateX(-2px);
+        }
+
+        /* Charter Grid Layout */
+        .charter-container {
+            padding: 60px 0;
+        }
+        .charter-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .charter-card {
+            background: white;
+            border-radius: 20px;
+            padding: 45px;
+            box-shadow: 0 10px 40px rgba(44,95,127,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .charter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #2c5f7f 0%, #4a8bb3 100%);
+            transform: scaleY(0);
+            transition: transform 0.4s;
+            transform-origin: top;
+        }
+        .charter-card:hover::before {
+            transform: scaleY(1);
+        }
+        .charter-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(44,95,127,0.15);
+        }
+        .charter-card.visible {
+            animation: slideUp 0.8s ease forwards;
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(44,95,127,0.25);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .charter-card h2 {
+            color: #2c5f7f;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .charter-card h3 {
+            color: #1a1a1a;
+            font-size: 20px;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .charter-card h3::before {
+            content: '▸';
+            color: #2c5f7f;
+            font-size: 20px;
+        }
+        .charter-card ul, .charter-card ol {
+            margin-left: 22px;
+            margin-bottom: 18px;
+        }
+        .charter-card li {
+            margin-bottom: 12px;
+            padding-left: 8px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .charter-card ul li::marker {
+            color: #2c5f7f;
+        }
+        .charter-card li:hover {
+            transform: translateX(5px);
+            color: #2c5f7f;
+        }
+        .charter-card p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        .charter-card strong {
+            color: #2c5f7f;
+            font-weight: 600;
+        }
+        .info-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8e9eb 100%);
+            border-left: 4px solid #2c5f7f;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+            position: relative;
+            transition: all 0.3s;
+        }
+        .info-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(44,95,127,0.1);
+        }
+        .info-box::before {
+            content: 'ℹ';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: #2c5f7f;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .nested-list {
+            background: rgba(44,95,127,0.02);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin: 15px 0;
+        }
+        
+        /* Two Column Layout for Rights and Responsibilities */
+        .two-column-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .column-card {
+            background: linear-gradient(135deg, rgba(44,95,127,0.02) 0%, rgba(74,139,179,0.02) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid rgba(44,95,127,0.1);
+            transition: all 0.3s;
+        }
+        .column-card:hover {
+            border-color: rgba(44,95,127,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(44,95,127,0.1);
+        }
+        .column-card h3 {
+            font-size: 24px;
+            color: #2c5f7f;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Decorative Elements */
+        .section-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(44,95,127,0.05);
+            line-height: 1;
+        }
+        
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+            position: relative;
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .footer-section a:hover {
+            color: #fff;
+            transform: translateX(5px);
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+        }
+        .footer-social a:hover {
+            color: #fff;
+            background: rgba(44,95,127,0.3);
+            transform: translateY(-3px);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .two-column-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 40px; }
+        }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 20px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .charter-card { padding: 30px 20px; }
+            .hero-content h1 { font-size: 32px; }
+            .hero-section { padding: 60px 0 40px; }
+            .charter-card h2 { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">
+                <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                Whitestone Capital
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn mobile-contact-btn">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <h1>Investor Charter</h1>
+            <p>Your rights, our commitment. Understanding the framework that protects your investments and guides our responsibilities as a SEBI Registered Research Analyst.</p>
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Investor Charter</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Charter Content -->
+    <div class="container charter-container">
+        <div class="charter-grid">
+            <!-- Vision & Mission -->
+            <div class="charter-card">
+                <div class="section-number">A</div>
+                <div class="card-icon">🎯</div>
+                <h2>Vision and Mission Statements for Investors</h2>
+                <ul>
+                    <li><strong>Vision:</strong> Invest with knowledge and safety.</li>
+                    <li><strong>Mission:</strong> Every investor should be able to invest in right investment products based on their needs, manage and monitor them to meet their goals, access reports and enjoy financial wellness.</li>
+                </ul>
+            </div>
+
+            <!-- Business Details -->
+            <div class="charter-card">
+                <div class="section-number">B</div>
+                <div class="card-icon">📊</div>
+                <h2>Details of Business Transacted by the Research Analyst</h2>
+                <ul>
+                    <li>To publish research report based on the research activities of the RA</li>
+                    <li>To provide an independent unbiased view on securities.</li>
+                    <li>To offer unbiased recommendation, disclosing the financial interests in recommended securities.</li>
+                    <li>To provide research recommendation, based on analysis of publicly available information and known observations.</li>
+                    <li>To conduct audit annually</li>
+                    <li>To ensure that all advertisements are in adherence to the provisions of the Advertisement Code for Research Analysts.</li>
+                    <li>To maintain records of interactions, with all clients including prospective clients (prior to onboarding), where any conversation related to the research services has taken place.</li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="charter-card">
+                <div class="section-number">C</div>
+                <div class="card-icon">🛠️</div>
+                <h2>Details of Services Provided to Investors</h2>
+                
+                <h3>Onboarding of Clients</h3>
+                <div class="nested-list">
+                    <ul>
+                        <li>Sharing of terms and conditions of research services</li>
+                        <li>Completing KYC of fee-paying clients</li>
+                    </ul>
+                </div>
+
+                <h3>Disclosure to Clients</h3>
+                <div class="nested-list">
+                    <ul>
+                        <li>To disclose, information that is material for the client to make an informed decision, including details of its business activity, disciplinary history, the terms and conditions of research services, details of associates, risks and conflicts of interest, if any</li>
+                        <li>To disclose the extent of use of Artificial Intelligence tools in providing research services</li>
+                        <li>To disclose, while distributing a third-party research report, any material conflict of interest of such third-party research provider or provide web address that directs a recipient to the relevant disclosures</li>
+                        <li>To disclose any conflict of interest of the activities of providing research services with other activities of the research analyst.</li>
+                    </ul>
+                </div>
+
+                <ul>
+                    <li>To distribute research reports and recommendations to the clients without discrimination.</li>
+                    <li>To maintain confidentiality w.r.t publication of the research report until made available in the public domain.</li>
+                    <li>To respect data privacy rights of clients and take measures to protect unauthorized use of their confidential information</li>
+                    <li>To disclose the timelines for the services provided by the research analyst to clients and ensure adherence to the said timelines</li>
+                    <li>To provide clear guidance and adequate caution notice to clients when providing recommendations for dealing in complex and high-risk financial products/services</li>
+                    <li>To treat all clients with honesty and integrity</li>
+                    <li>To ensure confidentiality of information shared by clients unless such information is required to be provided in furtherance of discharging legal obligations or a client has provided specific consent to share such information.</li>
+                </ul>
+            </div>
+
+            <!-- Grievance Redressal -->
+            <div class="charter-card">
+                <div class="section-number">D</div>
+                <div class="card-icon">⚖️</div>
+                <h2>Grievance Redressal Mechanism</h2>
+                
+                <h3>Filing Complaints with Research Analyst</h3>
+                <p>In case of any grievance/complaint, an investor may approach the concerned Research Analyst who shall strive to redress the grievance immediately, but not later than 21 days of the receipt of the grievance.</p>
+
+                <h3>Filing on SCORES or with RAASB</h3>
+                <div class="nested-list">
+                    <ul>
+                        <li><strong>SCORES 2.0:</strong> A web based centralized grievance redressal system of SEBI - <a href="https://scores.sebi.gov.in" target="_blank" style="color: #2c5f7f;">https://scores.sebi.gov.in</a></li>
+                        <li><strong>Two level review process:</strong>
+                            <ul>
+                                <li>First review done by designated body (RAASB)</li>
+                                <li>Second review done by SEBI</li>
+                            </ul>
+                        </li>
+                        <li>Email to designated email ID of RAASB</li>
+                    </ul>
+                </div>
+
+                <h3>SMARTODR Platform</h3>
+                <p>If not satisfied with the resolution provided by Market Participants, investors can file complaints on SMARTODR platform for resolution through online conciliation or arbitration.</p>
+
+                <div class="info-box">
+                    <strong>Physical Complaints:</strong><br>
+                    Office of Investor Assistance and Education,<br>
+                    Securities and Exchange Board of India,<br>
+                    SEBI Bhavan, Plot No. C4-A, 'G' Block,<br>
+                    Bandra-Kurla Complex, Bandra (E),<br>
+                    Mumbai - 400 051
+                </div>
+            </div>
+
+            <!-- Rights -->
+            <div class="charter-card">
+                <div class="section-number">E</div>
+                <div class="card-icon">🛡️</div>
+                <h2>Rights of Investors</h2>
+                <ul>
+                    <li>Right to Privacy and Confidentiality</li>
+                    <li>Right to Transparent Practices</li>
+                    <li>Right to fair and Equitable Treatment</li>
+                    <li>Right to Adequate Information</li>
+                    <li>Right to Initial and Continuing Disclosure - Right to receive information about all the statutory and regulatory disclosures</li>
+                    <li>Right to Fair & True Advertisement</li>
+                    <li>Right to Awareness about Service Parameters and Turnaround Times</li>
+                    <li>Right to be informed of the timelines for each service</li>
+                    <li>Right to be Heard and Satisfactory Grievance Redressal</li>
+                    <li>Right to have timely redressal</li>
+                    <li>Right to Exit from Financial product or service in accordance with the terms and conditions agreed with the research analyst</li>
+                    <li>Right to receive clear guidance and caution notice when dealing in Complex and High-Risk Financial Products and Services</li>
+                    <li>Additional Rights to vulnerable consumers - Right to get access to services in a suitable manner even if differently abled</li>
+                    <li>Right to provide feedback on the financial products and services used</li>
+                    <li>Right against coercive, unfair, and one-sided clauses in financial agreements</li>
+                </ul>
+            </div>
+
+            <!-- Responsibilities -->
+            <div class="charter-card">
+                <div class="section-number">F</div>
+                <div class="card-icon">📋</div>
+                <h2>Expectations from the Investors</h2>
+                <p style="margin-bottom: 30px; font-size: 16px; color: #666;">As an informed investor, you have certain responsibilities that help ensure a smooth and secure investment experience.</p>
+                
+                <div class="two-column-grid">
+                    <div class="column-card">
+                        <h3>✓ Do's</h3>
+                        <ul>
+                            <li>Always deal with SEBI registered Research Analyst.</li>
+                            <li>Ensure that the Research Analyst has a valid registration certificate.</li>
+                            <li>Check for SEBI registration number.</li>
+                            <li>Please refer to the list of all SEBI registered Research Analyst which is available on SEBI website: <a href="https://www.sebi.gov.in/sebiweb/other/OtherAction.do?doRecognisedFpi=yes&intmId=14" target="_blank" style="color: #2c5f7f; text-decoration: underline;">SEBI Registered Research Analysts</a></li>
+                            <li>Always pay attention towards disclosures made in the research reports before investing.</li>
+                            <li>Pay your Research Analyst through banking channels only and maintain duly signed receipts mentioning the details of your payments. You may make payment of fees through Centralized Fee Collection Mechanism (CeFCoM) of RAASB if research analyst has opted for the mechanism.</li>
+                            <li>Before buying/selling securities or applying in public offer, check for the research recommendation provided by your Research Analyst.</li>
+                            <li>Ask all relevant questions and clear your doubts with your Research Analyst before acting on recommendation.</li>
+                            <li>Seek clarifications and guidance on research recommendations from your Research Analyst, especially if it involves complex and high-risk financial products and services.</li>
+                            <li>Always be aware that you have the right to stop availing the service of a Research Analyst as per the terms of service agreed between you and your Research Analyst.</li>
+                            <li>Always be aware that you have the right to provide feedback to your Research Analyst in respect of the services received.</li>
+                            <li>Always be aware that you will not be bound by any clause, prescribed by the research analyst, which is contravening any regulatory provisions.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="column-card">
+                        <h3>✗ Don'ts</h3>
+                        <ul>
+                            <li>Inform SEBI about Research Analyst offering assured or guaranteed returns.</li>
+                            <li>Do not provide funds for investment to the Research Analyst.</li>
+                            <li>Don't fall prey to luring advertisements or market rumours.</li>
+                            <li>Do not get attracted to limited period discount or other incentive, gifts, etc. offered by Research Analyst.</li>
+                            <li>Do not share login credential and password of your trading, demat or bank accounts with the Research Analyst.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html">Insurance</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Card animation on scroll
+        function animateOnScroll() {
+            const cards = document.querySelectorAll('.charter-card');
+            cards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }
+        
+        // Smooth scroll for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add hover effect to list items
+        document.querySelectorAll('.charter-card li').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.paddingLeft = '15px';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.paddingLeft = '8px';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Whitestone Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        /* Header */
+        header {
+            background: #f5f5f0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+
+            transition: background 0.3s ease;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .logo-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: #2c5f7f;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .contact-btn:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 400px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: #2c5f7f;
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
+            padding: 100px 0 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #2c5f7f22 60%, transparent 100%);
+            z-index: 0;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            z-index: 1;
+            position: relative;
+        }
+        .hero-content h1 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            animation: fadeIn 1.2s;
+        }
+        .hero-content p {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            animation: fadeIn 1.4s;
+        }
+        /* Section Divider */
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            opacity: 0.18;
+        }
+        /* Contact Info Section */
+        .contact-info {
+            padding: 80px 0 40px 0;
+            background: white;
+            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        .contact-card {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.3s cubic-bezier(.22,1,.36,1);
+        }
+        .contact-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(44,95,127,0.15);
+        }
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #2c5f7f;
+            transition: transform 0.3s;
+        }
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1);
+        }
+        .contact-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+        .contact-card p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .contact-card a {
+            color: #2c5f7f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        /* Contact Form */
+        .contact-form {
+            padding: 80px 0 40px 0;
+            background: #fafafa;
+            animation: fadeInUp 1.4s cubic-bezier(.22,1,.36,1);
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .form-container h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #2c5f7f;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 0;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5f7f;
+            box-shadow: 0 0 0 3px rgba(44, 95, 127, 0.1);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #2c5f7f;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .submit-btn:hover {
+            background: #4a8bb3;
+            transform: translateY(-2px);
+        }
+        /* Annexures Section */
+        .annexures {
+            padding: 80px 0 40px 0;
+            background: white;
+            animation: fadeInUp 1.5s cubic-bezier(.22,1,.36,1);
+        }
+        .annexures h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #2c5f7f;
+        }
+        .annexures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .annexure-item {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1.6s cubic-bezier(.22,1,.36,1);
+        }
+        .annexure-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(44,95,127,0.15);
+        }
+        .annexure-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        .annexure-item a {
+            color: #2c5f7f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .annexure-item a:hover {
+            text-decoration: underline;
+        }
+        /* Social Media */
+        .social-media {
+            padding: 80px 0 40px 0;
+            background: #fafafa;
+            animation: fadeInUp 1.7s cubic-bezier(.22,1,.36,1);
+        }
+        .social-content {
+            text-align: center;
+        }
+        .social-content h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c5f7f;
+        }
+        .social-content p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #2c5f7f;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 24px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .social-link:hover {
+            background: #4a8bb3;
+            transform: scale(1.1);
+        }
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #fff;
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: color 0.3s;
+        }
+        .footer-social a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0;}
+            100% { opacity: 1;}
+        }
+        @keyframes float {
+            0% { transform: translateY(0);}
+            50% { transform: translateY(-12px);}
+            100% { transform: translateY(0);}
+        }
+        .animate { opacity: 0; transform: translateY(40px); }
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s cubic-bezier(.22,1,.36,1);
+        }
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .contact-grid { gap: 20px; }
+            .annexures-grid { gap: 20px; }
+            .footer-content { gap: 24px; }
+        }
+        @media (max-width: 968px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .annexures-grid { grid-template-columns: repeat(2, 1fr); }
+            .social-links { gap: 20px; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 10px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 32px; }
+            .annexures-grid { grid-template-columns: 1fr; }
+            .social-links { flex-wrap: wrap; gap: 15px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+      <header>
+    <nav class="container">
+        <div class="logo">
+            <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+            Whitestone Capital
+        </div>
+        <ul class="nav-links">
+            <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="investerCharter.html">Investor Charter</a></li>
+        </ul>
+        <a href="contact.html" class="contact-btn">Contact Us</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a class="active" href="index.html" aria-current="page">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="#contact" class="contact-btn mobile-contact-btn">Contact Us</a>
+    </div>
+</header>
+
+    <!-- Hero Section -->
+    <section class="hero animate">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Get in touch with Whitestone Capital for personalized financial solutions. We're here to help you achieve your investment goals.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact Info Section -->
+    <section class="contact-info animate">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Address</h3>
+                    <p>Office No. 101, Gurukrupa Towers,<br>Sahakar Nagar, Pune - 411009</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Contact No.</h3>
+                    <p><a href="tel:+919226060600">+91 92260 60600</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:contact@whitestonecapital.in">contact@whitestonecapital.in</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📋</div>
+                    <h3>Registrations</h3>
+                    <p>AMFI Registration No.: 281897<br>SEBI Research Analyst No.: INH0000020794</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form animate">
+        <div class="container">
+            <div class="form-container">
+                <h2>Send us a Message</h2>
+                <form action="#" method="post">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annexures Section -->
+    <section class="annexures animate">
+        <div class="container">
+            <h2>Important Documents</h2>
+            <div class="annexures-grid">
+                <div class="annexure-item">
+                    <h3>Investor Charter</h3>
+                    <a href="#">Annexure 1 - Download</a>
+                </div>
+                <div class="annexure-item">
+                    <h3>Complaint Data</h3>
+                    <a href="#">Annexure 2 - Download</a>
+                </div>
+                <div class="annexure-item">
+                    <h3>Downloads</h3>
+                    <a href="#">Annexure 3 - Download</a>
+                </div>
+                <div class="annexure-item">
+                    <h3>Terms and Conditions</h3>
+                    <a href="#">Annexure 4 - Download</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-media animate">
+        <div class="container">
+            <div class="social-content">
+                <h2>Follow Us</h2>
+                <p>Stay connected with us on social media for the latest updates and insights.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/whitestone-prime-capital/?viewAsMember=true" class="social-link" target="_blank" aria-label="LinkedIn">🔗</a>
+                    <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_" class="social-link" target="_blank" aria-label="Instagram">📷</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html">Insurance</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
+                        <li><a href="mailto:contact@whitestonecapital.in">contact@whitestonecapital.in</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        // Section and card animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        document.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
