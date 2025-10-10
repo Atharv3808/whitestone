@@ -101,17 +101,24 @@
             animation: slideInLeft 0.6s ease;
         }
 
-        .logo-icon {
-            width: 24px;
-            height: 24px;
+        .logo img {
+            width: 160px;
+            height: 77px;
             border-radius: 4px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover .logo-icon {
-            transform: rotate(360deg) scale(1.1);
+     
+
+        .logo-icon {
+            width: auto;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
+
 
         .nav-links {
             display: flex;
@@ -1234,8 +1241,37 @@
     <header id="header">
         <nav class="container">
             <div class="logo">
-                <!-- <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon"> -->
-                Whitestone Capital
+                <a href="index.html">
+                    <img src="image/image-removebg-preview.png" alt="Whitestone Capital Logo">
+                </a>
+<style>  
+.logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .logo img {
+            width: 160px;
+            height: 77px;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+     
+
+        .logo-icon {
+            width: auto;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        </style>
             </div>
             <ul class="nav-links">
                 <li><a class="active" href="index.html" aria-current="page">Home</a></li>
@@ -1266,6 +1302,38 @@
             <a href="#contact" class="contact-btn mobile-contact-btn">Contact Us</a>
         </div>
     </header>
+    <style>
+    .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .logo img {
+            width: 160px;
+            height: 77px;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+     
+
+        .logo-icon {
+            width: auto;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: rotate(360deg) scale(1.1);
+        }
+</style>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
