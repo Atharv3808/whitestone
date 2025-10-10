@@ -25,12 +25,12 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(44,95,127,0.08);
+            box-shadow: 0 2px 20px rgba(241,93,34,0.08);
             transition: all 0.3s ease;
         }
         header.scrolled {
             padding: 15px 0;
-            box-shadow: 0 4px 30px rgba(44,95,127,0.15);
+            box-shadow: 0 4px 30px rgba(241,93,34,0.15);
         }
         nav {
             display: flex;
@@ -79,13 +79,13 @@
             position: absolute;
             left: 0; right: 0; bottom: 0;
             height: 2px;
-            background: linear-gradient(90deg, #2c5f7f, #4a8bb3);
+            background: rgb(241, 93, 34);
             transform: scaleX(0);
             transition: transform 0.3s;
         }
         .nav-links a:hover,
         .nav-links a.active {
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
             transform: translateY(-2px);
         }
         .nav-links a:hover::after,
@@ -113,15 +113,15 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(44,95,127,0.1), transparent);
+            background: rgba(241,93,34,0.1);
             transition: left 0.5s;
         }
         .contact-btn:hover::before {
             left: 100%;
         }
         .contact-btn:hover {
-            box-shadow: 0 6px 20px rgba(44,95,127,0.2);
-            color: #2c5f7f;
+            box-shadow: 0 6px 20px rgba(241,93,34,0.2);
+            color: rgb(241, 93, 34);
             transform: translateY(-3px);
         }
         .hamburger {
@@ -288,7 +288,7 @@
             background: white;
             border-radius: 20px;
             padding: 45px;
-            box-shadow: 0 10px 40px rgba(44,95,127,0.08);
+            box-shadow: 0 10px 40px rgba(241,93,34,0.08);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -302,7 +302,7 @@
             left: 0;
             width: 5px;
             height: 100%;
-            background: linear-gradient(180deg, #2c5f7f 0%, #4a8bb3 100%);
+            background: rgb(241, 93, 34);
             transform: scaleY(0);
             transition: transform 0.4s;
             transform-origin: top;
@@ -312,7 +312,7 @@
         }
         .charter-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(44,95,127,0.15);
+            box-shadow: 0 20px 60px rgba(241,93,34,0.15);
         }
         .charter-card.visible {
             animation: slideUp 0.8s ease forwards;
@@ -320,18 +320,18 @@
         .card-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #2c5f7f 0%, #4a8bb3 100%);
+            background: rgb(241, 93, 34);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
             margin-bottom: 25px;
-            box-shadow: 0 8px 20px rgba(44,95,127,0.25);
+            box-shadow: 0 8px 20px rgba(241,93,34,0.25);
             animation: pulse 2s ease-in-out infinite;
         }
         .charter-card h2 {
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
             font-size: 28px;
             margin-bottom: 20px;
             font-weight: 700;
@@ -348,7 +348,7 @@
         }
         .charter-card h3::before {
             content: '▸';
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
             font-size: 20px;
         }
         .charter-card ul, .charter-card ol {
@@ -362,23 +362,23 @@
             position: relative;
         }
         .charter-card ul li::marker {
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
         }
         .charter-card li:hover {
             transform: translateX(5px);
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
         }
         .charter-card p {
             margin-bottom: 15px;
             line-height: 1.8;
         }
         .charter-card strong {
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
             font-weight: 600;
         }
         .info-box {
             background: linear-gradient(135deg, #f8f9fa 0%, #e8e9eb 100%);
-            border-left: 4px solid #2c5f7f;
+            border-left: 4px solid rgb(241, 93, 34);
             border-radius: 12px;
             padding: 20px 25px;
             margin: 25px 0;
@@ -397,7 +397,7 @@
             transform: translateY(-50%);
             width: 30px;
             height: 30px;
-            background: #2c5f7f;
+            background: rgb(241, 93, 34);
             color: white;
             border-radius: 50%;
             display: flex;
@@ -406,7 +406,7 @@
             font-weight: bold;
         }
         .nested-list {
-            background: rgba(44,95,127,0.02);
+            background: rgba(241,93,34,0.02);
             border-radius: 10px;
             padding: 15px 20px;
             margin: 15px 0;
@@ -420,20 +420,19 @@
             margin-top: 30px;
         }
         .column-card {
-            background: linear-gradient(135deg, rgba(44,95,127,0.02) 0%, rgba(74,139,179,0.02) 100%);
+            background: rgba(241,93,34,0.02);
             border-radius: 15px;
             padding: 30px;
-            border: 2px solid rgba(44,95,127,0.1);
+            border: 2px solid rgba(241,93,34,0.1);
             transition: all 0.3s;
         }
         .column-card:hover {
-            border-color: rgba(44,95,127,0.3);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(44,95,127,0.1);
+            border-color: rgba(241,93,34,0.3);
+            box-shadow: 0 10px 30px rgba(241,93,34,0.1);
         }
         .column-card h3 {
             font-size: 24px;
-            color: #2c5f7f;
+            color: rgb(241, 93, 34);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -447,7 +446,7 @@
             right: 30px;
             font-size: 80px;
             font-weight: 900;
-            color: rgba(44,95,127,0.05);
+            color: rgba(241,93,34,0.05);
             line-height: 1;
         }
         
@@ -509,7 +508,7 @@
         }
         .footer-social a:hover {
             color: #fff;
-            background: rgba(44,95,127,0.3);
+            background: rgba(241,93,34,0.3);
             transform: translateY(-3px);
         }
         .footer-bottom {
