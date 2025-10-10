@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Whitestone Capital</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f0;
+            color: #222;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        header {
+            background: #f5f5f0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            
+            transition: background 0.3s ease;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .logo-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: #2c5f7f;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c5f7f;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(44,95,127,0.06);
+        }
+        .contact-btn:hover {
+            box-shadow: 0 4px 16px rgba(44,95,127,0.13);
+            color: #2c5f7f;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 400px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: #2c5f7f;
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2c5f7f 0%, #4a8bb3 100%);
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            opacity: 0.18;
+        }
+        /* .terms-section {
+            margin: 60px 0 40px 0;
+            padding: 0;
+        } */
+        .terms-title {
+            font-size: 38px;
+            color: #2c5f7f;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .terms-updated {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .terms-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .terms-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(44,95,127,0.08);
+            padding: 36px 32px 28px 32px;
+            position: relative;
+            transition: box-shadow 0.3s, transform 0.3s;
+            border-left: 6px solid #2c5f7f;
+        }
+        .terms-card:hover {
+            box-shadow: 0 8px 32px rgba(44,95,127,0.13);
+            transform: translateY(-4px) scale(1.01);
+        }
+        .terms-card h2 {
+            color: #2c5f7f;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .terms-card h3 {
+            color: #1a1a1a;
+            font-size: 19px;
+            margin-top: 18px;
+            margin-bottom: 8px;
+        }
+        .terms-card ul, .terms-card ol {
+            margin-left: 22px;
+            margin-bottom: 14px;
+        }
+        .terms-card li {
+            margin-bottom: 7px;
+        }
+        .terms-card strong {
+            color: #2c5f7f;
+        }
+        .terms-card .notice {
+            background: #fff8e1;
+            border-left: 4px solid #ffd54f;
+            padding: 10px 18px;
+            border-radius: 8px;
+            color: #7a5a00;
+            margin: 18px 0;
+        }
+        @media (max-width: 700px) {
+            .terms-card { padding: 18px 8px; }
+            .terms-title { font-size: 26px; }
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #fff;
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: color 0.3s;
+        }
+        .footer-social a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        @media (max-width: 1100px) {
+            .footer-content { gap: 24px; }
+        }
+        @media (max-width: 968px) {
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 10px; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                Whitestone Capital
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <li><a href="training.html">Training</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="contact-btn mobile-contact-btn">Contact Us</a>
+        </div>
+    </header>
+
+    <div class="section-divider"></div>
+
+    <!-- Terms & Conditions Section -->
+    <section class="terms-section container animate">
+        <div class="terms-title">Terms &amp; Conditions</div>
+        <div class="terms-updated">Last updated: September 17, 2025</div>
+        <div class="terms-cards">
+
+            <div class="terms-card">
+                <h2>Introduction</h2>
+                <p>These Terms &amp; Conditions and Disclaimer govern your use of the <strong>patilresearch.in</strong> website, which provides independent research services to investors.</p>
+                <p>By accessing our website at <strong>patilresearch.in</strong> or using our services, you agree to be bound by these terms.</p>
+            </div>
+
+            <div class="terms-card">
+                <h2>1. Domain Ownership and Registration</h2>
+                <p><strong>patilresearch.in</strong> is the domain owned by Abhijit Patil. He offers independent research services to investors under SEBI (Research Analysts) Regulations 2014, Registration No. INH000021304.</p>
+                <div class="notice">
+                    <strong>Important Notice:</strong> The SEBI registration, Enlistment with RAASB, and NISM certification do not guarantee the performance of the RA or assure any returns to the client.
+                </div>
+            </div>
+
+            <div class="terms-card">
+                <h2>2. Scope of Services &amp; Important Disclaimers</h2>
+                <ul>
+                    <li>The Research Analyst (RA) will publish research reports based on research activities and provide an independent, unbiased view on securities.</li>
+                    <li>The RA offers unbiased recommendations, disclosing financial interests in recommended securities.</li>
+                    <li>Research recommendations are based on analysis of publicly available information and known observations.</li>
+                </ul>
+                <div class="notice">
+                    <strong>Risk Warning:</strong> Use of the information herein is at one's own risk. This is not an offer to sell or solicitation to buy any securities and Abhijit Patil will not be liable for any losses incurred or investment(s) made or decisions taken based on the information provided herein.
+                </div>
+                <h3>Key Disclaimers:</h3>
+                <ul>
+                    <li>Any investment made based on recommendations are subject to market risks</li>
+                    <li>Recommendations do not provide any assurance of returns</li>
+                    <li>There is no recourse to claim any losses incurred on investments made based on recommendations</li>
+                    <li>Information does not constitute personal recommendation or take into account individual circumstances</li>
+                </ul>
+            </div>
+
+            <div class="terms-card">
+                <h2>3. Investment Risks</h2>
+                <ul>
+                    <li>Investments in equity and equity related securities involve high degree of risks</li>
+                    <li>Clients should not invest funds unless they can afford to take the risk</li>
+                    <li>Small and midcap stocks have high impact costs due to low liquidity</li>
+                    <li>This might affect the ability to quickly take action on recommendations at stated prices</li>
+                </ul>
+                <p>The RA will provide clear guidance and adequate caution notice to clients when providing recommendations for dealing in complex and high-risk financial products/services.</p>
+            </div>
+
+            <div class="terms-card">
+                <h2>4. No Guaranteed Returns</h2>
+                <div class="notice">
+                    <strong>Strict Policy:</strong> Any assured/guaranteed/fixed returns schemes or any other schemes of similar nature are prohibited by law. No scheme of this nature shall be offered to the client by the RA.
+                </div>
+                <ul>
+                    <li>Investors are not being offered any guaranteed or assured returns</li>
+                    <li>Neither the principal nor appreciation on investments are guaranteed</li>
+                    <li>Past performance does not guarantee future results</li>
+                    <li>The RA cannot guarantee returns, profits, accuracy, or risk-free investments</li>
+                    <li>All projections are based on analysis of available data under certain assumptions</li>
+                </ul>
+                <p>Report SEBI violations: Inform SEBI about Research Analyst offering assured or guaranteed returns.</p>
+            </div>
+
+            <div class="terms-card">
+                <h2>5. Professional Advice</h2>
+                <p>Before acting on any recommendation, investors should consider whether it is suitable for their particular circumstances and, if necessary, seek an independent professional advice.</p>
+            </div>
+
+            <div class="terms-card">
+                <h2>6. Client Onboarding and Disclosures</h2>
+                <ul>
+                    <li>Share terms and conditions of research services and complete KYC of fee-paying clients</li>
+                    <li>Disclose information material for informed decision-making</li>
+                    <li>Disclose the extent of use of Artificial Intelligence tools in providing research services</li>
+                    <li>Disclose any material conflict of interest when distributing third-party research reports</li>
+                    <li>Distribute research reports and recommendations to clients without discrimination</li>
+                    <li>Maintain confidentiality with respect to research reports until made public</li>
+                    <li>Respect data privacy rights and protect confidential information</li>
+                    <li>Disclose timelines for services and ensure adherence</li>
+                    <li>Treat all clients with honesty and integrity</li>
+                </ul>
+            </div>
+
+            <div class="terms-card">
+                <h2>7. Fees and Payments</h2>
+                <div class="notice">
+                    <strong>SEBI Fee Regulations:</strong> The current fee limit is ₹1,51,000/- per annum per family of client for all research services (applicable only for Individual and HUF Clients).
+                </div>
+                <ul>
+                    <li>Fee charged will be subject to maximum amount prescribed by SEBI/RAASB</li>
+                    <li>Fee limit does not include statutory charges</li>
+                    <li>Fee limits do not apply to non-individual clients/accredited investors</li>
+                    <li>RA may charge fees in advance if agreed by client (maximum one quarter)</li>
+                    <li>In case of pre-mature termination, client entitled to proportionate refund for unexpired period</li>
+                    <li>Payments accepted through cheque, online bank transfer, UPI, etc. Cash payment is not allowed</li>
+                    <li>Optional payments through Centralized Fee Collection Mechanism (CeFCOM) managed by BSE Limited</li>
+                </ul>
+                <div class="notice">
+                    <strong>Payment Security:</strong> Always pay your Research Analyst through banking channels only and maintain duly signed receipts mentioning the details of your payments.
+                </div>
+            </div>
+
+            <div class="terms-card">
+                <h2>8. Grievance Redressal Mechanism</h2>
+                <ol>
+                    <li>
+                        <strong>Direct Contact:</strong> In case of any grievance/complaint, an investor may approach the concerned Research Analyst who shall strive to redress the grievance immediately, but not later than 21 days of receipt.
+                    </li>
+                    <li>
+                        <strong>SMARTODR Platform:</strong> If not satisfied with the resolution, investors can file complaints on SMARTODR platform for resolution through online conciliation or arbitration.
+                    </li>
+                    <li>
+                        <strong>SEBI SCORES:</strong> Clients can lodge grievances through SEBI'S SCORES platform at <a href="https://scores.sebi.gov.in" target="_blank">www.scores.sebi.gov.in</a>
+                    </li>
+                </ol>
+                <p><strong>Review Process:</strong> Complaints on SCORES 2.0 undergo a two-level review:</p>
+                <ul>
+                    <li>First review done by designated body (RAASB)</li>
+                    <li>Second review done by SEBI</li>
+                </ul>
+                <div class="notice">
+                    <strong>Physical Complaints:</strong><br>
+                    Office of Investor Assistance and Education<br>
+                    Securities and Exchange Board of India<br>
+                    SEBI Bhavan, Plot No. C4-A, 'G' Block<br>
+                    Bandra-Kurla Complex, Bandra (E)<br>
+                    Mumbai-400 051
+                </div>
+            </div>
+
+            <div class="terms-card">
+                <h2>9. Conflict of Interest</h2>
+                <ul>
+                    <li>Abhijit Patil may hold shares in the company/ies discussed in research reports.</li>
+                    <li>The RA is required to abide by applicable SEBI and RAASB regulations regarding disclosure and mitigation of conflicts of interest</li>
+                    <li>The RA will promptly inform clients of any conflict of interest that may affect services being rendered</li>
+                </ul>
+            </div>
+
+            <div class="terms-card">
+                <h2>10. Account Usage Policy</h2>
+                <div class="notice">
+                    <strong>Strict Account Policy:</strong> This is a single user account. Sharing of content or login details is strictly prohibited, failing to which account will be suspended.
+                </div>
+                <div class="notice">
+                    <strong>Security Warning:</strong> The RA shall never ask for client's login credentials and OTPs for Trading Account, Demat Account and Bank Account. Never share such information with anyone including RA.
+                </div>
+            </div>
+
+            <div class="terms-card">
+                <h2>11. Communication Authorization</h2>
+                <p>I authorize patilresearch.in to send informative updates (notifications) on my registered mobile number and email address.</p>
+                <p>Clients are required to keep contact details, including email id and mobile number/s updated with the RA at all times.</p>
+            </div>
+
+            <div class="terms-card">
+                <h2>12. Investor Rights (As per SEBI Investor Charter)</h2>
+                <ul>
+                    <li><strong>Privacy & Confidentiality:</strong> Right to Privacy and Confidentiality of your personal information</li>
+                    <li><strong>Transparent Practices:</strong> Right to Transparent Practices in all dealings</li>
+                    <li><strong>Fair Treatment:</strong> Right to fair and Equitable Treatment without discrimination</li>
+                    <li><strong>Adequate Information:</strong> Right to Adequate Information about services and risks</li>
+                    <li><strong>Disclosure Rights:</strong> Right to Initial and Continuing Disclosure of all material information</li>
+                    <li><strong>Regulatory Information:</strong> Right to receive information about statutory and regulatory disclosures</li>
+                    <li><strong>Fair Advertisement:</strong> Right to Fair & True Advertisement without misleading claims</li>
+                    <li><strong>Service Awareness:</strong> Right to Awareness about Service Parameters and Turnaround Times</li>
+                    <li><strong>Grievance Redressal:</strong> Right to be Heard and Satisfactory Grievance Redressal</li>
+                    <li><strong>Exit Rights:</strong> Right to Exit from services in accordance with agreed terms and conditions</li>
+                    <li><strong>Risk Guidance:</strong> Right to receive clear guidance for Complex and High-Risk Financial Products</li>
+                    <li><strong>Timely Information:</strong> Right to be informed of the timelines for each service</li>
+                </ul>
+            </div>
+
+            <div class="terms-card">
+                <h2>13. Responsibilities of Investors (As per SEBI Investor Charter)</h2>
+                <h3>Verification Responsibilities</h3>
+                <ul>
+                    <li>Always deal with SEBI registered Research Analyst</li>
+                    <li>Ensure that the Research Analyst has a valid registration certificate</li>
+                    <li>Check for SEBI registration number on SEBI website</li>
+                    <li>Pay attention to disclosures made in research reports before investing</li>
+                </ul>
+                <h3>Investment Responsibilities</h3>
+                <ul>
+                    <li>Check for research recommendations before buying/selling securities</li>
+                    <li>Ask all relevant questions and clear doubts with your Research Analyst</li>
+                    <li>Seek clarifications on recommendations, especially for complex and high-risk products</li>
+                    <li>Be aware of your right to stop availing services as per agreed terms</li>
+                    <li>Be aware of your right to provide feedback on services received</li>
+                </ul>
+                <h3>Safety Responsibilities</h3>
+                <ul>
+                    <li><strong>What NOT to Do</strong></li>
+                    <li>Do not provide funds for investment to the Research Analyst</li>
+                    <li>Don't fall prey to luring advertisements or market rumors</li>
+                    <li>Do not get attracted to limited period discounts or incentives offered by Research Analyst</li>
+                    <li>Do not be bound by any clause that contravenes regulatory provisions</li>
+                </ul>
+            </div>
+
+            <div class="terms-card">
+                <h2>14. Jurisdiction</h2>
+                <p>All disputes are subject to the jurisdiction of the courts of Mumbai, Maharashtra – 400032.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="logo">
+                        <img src="image/image.png" alt="Whitestone Capital Logo" class="logo-icon">
+                        Whitestone Capital
+                    </div>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="LinkedIn"><span>🔗</span></a>
+                        <a href="#" aria-label="Twitter"><span>🐦</span></a>
+                        <a href="#" aria-label="Facebook"><span>📘</span></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html">Insurance</a></li>
+                        <li><a href="training.html">Training</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Investment Research</a></li>
+                        <li><a href="#">Mutual Funds</a></li>
+                        <li><a href="#">Insurance</a></li>
+                        <li><a href="#">Portfolio Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        // Section and card animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        document.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
