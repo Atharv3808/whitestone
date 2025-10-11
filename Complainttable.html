@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer - Whitestone Capital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f0;
+            color: #222;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        header {
+            background: #f5f5f0;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            transition: background 0.3s ease;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            padding: 2px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .logo-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2px;
+            background: rgb(241, 93, 34);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: rgb(241, 93, 34);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+        .contact-btn {
+            background: white;
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(44,95,127,0.06);
+        }
+        .contact-btn:hover {
+            box-shadow: 0 4px 16px rgba(241,93,34,0.13);
+            color: rgb(241, 93, 34);
+            transform: translateY(-2px) scale(1.04);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            margin-left: 18px;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 99;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.active {
+            display: block;
+            max-height: 400px;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .mobile-menu ul li {
+            margin-bottom: 15px;
+        }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: block;
+            padding: 10px;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu ul li a:hover,
+        .mobile-menu ul li a.active {
+            background: #e6f0fa;
+            color: rgb(241, 93, 34);
+        }
+        .mobile-contact-btn {
+            margin: 0 20px 20px;
+            display: block;
+            text-align: center;
+        }
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, rgb(241, 93, 34) 0%, #4a8bb3 100%);
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            opacity: 0.18;
+        }
+        .disclaimer-section {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(241,93,34,0.08);
+            margin: 60px 0 40px 0;
+            padding: 48px 32px;
+            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
+        }
+        .disclaimer-box {
+            background: #fff8e1;
+            border: 2px solid #ffd54f;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(44,95,127,0.07);
+            padding: 32px 24px;
+            margin: 0 auto 40px auto;
+            max-width: 800px;
+            font-size: 18px;
+            color: #7a5a00;
+            position: relative;
+        }
+        .disclaimer-box::before {
+            content: "⚠️";
+            font-size: 28px;
+            position: absolute;
+            left: 24px;
+            top: 24px;
+        }
+        .disclaimer-section h1 {
+            font-size: 38px;
+            color: rgb(241, 93, 34);
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .disclaimer-section p {
+            margin-bottom: 16px;
+        }
+        .disclaimer-section ul {
+            margin-left: 22px;
+            margin-bottom: 18px;
+        }
+        .disclaimer-section li {
+            margin-bottom: 7px;
+        }
+        .disclaimer-section strong {
+            color: rgb(241, 93, 34);
+        }
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #fff;
+        }
+        .footer-section ul {
+            list-style: none;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section a {
+            color: #b0c4d4;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+        .footer-section a:hover {
+            color: #fff;
+        }
+        .footer-about p {
+            color: #b0c4d4;
+            margin-top: 18px;
+        }
+        .footer-social {
+            margin-top: 18px;
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            color: #b0c4d4;
+            font-size: 22px;
+            transition: color 0.3s;
+        }
+        .footer-social a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #aaa;
+            font-size: 14px;
+        }
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            background: rgba(241, 93, 34, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0c4d4;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .footer-social a:hover {
+            background: rgb(241, 93, 34);
+            color: #fff;
+            transform: translateY(-5px) rotate(360deg);
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        .animate { opacity: 0; transform: translateY(40px); }
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeInUp 0.8s cubic-bezier(.22,1,.36,1);
+        }
+        @media (max-width: 1100px) {
+            .footer-content { gap: 24px; }
+        }
+        @media (max-width: 968px) {
+            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        }
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+        }
+        @media (max-width: 640px) {
+            .container { padding: 0 10px; }
+            .footer-content { grid-template-columns: 1fr; }
+            .disclaimer-section { padding: 28px 8px; }
+            .disclaimer-section h1 { font-size: 26px; }
+        }
+        @media (max-width: 700px) {
+            .disclaimer-box { padding: 18px 8px; font-size: 16px; }
+            .disclaimer-box::before { left: 8px; top: 12px; }
+        }
+          .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: black;
+            position: relative;
+            z-index: 2;
+        }
+        .subtitle {
+            text-align: center;
+            color: #f15d22;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+        .glass-card {
+            background: rgba(30, 34, 44, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 8px 40px 0 rgba(241,93,34,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+            padding: 32px 24px;
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
+        }
+        .glass-card:before {
+            content: "";
+            position: absolute;
+            top: -80px; left: -80px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(241,93,34,0.13) 0%, transparent 70%);
+            z-index: 0;
+            animation: floatGlow 6s infinite alternate;
+        }
+        .glass-card h2 {
+            color: #f15d22;
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 2;
+        }
+        .summary-table, .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            overflow: hidden;
+            font-size: 1rem;
+        }
+        .summary-table th, .trend-table th {
+            background: rgba(241,93,34,0.13);
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 8px;
+            text-align: center;
+            border-bottom: 2px solid #222;
+        }
+        .summary-table td, .trend-table td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #23272f;
+            color: white;
+        }
+        .summary-table tr:last-child td,
+        .trend-table tr:last-child td {
+            border-bottom: none;
+        }
+        .summary-table tr.grand-total td,
+        .trend-table tr.grand-total td {
+            font-weight: bold;
+            color: #f15d22;
+            background: rgba(241,93,34,0.07);
+        }
+        .info-text {
+            color: #b0b8c9;
+            font-size: 0.98rem;
+            margin-bottom: 18px;
+            margin-top: 8px;
+        }
+        .animated-gradient {
+            background: linear-gradient(90deg, #f15d22, #ffb347, #f15d22, #181c24);
+            background-size: 300% 300%;
+            animation: gradientMove 6s ease-in-out infinite;
+            height: 4px;
+            border-radius: 2px;
+            margin: 32px auto 48px;
+            width: 80px;
+            opacity: 0.7;
+        }
+        /* Futuristic Glow Animation */
+        @keyframes floatGlow {
+            0% { filter: blur(0px); transform: scale(1) translateY(0);}
+            100% { filter: blur(2px); transform: scale(1.1) translateY(10px);}
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(40px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%;}
+            50% { background-position: 100% 50%;}
+            100% { background-position: 0% 50%;}
+        }
+        /* Futuristic Table Hover */
+        .summary-table tr:hover:not(.grand-total),
+        .trend-table tr:hover:not(.grand-total) {
+            background: rgba(241,93,34,0.08);
+            transition: background 0.2s;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container { padding: 18px 4vw 40px 4vw; }
+            .glass-card { padding: 18px 8px; }
+            .summary-table, .trend-table { font-size: 0.95rem; }
+        }
+        @media (max-width: 600px) {
+            .page-title { font-size: 1.5rem; }
+            .glass-card { padding: 12px 2px; }
+            .summary-table th, .trend-table th,
+            .summary-table td, .trend-table td { padding: 7px 2px; font-size: 0.92rem; }
+        }
+        /* Futuristic animated background */
+        .bg-animated {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.13;
+            filter: blur(2px);
+            animation: moveCircle 12s linear infinite alternate;
+        }
+        .circle1 { width: 320px; height: 320px; background: #f15d22; left: 5vw; top: 10vh; animation-delay: 0s;}
+        .circle2 { width: 180px; height: 180px; background: #ffb347; right: 8vw; top: 30vh; animation-delay: 2s;}
+        .circle3 { width: 220px; height: 220px; background: #f15d22; left: 40vw; bottom: 8vh; animation-delay: 4s;}
+        @keyframes moveCircle {
+            0% { transform: scale(1) translateY(0);}
+            100% { transform: scale(1.08) translateY(30px);}
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+          <div class="logo">
+                <a href="index.html">
+                    <img src="image/image-removebg-preview.png" alt="Whitestone Capital Logo"style="height: 77px; object-fit: contain;">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <!-- <li><a href="training.html">Training</a></li> -->
+            </ul>
+            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <!-- <li><a href="training.html">Training</a></li> -->
+               <li><a href="investerCharter.html">Investor Charter</a></li>
+            </ul>
+        </div>
+    </header>
+
+</head>
+<body>
+    
+    <!-- Futuristic Animated Background -->
+    <div class="bg-animated">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
+    <div class="container">
+        <div class="page-title">Monthly Complaint Summary</div>
+        <div class="subtitle">Data for the month ending September 2025.</div>
+        <div class="animated-gradient"></div>
+
+        <div class="glass-card">
+            <h2>Monthly Complaint Summary Table</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Received from</th>
+                        <th>Pending at the end of last month</th>
+                        <th>Received</th>
+                        <th>Resolved</th>
+                        <th>Total Pending</th>
+                        <th>Pending complaints &gt;3 months</th>
+                        <th>Average Resolution time (days)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Directly from Investors</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>SEBI (SCORES)</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Other Sources (if any)</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td colspan="2">Grand Total</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="info-text">
+                Average Resolution Time is calculated by dividing the total time taken to resolve each complaint in the current month by the total number of complaints resolved in the same month. This gives us an average time taken to resolve each complaint.
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Trend of Monthly Disposal of Complaints</h2>
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Month</th>
+                        <th>Carried forward from previous month</th>
+                        <th>Received</th>
+                        <th>Resolved*</th>
+                        <th>Pending#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Jun, 2025</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jul, 2025</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td colspan="2">Grand Total</td>
+                        <td>NIL</td>
+                        <td>NIL</td>
+                        <td>NA</td>
+                        <td>NIL</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="info-text">
+                This month includes complaints resolved in previous months and complaints pending as of the last day of the month.
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Trend of Annual Disposal of Complaints</h2>
+            <table class="trend-table">
+                <thead>
+                    <tr>
+                        <th>SN</th>
+                        <th>Year</th>
+                        <th>Carried forward from previous year</th>
+                        <th>Received</th>
+                        <th>Resolved*</th>
+                        <th>Pending#</th>
+                        <th>Pending Disposal &gt; 3 months</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2025-26</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                        <td>NA</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="info-text">
+                *Inclusive of complaints of previous years resolved in the current year.<br>
+                #Inclusive of complaints pending as on the last day of the year.
+            </div>
+        </div>
+    </div>
+
+ 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                     <a href="index.html">
+                    <img src="image/image copy 3.png" alt="Whitestone Capital Logo" style="width: 150px; height: auto;">
+                </a>
+                    <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
+                   <div class="footer-social">
+    <a href="https://www.linkedin.com/company/105713157" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="wa.me/919226060600" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+</div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="investerCharter.html">investerCharter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="research.html">Investment Research</a></li>
+                        <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                        <li><a href="insurance.html">Insurance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
+                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
+                        <li><a href="Disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Whitestone Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        // Section and card animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        document.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
