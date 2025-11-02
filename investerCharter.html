@@ -652,6 +652,27 @@
             .hero-section { padding: 60px 0 40px; }
             .charter-card h2 { font-size: 24px; }
         }
+           .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            padding: 125px 28px 30px;
+
+            transition: right 0.3s;
+            z-index: 999;
+        }
+    @media (max-width: 480px) {
+            .hero h1 { font-size: 28px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center;display: none; }
+            .credentials { flex-direction: column; }
+            .section-header h2 { font-size: 24px; }
+        }
+
     </style>
 </head>
 <body>

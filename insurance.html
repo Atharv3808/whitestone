@@ -147,10 +147,10 @@
         }
 
         .logo img {
-                width: 199px;
-    height: 108px;
-    border-radius: 8px;
-    object-fit: cover;
+            width: 160px;
+            height: 77px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -347,7 +347,7 @@
 
         .footer-content {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
             gap: 60px;
             margin-bottom: 50px;
         }
@@ -624,11 +624,13 @@
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a class="active"href="index.html"aria-current="page" >Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <!-- <li><a href="training.html">Training</a></li> -->
+                <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
@@ -912,7 +914,8 @@
             font-size: 15px;
             opacity: 0.9;
             line-height: 1.6;
-            color: white;
+            color: white
+            ;
         }
 
         /* Final CTA */
@@ -1049,7 +1052,7 @@
             .hero h1 { font-size: 28px; }
             .section-header h2 { font-size: 26px; }
             .cta-actions { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
+            .btn { width: 100%; justify-content: center;display: none; }
         }
              /* Insurance Cards Section */
         .insurance-cards-section {
@@ -1359,8 +1362,7 @@
     </section>
 
     <!-- Footer -->
-     <!-- Footer -->
-       <footer>
+      <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
@@ -1373,8 +1375,6 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    
 </div>
                 </div>
                 <div class="footer-section">
@@ -1383,6 +1383,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="research.html">Research</a></li>
+                        <li><a href="investerCharter.html">investerCharter</a></li>
                         <li><a href="GrievanceRedressal.html">Grievance Redressal</a></li>
                     </ul>
                 </div>
@@ -1392,6 +1393,7 @@
                         <li><a href="research.html">Investment Research</a></li>
                         <li><a href="mutual-funds.html">Mutual Funds</a></li>
                         <li><a href="insurance.html">Insurance</a></li>
+                        <li><a href="Complainttable.html">Complaint table</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1400,6 +1402,7 @@
                         <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
                         <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
+                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
                     </ul>
@@ -1412,18 +1415,13 @@
                         <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                     </ul>
                 </div>
+                
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Whitestone Capital. All rights reserved.</p>
             </div>
         </div>
     </footer>
-    <style> .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 50px;
-        }</style>
 
     <!-- Floating Buttons -->
     <div class="floating-buttons">

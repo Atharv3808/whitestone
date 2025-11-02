@@ -1020,6 +1020,28 @@
                 grid-template-columns: 1fr;
             }
         }
+           .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            padding: 125px 28px 30px;
+
+            transition: right 0.3s;
+            z-index: 999;
+        }
+    @media (max-width: 480px) {
+            .hero h1 { font-size: 28px; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center;display: none; }
+            .credentials { flex-direction: column; }
+            .section-header h2 { font-size: 24px; }
+            .logo img { margin-left: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -1056,11 +1078,13 @@
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#contact">Contact</a></li>
+       <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="mutual-funds.html">Mutual Funds</a></li>
+                <li><a href="insurance.html">Insurance</a></li>
+                <!-- <li><a href="training.html">Training</a></li> -->
+                <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
@@ -1282,12 +1306,7 @@
             </div>
         </div>
     </footer>
-    <style> .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 50px;
-        }</style>
+ 
 
     <!-- Floating Buttons -->
     <div class="floating-buttons">
