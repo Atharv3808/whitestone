@@ -3,24 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Patil - Research Analyst | Whitestone Capital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Research - Whitestone Capital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f0;
-            overflow-x: hidden;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+        :root {
+            --primary: rgb(241, 93, 34);
+            --primary-dark: rgb(200, 70, 20);
+            --primary-light: rgba(241, 93, 34, 0.1);
+            --primary-orange: rgb(241, 93, 34);
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text-dark: #1a1a1a;
+            --text-gray: #64748b;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, var(--primary) 0%, #ff6b35 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --text-dark: #e2e8f0;
+            --text-gray: #94a3b8;
+            --white: #1e293b;
+            --bg-light: #0f172a;
+            --dark: #f8fafc;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 24px;
         }
-        
-        /* Enhanced Animations */
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-1);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 7s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode header {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .logo img {
+                width: 199px;
+    height: 108px;
+    border-radius: 8px;
+    object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(241, 93, 34, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(241, 93, 34, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(254, 245, 241, 0.9) 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.9) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(241, 93, 34, 0.08) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(241, 93, 34, 0.05) 0%, transparent 70%);
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -31,1282 +320,728 @@
                 transform: translateY(0);
             }
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .hero .tagline {
+            font-size: 22px;
+            color: var(--primary-orange);
+            font-weight: 600;
+            margin-bottom: 20px;
         }
 
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-        
-        /* Header */
-        header {
-            background: rgba(245, 245, 240, 0.98);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 16px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            animation: slideInLeft 0.8s ease;
-        }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            padding: 2px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: drop-shadow(0 2px 4px rgba(241, 93, 34, 0.2));
-        }
-        
-        .logo-icon:hover {
-            transform: scale(1.2) rotate(5deg);
-            filter: drop-shadow(0 6px 12px rgba(241, 93, 34, 0.4));
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
+        .hero .description {
             font-size: 18px;
-            transition: all 0.3s;
-            position: relative;
-            padding-bottom: 4px;
+            color: var(--text-gray);
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 50%; right: 50%;
-            bottom: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(241, 93, 34), transparent);
-            transform-origin: center;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        .animated-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-orange), transparent);
+            margin: 40px auto;
+            border-radius: 2px;
+            animation: expandLine 1.5s ease forwards;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            left: 0;
-            right: 0;
+        @keyframes expandLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
         }
 
-        .nav-links a:hover {
-            color: rgb(241, 93, 34);
-            transform: translateY(-2px);
+        /* Model Portfolios Section */
+        .portfolios-section {
+            padding: 100px 0;
+            background: var(--white);
         }
 
-        .contact-btn {
-            background: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(44, 95, 127, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .contact-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(241, 93, 34, 0.2);
-        }
-        
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            margin-left: 18px;
-            z-index: 101;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border-radius: 3px;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: translateX(20px);
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            z-index: 99;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .mobile-menu.active {
-            display: block;
-            max-height: 500px;
-        }
-        .mobile-menu ul {
-            list-style: none;
-            padding: 20px;
-        }
-        .mobile-menu ul li {
-            margin-bottom: 15px;
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideInLeft 0.3s forwards;
-        }
-        .mobile-menu.active ul li:nth-child(1) { animation-delay: 0.1s; }
-        .mobile-menu.active ul li:nth-child(2) { animation-delay: 0.15s; }
-        .mobile-menu.active ul li:nth-child(3) { animation-delay: 0.2s; }
-        .mobile-menu.active ul li:nth-child(4) { animation-delay: 0.25s; }
-        .mobile-menu.active ul li:nth-child(5) { animation-delay: 0.3s; }
-        .mobile-menu.active ul li:nth-child(6) { animation-delay: 0.35s; }
-        .mobile-menu.active ul li:nth-child(7) { animation-delay: 0.4s; }
-        .mobile-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            display: block;
-            padding: 10px;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        .mobile-menu ul li a:hover,
-        .mobile-menu ul li a.active {
-            background: #e6f0fa;
-            color: rgb(241, 93, 34);
-            transform: translateX(5px);
-        }
-        .mobile-contact-btn {
-            margin: 0 20px 20px;
-            display: block;
+        .section-title {
             text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
-            padding: 80px 0 60px 0;
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 60px;
+        }
+
+        .portfolio-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow-md);
             position: relative;
             overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .hero::before {
+
+        .portfolio-card::before {
             content: '';
             position: absolute;
-            top: -120px;
-            right: -120px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(241, 93, 34, 0.13) 60%, transparent 100%);
-            z-index: 0;
-            pointer-events: none;
-            animation: float 8s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary-orange), #ff6b35);
+            transform: scaleX(0);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            left: -80px;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, #4a8bb322 50%, transparent 100%);
-            z-index: 0;
-            pointer-events: none;
-            animation: float 10s ease-in-out infinite reverse;
+
+        .portfolio-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
         }
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 1;
+
+        .portfolio-card:hover::before {
+            transform: scaleX(1);
         }
-        .profile-image-container {
-            position: relative;
-            opacity: 0;
-            animation: scaleIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s forwards;
-        }
-        .profile-image-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
-        }
-        .profile-image-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: 15px;
-            bottom: 15px;
-            border: 3px solid rgb(241, 93, 34);
+
+        .portfolio-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(241, 93, 34, 0.1), rgba(241, 93, 34, 0.05));
             border-radius: 20px;
-            z-index: -1;
-            animation: pulse 3s ease-in-out infinite;
-        }
-        .profile-image {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            transition: transform 0.4s ease;
-        }
-        .profile-image:hover {
-            transform: scale(1.05);
-        }
-        .profile-badge {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideInRight 1s ease 0.6s backwards;
-        }
-        .badge-icon {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 14px;
+            font-size: 36px;
+            color: var(--primary-orange);
+            margin-bottom: 24px;
+            transition: transform 0.5s;
         }
-        .badge-text {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
+
+        .portfolio-card:hover .portfolio-icon {
+            transform: scale(1.1) rotate(5deg);
         }
-        .hero-text {
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.2s forwards;
+
+        .portfolio-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
         }
-        .hero-text h1 {
-            font-size: 48px;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
+
+        .portfolio-card .subtitle {
+            font-size: 16px;
+            color: var(--text-gray);
+            margin-bottom: 28px;
+            line-height: 1.7;
         }
-        .hero-text .subtitle {
-            font-size: 20px;
-            color: rgb(241, 93, 34);
-            margin-bottom: 20px;
-            font-weight: 600;
+
+        .portfolio-features {
+            list-style: none;
+            margin-bottom: 32px;
         }
-        .hero-text .tagline {
-            font-size: 24px;
-            color: #555;
-            margin-bottom: 25px;
-            font-style: italic;
+
+        .portfolio-features li {
+            padding: 12px 0;
+            color: var(--text-gray);
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
         }
-        .hero-text p {
-            color: #666;
-            font-size: 17px;
-            line-height: 1.8;
-            margin-bottom: 30px;
+
+        .portfolio-features li::before {
+            content: '✓';
+            color: var(--primary-orange);
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
         }
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgb(241, 93, 34);
-            color: white;
-            padding: 14px 32px;
+
+        .portfolio-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+            padding: 12px 28px;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 16px;
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 8px 25px rgba(241, 93, 34, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        .cta-button:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-        .cta-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(241, 93, 34, 0.4);
+            font-size: 15px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        /* Section Divider */
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, rgb(241, 93, 34) 0%, #4a8bb3 100%);
-            border-radius: 2px;
-            margin: 50px auto;
-            opacity: 0;
-            transform: scaleX(0);
-        }
-        .section-divider.visible {
-            animation: scaleIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 80px 0;
-            background: white;
-        }
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .about-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            margin-bottom: 30px;
-            opacity: 0;
-        }
-        .about-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .about-content p {
-            font-size: 18px;
-            color: #666;
-            line-height: 1.9;
-            margin-bottom: 20px;
-            opacity: 0;
-        }
-        .about-content p.visible {
-            animation: fadeInUp 0.8s ease forwards;
+        .btn-secondary:hover {
+            background: var(--primary-orange);
+            color: white;
+            transform: translateY(-3px);
         }
 
         /* Why Choose Section */
         .why-choose-section {
-            padding: 80px 0;
-            background: #fafafa;
+            padding: 100px 0;
+            background: var(--bg-light);
+            position: relative;
         }
-        .why-choose-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .why-choose-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            text-align: center;
-            margin-bottom: 60px;
-            opacity: 0;
-        }
-        .why-choose-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
+            margin-top: 60px;
         }
+
         .feature-card {
-            background: white;
+            background: var(--white);
             padding: 40px 35px;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            opacity: 0;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
             position: relative;
             overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
+
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), #4a8bb3);
-            transform: scaleX(0);
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(241, 93, 34, 0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
         }
-        .feature-card.visible {
-            animation: fadeInUp 0.8s ease forwards;
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
+
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(241, 93, 34, 0.2);
+            box-shadow: 0 15px 50px rgba(241, 93, 34, 0.15);
         }
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
+
         .feature-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, rgba(241, 93, 34, 0.1), rgba(74, 139, 179, 0.1));
-            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-orange), #ff6b35);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            margin-bottom: 20px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-        .feature-card h3 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-        }
-        .feature-card p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.7;
-        }
-
-        /* SEBI Details Section */
-        .sebi-section {
-            padding: 80px 0;
-            background: white;
-        }
-        .sebi-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .sebi-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            text-align: center;
-            margin-bottom: 50px;
-            opacity: 0;
-        }
-        .sebi-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .sebi-info-box {
-            background: #fafafa;
-            border-left: 4px solid rgb(241, 93, 34);
-            padding: 30px 40px;
-            border-radius: 12px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-            opacity: 0;
-        }
-        .sebi-info-box.visible {
-            animation: slideInLeft 0.8s ease forwards;
-        }
-        .sebi-info-box p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 10px;
-        }
-        .sebi-info-box strong {
-            color: #333;
-        }
-        .sebi-table {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            opacity: 0;
-        }
-        .sebi-table.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .sebi-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .sebi-table th {
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
             color: white;
-            padding: 20px;
-            text-align: left;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .sebi-table td {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            color: #666;
-            font-size: 16px;
-        }
-        .sebi-table tr:last-child td {
-            border-bottom: none;
-        }
-        .sebi-table tr:hover {
-            background: #f9f9f9;
+            margin-bottom: 24px;
+            position: relative;
+            transition: transform 0.5s;
+            box-shadow: 0 8px 20px rgba(241, 93, 34, 0.3);
         }
 
-        /* Philosophy Section */
-        .philosophy-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
-            position: relative;
-        }
-        .philosophy-section::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(241, 93, 34, 0.08) 50%, transparent 100%);
-            animation: float 12s ease-in-out infinite;
-        }
-        .philosophy-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .philosophy-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            margin-bottom: 25px;
-            opacity: 0;
-        }
-        .philosophy-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .philosophy-quote {
-            font-size: 24px;
-            color: #1a1a1a;
-            font-style: italic;
-            font-weight: 500;
-            margin-bottom: 40px;
-            padding: 30px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            position: relative;
-            opacity: 0;
-        }
-        .philosophy-quote.visible {
-            animation: scaleIn 0.8s ease 0.2s forwards;
-        }
-        .philosophy-quote::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 30px;
-            font-size: 80px;
-            color: rgba(241, 93, 34, 0.2);
-            font-family: Georgia, serif;
-        }
-        .philosophy-content p {
-            font-size: 18px;
-            color: #666;
-            line-height: 1.9;
-            margin-bottom: 20px;
-            opacity: 0;
-        }
-        .philosophy-content p.visible {
-            animation: fadeInUp 0.8s ease forwards;
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(-5deg);
+            animation: pulse 2s infinite;
         }
 
-        /* Principles Section */
-        .principles-section {
-            padding: 80px 0;
-            background: white;
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 20px rgba(241, 93, 34, 0.3); }
+            50% { box-shadow: 0 8px 30px rgba(241, 93, 34, 0.5); }
         }
-        .principles-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .principles-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            text-align: center;
-            margin-bottom: 60px;
-            opacity: 0;
-        }
-        .principles-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 35px;
-        }
-        .principle-item {
-            background: #fafafa;
-            padding: 35px 30px;
-            border-radius: 14px;
-            border-left: 5px solid rgb(241, 93, 34);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            opacity: 0;
-        }
-        .principle-item.visible {
-            animation: slideInLeft 0.8s ease forwards;
-        }
-        .principle-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 35px rgba(241, 93, 34, 0.15);
-        }
-        .principle-item h3 {
+
+        .feature-card h3 {
             font-size: 22px;
-            color: rgb(241, 93, 34);
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 12px;
         }
-        .principle-item p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.7;
-        }
 
-        /* Approach Section */
-        .approach-section {
-            padding: 80px 0;
-            background: #fafafa;
-        }
-        .approach-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .approach-content h2 {
-            font-size: 40px;
-            color: rgb(241, 93, 34);
-            text-align: center;
-            margin-bottom: 60px;
-            opacity: 0;
-        }
-        .approach-content h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .approach-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        .approach-item {
-            background: white;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-            display: flex;
-            gap: 25px;
-            align-items: flex-start;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            opacity: 0;
-        }
-        .approach-item.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-        .approach-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(241, 93, 34, 0.15);
-        }
-        .approach-icon {
-            width: 60px;
-            height: 60px;
-            min-width: 60px;
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        .approach-item:hover .approach-icon {
-            transform: scale(1.15) rotate(10deg);
-        }
-        .approach-text h3 {
-            font-size: 22px;
-            color: #1a1a1a;
-            margin-bottom: 10px;
-        }
-        .approach-text p {
-            color: #666;
+        .feature-card p {
+            color: var(--text-gray);
             font-size: 16px;
             line-height: 1.7;
         }
 
         /* CTA Section */
         .cta-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
+            padding: 100px 0;
+            background: var(--gradient-2);
+            color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
         }
+
         .cta-section::before {
             content: '';
             position: absolute;
-            top: -150px;
-            right: -150px;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
-            animation: float 10s ease-in-out infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
         }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
         .cta-section h2 {
-            font-size: 42px;
-            color: white;
-            margin-bottom: 25px;
-            opacity: 0;
-            position: relative;
-            z-index: 1;
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 20px;
         }
-        .cta-section h2.visible {
-            animation: fadeInUp 0.8s ease forwards;
-        }
+
         .cta-section p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 18px;
             margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            position: relative;
-            z-index: 1;
+            opacity: 0.95;
         }
-        .cta-section p.visible {
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-        }
-        .cta-buttons.visible {
-            animation: fadeInUp 0.8s ease 0.4s forwards;
-        }
-        .cta-button-white {
+
+        .btn-white {
             background: white;
-            color: rgb(241, 93, 34);
+            color: var(--primary);
             padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 16px;
         }
-        .cta-button-white:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-        .cta-button-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 14px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .cta-button-outline:hover {
-            background: white;
-            color: rgb(241, 93, 34);
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+
+        .btn-white:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(255,255,255,0.3);
         }
 
         /* Footer */
         footer {
-            background: #1a1a1a;
+            background: var(--dark);
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 30px;
         }
+
+        body.dark-mode footer {
+            background: #000;
+        }
+
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-            margin-bottom: 40px;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
         }
+
         .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 17px;
-            color: #fff;
+            margin-bottom: 24px;
+            font-size: 18px;
+            font-weight: 700;
         }
+
+        .footer-section p {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
         .footer-section ul {
             list-style: none;
         }
+
         .footer-section ul li {
-            margin-bottom: 10px;
-            transform: translateX(0);
-            transition: transform 0.3s;
+            margin-bottom: 12px;
         }
-        .footer-section ul li:hover {
-            transform: translateX(5px);
-        }
+
         .footer-section a {
-            color: #b0c4d4;
+            color: #94a3b8;
             text-decoration: none;
+            transition: all 0.3s;
             font-size: 15px;
-            transition: color 0.3s;
         }
+
         .footer-section a:hover {
-            color: #fff;
+            color: white;
+            padding-left: 8px;
         }
-        .footer-about p {
-            color: #b0c4d4;
-            margin-top: 18px;
-        }
+
         .footer-social {
-            margin-top: 18px;
             display: flex;
-            gap: 16px;
+            gap: 12px;
+            margin-top: 20px;
         }
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            background: rgba(241, 93, 34, 0.2);
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #b0c4d4;
-            font-size: 20px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: all 0.3s;
+            color: white;
+            text-decoration: none;
         }
-        .footer-social a:hover {
-            background: rgb(241, 93, 34);
-            color: #fff;
-            transform: translateY(-5px) rotate(360deg);
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-4px);
         }
+
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #aaa;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
             font-size: 14px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                text-align: center;
-            }
-            .profile-image-wrapper {
-                max-width: 280px;
-            }
-            .hero-text h1 {
-                font-size: 38px;
-            }
-            .features-grid, .principles-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-            }
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
         }
-        @media (max-width: 800px) {
-            .nav-links, .contact-btn { display: none; }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+            text-decoration: none;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
+        }
+
+        .scroll-top {
+            opacity: 0;
+            pointer-events: none;
+            animation: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            padding: 80px 30px 30px;
+            transition: right 0.3s;
+            z-index: 999;
+        }
+
+        body.dark-mode .mobile-menu {
+            background: var(--dark);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary);
+            padding-left: 12px;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 44px; }
+            .section-title, .cta-section h2 { font-size: 36px; }
+            .portfolio-cards, .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .theme-toggle { display: none; }
             .hamburger { display: flex; }
-            .hero-text h1 { font-size: 34px; }
-            .hero-text .tagline { font-size: 20px; }
-            .about-content h2, .why-choose-content h2, .sebi-content h2,
-            .philosophy-content h2, .principles-content h2, .approach-content h2,
-            .cta-section h2 {
-                font-size: 32px;
-            }
-            .approach-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            .approach-icon {
-                margin: 0 auto;
-            }
+            .hero { padding: 80px 0 60px; }
+            .hero h1 { font-size: 36px; }
+            .portfolio-cards, .features-grid { grid-template-columns: 1fr; }
+            .section-title, .cta-section h2 { font-size: 28px; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+            .floating-buttons { right: 20px; bottom: 20px; }
         }
-        @media (max-width: 640px) {
-            .container { padding: 0 20px; }
-            .hero-text h1 { font-size: 28px; }
-            .hero-text .subtitle { font-size: 18px; }
-            .hero-text .tagline { font-size: 18px; }
-            .about-content h2, .why-choose-content h2, .sebi-content h2,
-            .philosophy-content h2, .principles-content h2, .approach-content h2 {
-                font-size: 28px;
-            }
-            .cta-section h2 { font-size: 30px; }
-            .philosophy-quote { font-size: 20px; }
-            .footer-content { grid-template-columns: 1fr; }
-            .sebi-table th, .sebi-table td {
-                padding: 12px;
-                font-size: 14px;
-            }
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .cta-button-white, .cta-button-outline {
-                width: 100%;
-                justify-content: center;
-            }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 28px; }
+            .btn { width: 100%; justify-content: center; }
+            .section-title { font-size: 24px; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+    </div>
+
+      <!-- Header -->
     <header id="header">
         <nav class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="image/image-removebg-preview.png" alt="Whitestone Capital Logo" style="height: 77px; object-fit: contain;">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>                
+            <a href="#" class="logo">
+                <img src="image/image-removebg-preview.png" alt="Whitestone Capital">
+            </a>
+             <ul class="nav-links">
+                <li><a class="active"href="index.html"aria-current="page" >Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="mutual-funds.html">Mutual Funds</a></li>
                 <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="investerCharter.html">Investor Charter</a></li> -->
+                <!-- <li><a href="training.html">Training</a></li> -->
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="contact.html" class="contact-btn">Contact Us</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary">Get Consultation</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="mutual-funds.html">Mutual Funds</a></li>
-                <li><a href="insurance.html">Insurance</a></li>
-                <li><a href="investerCharter.html">Investor Charter</a></li>
-            </ul>
-            <a href="contact.html" class="contact-btn mobile-contact-btn">Contact Us</a>
-        </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="profile-image-container">
-                    <div class="profile-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=600&fit=crop" alt="Aditya Patil" class="profile-image">
-                        <div class="profile-badge">
-                            <div class="badge-icon"><i class="fas fa-certificate"></i></div>
-                            <div class="badge-text">SEBI Registered</div>
-                        </div>
+                <h1>Research</h1>
+                <p class="tagline">Empowering investors with high-quality, research-backed investment insights</p>
+                <div class="animated-line"></div>
+                <p class="description">As a SEBI-registered Research Analyst, Whitestone Capital provides unbiased and actionable recommendations tailored to help clients build long-term wealth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Model Portfolios Section -->
+    <section class="portfolios-section">
+        <div class="container">
+            <h2 class="section-title">Model Portfolios</h2>
+            <p class="section-subtitle">Choose the strategy that aligns with your investment goals</p>
+
+            <div class="portfolio-cards">
+                <!-- Alpha Builder Card -->
+                <div class="portfolio-card">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Alpha Builder</h3>
+                    <p class="subtitle">A curated basket of fundamentally strong stocks designed to outperform the market over the long term.</p>
+                    <ul class="portfolio-features">
+                        <li>Publicly traded multi-cap companies included</li>
+                        <li>Handpicked stocks with detailed research</li>
+                        <li>Diversified sectors to manage risk</li>
+                        <li>Periodic reviews and rebalancing</li>
+                        <li>Ideal for medium to long-term investors (3+ years)</li>
+                    </ul>
+                    <div class="portfolio-buttons">
+                        <a href="tel:9226060600" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Subscribe Now
+                        </a>
+                        <a href="#" class="btn-secondary">
+                            <i class="fas fa-download"></i> Download Factsheet
+                        </a>
                     </div>
                 </div>
-                <div class="hero-text">
-                    <h1>Aditya Patil</h1>
-                    <p class="subtitle">Registered Research Analyst (INH000020794)</p>
-                    <p class="tagline">Securing Your Financial Prosperity</p>
-                    <p>Aditya Patil is a SEBI-Registered Research Analyst committed to bridging the gap between academic financial theory and practical investing. His mission is to dispel misconceptions, navigate market noise, and empower every investor to take control of their financial future—not through shortcuts, but with knowledge and discipline.</p>
-                    <a href="tel:9226060600" class="cta-button">
-                        <i class="fas fa-phone"></i> Book a Consultation
-                    </a>
+
+                <!-- Ready to Launch Card -->
+                <div class="portfolio-card">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Ready to Launch</h3>
+                    <p class="subtitle">A high-conviction, short-term portfolio combining technical chart patterns, valuation comfort, and fundamentals.</p>
+                    <ul class="portfolio-features">
+                        <li>Nifty 500 companies in the universe</li>
+                        <li>Entry based on breakout patterns and price action</li>
+                        <li>Backed by strong fundamentals</li>
+                        <li>Short-term holding with frequent rebalancing</li>
+                        <li>Suited for dynamic investors</li>
+                    </ul>
+                    <div class="portfolio-buttons">
+                        <a href="tel:9226060600" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Subscribe Now
+                        </a>
+                        <a href="#" class="btn-secondary">
+                            <i class="fas fa-download"></i> Download Factsheet
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- About Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>About Aditya Patil</h2>
-                <p>Aditya Patil combines independent research, in-depth market knowledge, and practical investing experience to provide transparent, actionable, and SEBI-compliant investment insights. His objective is straightforward: to assist individuals in making informed financial decisions and building long-term wealth with confidence.</p>
-                <p>Patil prioritises clarity, integrity, and purpose. He not only recommends investment opportunities but also educates investors on the rationale behind each decision.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Why Choose Section -->
+    <!-- Why Choose Us Section -->
     <section class="why-choose-section">
         <div class="container">
-            <div class="why-choose-content">
-                <h2>Why Choose Aditya Patil?</h2>
-                <ul class="features-grid" style="list-style: none; padding: 0;">
-                    <li class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-search"></i></div>
-                        <h3>Independent Research</h3>
-                        <p>Unbiased analysis and stock recommendations based on factual evidence, not unsubstantiated claims.</p>
-                    </li>
-                    <li class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3>SEBI-Compliant Approach</h3>
-                        <p>Every insight adheres to strict regulatory standards.</p>
-                    </li>
-                    <li class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-user-friends"></i></div>
-                        <h3>Investor-Focused</h3>
-                        <p>Whether you are a novice or an experienced trader, Patil assists you in gaining clarity during your financial journey.</p>
-                    </li>
-                    <li class="feature-card">
-                        <div class="feature-icon"><i class="fas fa-book-open"></i></div>
-                        <h3>Knowledge-Driven</h3>
-                        <p>He elucidates not only investment options but also the underlying reasons, empowering more informed decisions.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+            <h2 class="section-title">Why Choose Us</h2>
+            <p class="section-subtitle">Built on expertise, transparency, and investor-first principles</p>
 
-    <div class="section-divider"></div>
-
-    <!-- SEBI Details Section -->
-    <section class="sebi-section">
-        <div class="container">
-            <div class="sebi-content">
-                <h2>SEBI Registration Details</h2>
-                <div class="sebi-info-box">
-                    <p><strong>SEBI Office Address:</strong></p>
-                    <p>
-                        Office of Investor Assistance and Education<br>
-                        Securities and Exchange Board of India<br>
-                        SEBI Bhavan<br>
-                        Plot No. C4-A, ‘G’ Block<br>
-                        Bandra-Kurla Complex, Bandra (East), Mumbai - 400 051
-                    </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>SEBI-Registered Expertise</h3>
+                    <p>Our research is backed by SEBI registration (INH000020794), ensuring compliance with the highest regulatory standards and ethical practices.</p>
                 </div>
-                <div class="sebi-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>SEBI Registration Number</th>
-                                <th>BSE Enlistment Number</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Aditya Patil</strong></td>
-                                <td>INH000020794</td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3>Research-Driven & Transparent</h3>
+                    <p>Every recommendation is based on thorough fundamental and technical analysis, with complete transparency in our methodology and rationale.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Personalized Investor Support</h3>
+                    <p>We understand that every investor is unique. Our team provides customized guidance tailored to your risk profile and financial goals.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Regular Updates & FAQs</h3>
+                    <p>Stay informed with periodic portfolio reviews, market updates, and access to our comprehensive FAQ resources for continuous learning.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="section-divider"></div>
-
-    <!-- Philosophy Section -->
-    <section class="philosophy-section">
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
         <div class="container">
-            <div class="philosophy-content">
-                <h2>Aditya’s Philosophy: “Research with Responsibility”</h2>
-                <div class="philosophy-quote">
-                    Investment decisions must be founded on substance rather than mere speculation. Every recommendation provided by Aditya is underpinned by rigorous analysis, financial discipline, and ethical responsibility.
-                </div>
-                <p>Aditya’s belief lies in empowering investors to assume control of their financial future with trust, knowledge, and confidence.</p>
+            <div class="cta-content">
+                <h2>Ready to Start Your Financial Journey?</h2>
+                <p>Let's work together to achieve your financial goals and secure your future</p>
+                <a href="contact.html" class="btn btn-white">
+                    Schedule a Consultation <i class="fas fa-calendar-alt"></i>
+                </a>
             </div>
         </div>
     </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Core Principles Section -->
-    <section class="principles-section">
-        <div class="container">
-            <div class="principles-content">
-                <h2>Core Principles</h2>
-                <ul class="principles-grid" style="list-style: none; padding: 0;">
-                    <li class="principle-item">
-                        <h3>Integrity</h3>
-                        <p>Every recommendation is rooted in comprehensive analysis and impartial judgment.</p>
-                    </li>
-                    <li class="principle-item">
-                        <h3>Clarity</h3>
-                        <p>Complex financial concepts are elucidated in straightforward, actionable terms.</p>
-                    </li>
-                    <li class="principle-item">
-                        <h3>Purpose</h3>
-                        <p>Aditya’s mission is to assist investors in navigating market fluctuations and concentrating on long-term wealth generation.</p>
-                    </li>
-                    <li class="principle-item">
-                        <h3>Accessibility</h3>
-                        <p>Quality research and financial knowledge are made universally accessible.</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Approach Section -->
-    <section class="approach-section">
-        <div class="container">
-            <div class="approach-content">
-                <h2>Aditya’s Approach</h2>
-                <ul class="approach-list" style="list-style: none; padding: 0;">
-                    <li class="approach-item">
-                        <div class="approach-icon"><i class="fas fa-search-dollar"></i></div>
-                        <div class="approach-text">
-                            <h3>Research-Based Insights</h3>
-                            <p>Recommendations are constructed upon independent research and factual analysis, thereby avoiding speculation or exaggerated claims.</p>
-                        </div>
-                    </li>
-                    <li class="approach-item">
-                        <div class="approach-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="approach-text">
-                            <h3>Practical Investing</h3>
-                            <p>This approach aligns academic financial principles with practical investing strategies, providing actionable insights.</p>
-                        </div>
-                    </li>
-                    <li class="approach-item">
-                        <div class="approach-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="approach-text">
-                            <h3>Regulatory Compliance</h3>
-                            <p>As a SEBI-Registered Analyst, Aditya adheres to the highest standards of transparency and ethical conduct.</p>
-                        </div>
-                    </li>
-                    <li class="approach-item">
-                        <div class="approach-icon"><i class="fas fa-balance-scale"></i></div>
-                        <div class="approach-text">
-                            <h3>Risk Management and Wealth Creation</h3>
-                            <p>Aditya’s focus is on long-term stability and growth through meticulous risk assessment.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
 
     <!-- Footer -->
+   <!-- Footer -->
        <footer>
         <div class="container">
             <div class="footer-content">
@@ -1320,6 +1055,8 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    
 </div>
                 </div>
                 <div class="footer-section">
@@ -1328,7 +1065,6 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="research.html">Research</a></li>
-                        <li><a href="investerCharter.html">investerCharter</a></li>
                         <li><a href="GrievanceRedressal.html">Grievance Redressal</a></li>
                     </ul>
                 </div>
@@ -1338,7 +1074,6 @@
                         <li><a href="research.html">Investment Research</a></li>
                         <li><a href="mutual-funds.html">Mutual Funds</a></li>
                         <li><a href="insurance.html">Insurance</a></li>
-                        <li><a href="Complainttable.html">Complaint table</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1347,9 +1082,16 @@
                         <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
                         <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
-                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                         <li><a href="investerCharter.html">Investor Charter</a></li>
+                        <li><a href="Complainttable.html">Investor Complaint</a></li>
+                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1358,9 +1100,50 @@
             </div>
         </div>
     </footer>
+    <style> .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }</style>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button class="fab scroll-top" id="scrollTop" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <a href="contact.html" class="fab" aria-label="Contact us">
+            <i class="fas fa-comments"></i>
+        </a>
+    </div>
 
     <script>
-        // Header scroll effect
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Header Scroll Effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1370,98 +1153,102 @@
             }
         });
 
-        // Hamburger menu toggle
+        // Mobile Menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Close menu on link click
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTop = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
             }
         });
 
-        // Intersection Observer for scroll animations
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
         const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -80px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        // Observe all animated elements
-        document.addEventListener('DOMContentLoaded', () => {
-            // Section dividers
-            document.querySelectorAll('.section-divider').forEach(el => {
-                observer.observe(el);
-            });
+        // Observe portfolio and feature cards
+        document.querySelectorAll('.portfolio-card, .feature-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
 
-            // About section
-            const aboutH2 = document.querySelector('.about-content h2');
-            if (aboutH2) observer.observe(aboutH2);
-            document.querySelectorAll('.about-content p').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Why choose section
-            const whyH2 = document.querySelector('.why-choose-content h2');
-            if (whyH2) observer.observe(whyH2);
-            document.querySelectorAll('.feature-card').forEach((el, index) => {
-                setTimeout(() => observer.observe(el), index * 150);
-            });
-
-            // SEBI section
-            const sebiH2 = document.querySelector('.sebi-content h2');
-            if (sebiH2) observer.observe(sebiH2);
-            document.querySelectorAll('.sebi-info-box, .sebi-table').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Philosophy section
-            const philoH2 = document.querySelector('.philosophy-content h2');
-            if (philoH2) observer.observe(philoH2);
-            document.querySelectorAll('.philosophy-quote, .philosophy-content p').forEach(el => {
-                observer.observe(el);
-            });
-
-            // Principles section
-            const principlesH2 = document.querySelector('.principles-content h2');
-            if (principlesH2) observer.observe(principlesH2);
-            document.querySelectorAll('.principle-item').forEach((el, index) => {
-                setTimeout(() => observer.observe(el), index * 100);
-            });
-
-            // Approach section
-            const approachH2 = document.querySelector('.approach-content h2');
-            if (approachH2) observer.observe(approachH2);
-            document.querySelectorAll('.approach-item').forEach((el, index) => {
-                setTimeout(() => observer.observe(el), index * 150);
-            });
-
-            // CTA section
-            const ctaH2 = document.querySelector('.cta-section h2');
-            if (ctaH2) observer.observe(ctaH2);
-            document.querySelectorAll('.cta-section p, .cta-buttons').forEach(el => {
-                observer.observe(el);
+        // Button ripple effect
+        document.querySelectorAll('.btn-primary, .btn-secondary, .btn-white').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+                ripple.style.width = ripple.style.height = '100px';
+                ripple.style.left = e.clientX - rect.left - 50 + 'px';
+                ripple.style.top = e.clientY - rect.top - 50 + 'px';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
             });
         });
     </script>

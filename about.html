@@ -4,23 +4,646 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Whitestone Capital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f5f0;
-            overflow-x: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: rgb(241, 93, 34);
+            --primary-dark: rgb(200, 70, 20);
+            --primary-light: rgba(241, 93, 34, 0.1);
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text-dark: #1a1a1a;
+            --text-gray: #64748b;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, var(--primary) 0%, #ff6b35 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            --text-dark: #e2e8f0;
+            --text-gray: #94a3b8;
+            --white: #1e293b;
+            --bg-light: #0f172a;
+            --dark: #f8fafc;
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 24px;
         }
-        
-        /* Enhanced Animations */
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--gradient-2);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--gradient-1);
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 7s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode header {
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .logo img {
+                width: 199px;
+    height: 108px;
+    border-radius: 8px;
+    object-fit: cover;
+        margin-left: 74px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-2);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(241, 93, 34, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(241, 93, 34, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            transition: all 0.3s;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        body.dark-mode footer {
+            background: #000;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 24px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 15px;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            padding-left: 8px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
+        }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
+        }
+
+        .scroll-top {
+            opacity: 0;
+            pointer-events: none;
+            animation: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            padding: 80px 30px 30px;
+            transition: right 0.3s;
+            z-index: 999;
+        }
+
+        body.dark-mode .mobile-menu {
+            background: var(--dark);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary);
+            padding-left: 12px;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .theme-toggle { display: none; }
+            .hamburger { display: flex; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+            .floating-buttons { right: 20px; bottom: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .nav-actions { flex-direction: column; }
+        }
+
+        /* Original about.html styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: rgb(241, 93, 34);
+            --dark: #0a0a0a;
+            --gray: #666;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-icon {
+            position: absolute;
+            opacity: 0.05;
+            font-size: 3rem;
+            animation: float 20s infinite ease-in-out;
+            font-weight: bold;
+        }
+
+        .float-icon:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .float-icon:nth-child(2) { right: 15%; top: 40%; animation-delay: 3s; }
+        .float-icon:nth-child(3) { left: 20%; bottom: 30%; animation-delay: 6s; }
+        .float-icon:nth-child(4) { right: 25%; bottom: 20%; animation-delay: 9s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-30px) rotate(5deg); }
+            50% { transform: translateY(-60px) rotate(-5deg); }
+            75% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #fff 0%, #fef5f1 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(241, 93, 34, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .credentials {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .credential-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            border: 2px solid rgba(241, 93, 34, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .credential-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(241, 93, 34, 0.2);
+        }
+
+        .credential-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -31,1241 +654,577 @@
                 transform: translateY(0);
             }
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -1000px 0; }
-            100% { background-position: 1000px 0; }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes rotateIn {
-            from {
-                opacity: 0;
-                transform: rotate(-10deg) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: rotate(0) scale(1);
-            }
-        }
-        
-        /* Header */
-        header {
-            background: rgba(245, 245, 240, 0.98);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
-            padding: 15px 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 16px;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 20px;
-            font-weight: bold;
-            animation: slideInLeft 0.8s ease;
-        }
-        
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            padding: 2px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: drop-shadow(0 2px 4px rgba(241, 93, 34, 0.2));
-        }
-        
-        .logo-icon:hover {
-            transform: scale(1.2) rotate(5deg);
-            filter: drop-shadow(0 6px 12px rgba(241, 93, 34, 0.4));
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-size: 18px;
-            transition: all 0.3s;
-            position: relative;
-            padding-bottom: 4px;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 50%; right: 50%;
-            bottom: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgb(241, 93, 34), transparent);
-            transform-origin: center;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            left: 0;
-            right: 0;
-        }
-
-        .nav-links a:hover {
-            color: rgb(241, 93, 34);
-            transform: translateY(-2px);
-        }
-
-        .contact-btn {
-            background: white;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        .vm-section {
+            padding: 8rem 0;
+            background: var(--dark);
             position: relative;
             overflow: hidden;
         }
 
-        .contact-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(44, 95, 127, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .contact-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .contact-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(241, 93, 34, 0.2);
-        }
-
-        
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            margin-left: 18px;
-        }
-        
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            transition: all 0.3s;
-            border-radius: 3px;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 99;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .mobile-menu.active {
-            display: block;
-            max-height: 400px;
-        }
-        
-        .mobile-menu ul {
-            list-style: none;
-            padding: 20px;
-        }
-        
-        .mobile-menu ul li {
-            margin-bottom: 15px;
-        }
-        
-        .mobile-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            display: block;
-            padding: 10px;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
-        }
-        
-        .mobile-menu ul li a:hover,
-        .mobile-menu ul li a.active {
-            background: #e6f0fa;
-            color: #2c5f7f;
-        }
-        
-        .mobile-contact-btn {
-            margin: 0 20px 20px;
-            display: block;
-            text-align: center;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f5f5f0 0%, #e6f0fa 100%);
-            padding: 100px 0 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -120px;
-            right: -120px;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgb(241, 93, 34, 0.13) 60%, transparent 100%);
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -100px;
-            left: -100px;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, #4a8bb322 50%, transparent 100%);
-            animation: float 10s ease-in-out infinite reverse;
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            min-height: 500px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero-text {
-            flex: 1;
-            animation: fadeInUp 1s cubic-bezier(.22,1,.36,1);
-        }
-        
-        .hero-text h1 {
-            font-size: 48px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-            letter-spacing: 1px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c5f7f 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-text p {
-            color: #666;
-            font-size: 18px;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
-        }
-        
-        .hero-image {
-            flex: 1;
-            position: relative;
-            min-width: 350px;
-            max-width: 500px;
-            animation: fadeInUp 1.4s cubic-bezier(.22,1,.36,1);
-        }
-        
-        .hero-image img {
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
-            position: relative;
-            z-index: 1;
-            height: 400px;
-            object-fit: cover;
-            animation: float 6s ease-in-out infinite;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .hero-image img:hover {
-            transform: scale(1.05) rotate(-3deg);
-            box-shadow: 0 30px 80px rgba(241, 93, 34, 0.3);
-        }
-        
-        /* Section Divider */
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, rgb(241, 93, 34) 0%, #4a8bb3 100%);
-            border-radius: 2px;
-            margin: 32px auto 48px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .section-divider::after {
+        .vm-section::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            animation: shimmer 2s infinite;
+            background: linear-gradient(45deg, transparent 30%, rgba(241, 93, 34, 0.05) 50%, transparent 70%);
+            animation: shimmer 10s linear infinite;
         }
-        
-        /* About Sections */
-        .about-section {
-            padding: 80px 0 40px 0;
-            background: white;
-            position: relative;
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
-        
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeInUp 1s cubic-bezier(.22,1,.36,1) forwards;
-        }
-        
-        .about-content h2 {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: #1a1a1a;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .about-content h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), #4a8bb3);
-            border-radius: 2px;
-        }
-        
-        .about-content p {
-            color: #666;
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-        
-        .credentials {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e6f0fa 100%);
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(241, 93, 34, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .credentials::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(241, 93, 34, 0.05) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        .credentials:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(241, 93, 34, 0.15);
-        }
-        
-        .credentials ul {
-            list-style: none;
-            padding: 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .credentials li {
-            color: rgb(241, 93, 34);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            transition: all 0.3s;
-            padding: 10px;
-            border-radius: 8px;
-        }
-        
-        .credentials li::before {
-            content: '✓';
-            color: rgb(241, 93, 34);
-            font-weight: bold;
-            margin-right: 10px;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-        
-        .credentials li:hover {
-            color: #4a8bb3;
-            background: rgba(255,255,255,0.5);
-            transform: translateX(10px);
-        }
-        
-        .credentials li:hover::before {
-            transform: scale(1.3) rotate(360deg);
-        }
-        
-        /* Vision Mission */
-        .vision-mission {
+
+        .vm-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
         }
-        
+
         .vm-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 50px 40px;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             position: relative;
             overflow: hidden;
             opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.5s ease;
         }
-        
+
+        .vm-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .vm-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), #4a8bb3);
+            background: linear-gradient(90deg, var(--primary), transparent);
             transform: scaleX(0);
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transition: transform 0.5s ease;
         }
-        
+
         .vm-card:hover::before {
             transform: scaleX(1);
         }
-        
+
         .vm-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(44,95,127,0.2);
+            transform: translateY(-10px);
+            border-color: rgba(241, 93, 34, 0.3);
+            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
         }
-        
-        .vm-card:nth-child(1) {
-            animation: slideInLeft 1s cubic-bezier(.22,1,.36,1) 0.2s forwards;
-        }
-        
-        .vm-card:nth-child(2) {
-            animation: slideInRight 1s cubic-bezier(.22,1,.36,1) 0.4s forwards;
-        }
-        
-        .vm-card h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: rgb(241, 93, 34);
-            transition: color 0.3s;
-        }
-        
-        .vm-card:hover h3 {
-            color: #4a8bb3;
-        }
-        
-        .vm-card p {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.8;
-        }
-        
-        /* What Sets Apart */
-        .sets-apart {
-            background: #fafafa;
-            padding: 80px 0 40px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sets-apart::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(241, 93, 34, 0.03) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-        
-        .sets-apart h2 {
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 60px;
-            color: #1a1a1a;
-            letter-spacing: 1px;
+
+        .vm-card h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
             position: relative;
             display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
         }
-        
-        .sets-apart h2::after {
+
+        .vm-card h2::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), #4a8bb3);
+            background: var(--primary);
             border-radius: 2px;
         }
-        
-        .sets-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .set-card {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-        }
-        
-        .set-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(44,95,127,0.05), transparent);
-            transition: left 0.5s;
-        }
-        
-        .set-card:hover::before {
-            left: 100%;
-        }
-        
-        .set-card:nth-child(1) { animation: fadeInUp 1s cubic-bezier(.22,1,.36,1) 0.2s forwards; }
-        .set-card:nth-child(2) { animation: fadeInUp 1s cubic-bezier(.22,1,.36,1) 0.4s forwards; }
-        .set-card:nth-child(3) { animation: fadeInUp 1s cubic-bezier(.22,1,.36,1) 0.6s forwards; }
-        
-        .set-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 60px rgba(44,95,127,0.2);
-        }
-        
-        .set-icon {
-            font-size: 56px;
-            margin-bottom: 25px;
-            color: rgb(241, 93, 34);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            display: inline-block;
-        }
-        
-        .set-card:hover .set-icon {
-            color: #4a8bb3;
-            transform: scale(1.2) rotate(10deg);
-        }
-        
-        .set-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            transition: color 0.3s;
-        }
-        
-        .set-card:hover h3 {
-            color: rgb(241, 93, 34);
-        }
-        
-        .set-card p {
-            color: #666;
-            font-size: 16px;
+
+        .vm-card p {
+            color: #ccc;
             line-height: 1.8;
+            font-size: 1.1rem;
         }
-        
-        /* Enhanced Team Section */
-        .team-section {
-            padding: 80px 0 80px 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+
+        .diff-section {
+            padding: 8rem 0;
+            background:url('/image/Cover\ \(2\).png') center/cover no-repeat;
             position: relative;
-            overflow: hidden;
         }
-        
-        .team-section::before {
+
+        .diff-section::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(241, 93, 34, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(74,139,179,0.05) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .team-header {
-            text-align: center;
-            margin-bottom: 70px;
-            position: relative;
+            background: rgba(255, 255, 255, 0.8);
             z-index: 1;
         }
-        
-        .team-header h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-            letter-spacing: 1px;
+
+        .diff-section .container {
             position: relative;
-            display: inline-block;
+            z-index: 2;
         }
-        
-        .team-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, rgb(241, 93, 34));
-            border-radius: 2px;
-        }
-        
-        .team-header p {
-            color: #666;
-            font-size: 18px;
-            margin-top: 25px;
-        }
-        
-        .team-carousel-wrapper {
-            position: relative;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 80px;
-        }
-        
-        .team-carousel {
-            display: flex;
-            gap: 50px;
-            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            padding: 20px 0;
-        }
-        
-        .team-card {
-            min-width: 340px;
-            max-width: 340px;
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            padding: 50px 35px 35px 35px;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+
+        .section-header {
             text-align: center;
-            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .diff-card {
+            padding: 3rem 2rem;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            flex-shrink: 0;
-            opacity: 0.5;
-            filter: blur(2px);
-            transform: scale(0.9);
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
             overflow: hidden;
         }
-        
-        .team-card::before {
+
+        .diff-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .diff-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), rgb(241, 93, 34));
-            background-size: 200% 100%;
-            animation: shimmer 3s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .team-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            padding: 2px;
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .team-card.center {
-            transform: scale(1.15) translateY(-20px);
-            box-shadow: 0 25px 70px rgba(241, 93, 34, 0.25);
-            opacity: 1;
-            filter: none;
-            z-index: 10;
-        }
-        
-        .team-card.center::before,
-        .team-card.center::after {
-            opacity: 1;
-        }
-        
-        .team-card.left,
-        .team-card.right {
-            opacity: 0.75;
-            filter: blur(0.5px);
-            transform: scale(0.95);
-        }
-        
-        .team-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 25px;
-            box-shadow: 0 10px 35px rgba(241, 93, 34, 0.2);
-            border: 5px solid #fff;
-            background: linear-gradient(135deg, #e6f0fa, #fff);
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .team-card.center .team-photo {
-            width: 140px;
-            height: 140px;
-            box-shadow: 0 15px 50px rgba(241, 93, 34, 0.3);
-            border-width: 6px;
-            animation: pulse 3s ease-in-out infinite;
-        }
-        
-        .team-card:hover .team-photo {
-            transform: scale(1.1) rotate(5deg);
-        }
-        
-        .team-card h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-            transition: color 0.3s;
-        }
-        
-        .team-card.center h3 {
-            color: rgb(241, 93, 34);
-            font-size: 24px;
-        }
-        
-        .team-role {
-            color: rgb(241, 93, 34);
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-        
-        .team-card.center .team-role {
-            color: #4a8bb3;
-        }
-        
-        .team-card p {
-            color: #666;
-            font-size: 14px;
-            line-height: 1.7;
-            transition: color 0.3s;
-        }
-        
-        .team-card.center p {
-            color: #555;
-        }
-        
-        .team-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, rgb(241, 93, 34) );
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 20;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 5px 20px rgba(241, 93, 34, 0.3);
-        }
-        
-        .team-arrow:hover {
-            background: linear-gradient(135deg, #4a8bb3 0%, rgb(241, 93, 34) 100%);
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 8px 30px rgba(241, 93, 34, 0.4);
-        }
-        
-        .team-arrow:active {
-            transform: translateY(-50%) scale(0.95);
-        }
-        
-        .team-arrow.left { left: 10px; }
-        .team-arrow.right { right: 10px; }
-        
-        /* Progress Indicators */
-        .team-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 40px;
-        }
-        
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #ddd;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-        
-        .indicator.active {
-            background: linear-gradient(135deg, rgb(241, 93, 34), #4a8bb3);
-            box-shadow: 0 0 15px rgba(241, 93, 34, 0.5);
-        }
-        
-        .indicator:hover {
-            background: rgb(241, 93, 34);
-            transform: scale(1.2);
-        }
-        
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 70px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 25px;
-            font-size: 18px;
-            color: #fff;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: linear-gradient(90deg, rgb(241, 93, 34), transparent);
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 12px;
-            transition: transform 0.3s;
-        }
-
-        .footer-section ul li:hover {
-            transform: translateX(5px);
-        }
-
-        .footer-section a {
-            color: #b0c4d4;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .footer-section a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: rgb(241, 93, 34);
-            transition: width 0.3s;
-        }
-
-        .footer-section a:hover::after {
             width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(241, 93, 34, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .footer-section a:hover {
-            color: #fff;
+        .diff-card:hover::before {
+            opacity: 1;
         }
 
-        .footer-about p {
-            color: #b0c4d4;
-            margin-top: 20px;
-            line-height: 1.8;
+        .diff-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
         }
 
-        .footer-social {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            background: rgba(241, 93, 34, 0.2);
-            border-radius: 50%;
+        .diff-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), #ff6b35);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #b0c4d4;
-            font-size: 20px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(241, 93, 34, 0.3);
+            transition: all 0.4s ease;
         }
 
-        .footer-social a:hover {
+     
+
+        .diff-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .diff-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .team-section {
+            background: linear-gradient(135deg, #fff 0%, #fef6f2 100%);
+            padding: 100px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .section-badge {
+            display: inline-block;
             background: rgb(241, 93, 34);
             color: #fff;
-            transform: translateY(-5px) rotate(360deg);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
         }
 
-        .footer-bottom {
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-top: 15px;
+            color: #111;
+        }
+
+        .section-header p {
+            color: #555;
+            max-width: 700px;
+            margin: 10px auto 0;
+        }
+
+        .team-slider {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .team-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.6s ease;
+        }
+
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            width: 300px;
+            flex-shrink: 0;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(241, 93, 34, 0.2);
+        }
+
+        .team-card img {
+                width: 102%;
+    height: 397px;
+    object-fit: cover;
+    margin-top: -10px;
+        }
+
+        .team-info {
+            padding: 20px;
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid #333;
-            color: #aaa;
-            font-size: 14px;
         }
-        
-        /* Responsive Design */
-        @media (max-width: 1100px) {
-            .team-carousel-wrapper { max-width: 98vw; padding: 40px 60px; }
-            .team-card { min-width: 300px; max-width: 300px; }
+
+        .team-info h3 {
+            color: #111;
+            font-size: 1.3rem;
+            margin-bottom: 5px;
         }
-        
-        @media (max-width: 900px) {
-            .hero-content {
-                flex-direction: column;
-                gap: 40px;
+
+        .team-info .designation {
+            color: rgb(241, 93, 34);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .team-info .desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .slider-btn {
+            background: rgb(241, 93, 34);
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .slider-btn:hover {
+            background: #d04a18;
+            transform: scale(1.1);
+        }
+
+        .slider-btn.prev {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .slider-btn.next {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary), #ff6b35);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: #fff;
+            color: var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .team-card {
+                width: 260px;
             }
-            
-            .hero-image {
-                max-width: 100%;
+            .slider-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
             }
-            
-            .vision-mission {
+            .vm-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .sets-grid {
-                grid-template-columns: 1fr;
             }
         }
-        
-        @media (max-width: 800px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .footer-content { grid-template-columns: repeat(2, 1fr); }
-        }
-        
-        @media (max-width: 700px) {
-            .team-card { min-width: 85vw; max-width: 85vw; }
-            .team-carousel-wrapper { padding: 20px 50px; }
-            .team-arrow { width: 40px; height: 40px; font-size: 20px; }
-            .team-arrow.left { left: 5px; }
-            .team-arrow.right { right: 5px; }
-        }
-        
-        @media (max-width: 640px) {
-            .container { padding: 0 16px; }
-            .hero-text h1 { font-size: 32px; }
-            .about-content h2, .sets-apart h2, .team-header h2 { font-size: 28px; }
-            .hero { padding: 60px 0 40px 0; }
-        }
-        
-        @media (max-width: 500px) {
-            .about-section, .sets-apart, .team-section { padding: 50px 0 30px 0; }
-            .footer-content { grid-template-columns: 1fr; gap: 30px; }
-        }
-        
     </style>
 </head>
 <body>
     <!-- Header -->
     <header id="header">
         <nav class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="image/image-removebg-preview.png" alt="Whitestone Capital Logo"style="height: 77px; object-fit: contain;">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html" >Home</a></li>
-                <li><a class="active"  href="about.html"aria-current="page">About</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="mutual-funds.html">Mutual Funds</a></li>
-                <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="training.html">Training</a></li> -->
-            </ul>
-        <a href="contact.html" class="contact-btn">Contact Us</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
+            <a href="#" class="logo">
+                <img src="image/image-removebg-preview.png" alt="Whitestone Capital">
+            </a>
+             <ul class="nav-links">
                 <li><a class="active" href="index.html" aria-current="page">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="mutual-funds.html">Mutual Funds</a></li>
                 <li><a href="insurance.html">Insurance</a></li>
                 <!-- <li><a href="training.html">Training</a></li> -->
-                <li><a href="investerCharter.html">Investor Charter</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-        </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary">Get Consultation</a>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="about">
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="floating-bg">
+        <div class="float-icon">$</div>
+        <div class="float-icon">%</div>
+        <div class="float-icon">+</div>
+        <div class="float-icon">#</div>
+    </div>
+
+    <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1>About Whitestone Capital</h1>
-                    <p>At Whitestone Capital, we deliver a diverse basket of investment solutions with a singular goal — helping you build lasting wealth. Whether you're seeking in-depth equity research, diversified mutual fund strategies, or insurance planning, we bring you the clarity and confidence to navigate financial markets.</p>
-                    <p>With our roots in research and our eyes on the future, we are more than just advisors — we are your long-term financial partners.</p>
-                </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop" alt="About Whitestone Capital">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="section-divider"></div>
-
-    <!-- Credentials Section -->
-    <section class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>Our Credentials</h2>
+                <h1>Empowering Financial Growth with Research, Integrity & Innovation</h1>
+                <p class="hero-subtitle">At Whitestone Capital, we deliver a diverse basket of investment solutions with a singular goal — helping you build lasting wealth through expert research, personalized strategies, and unwavering ethical standards.</p>
+                
                 <div class="credentials">
-                    <ul>
-                        <li>SEBI Registered - Research Analyst</li>
-                        <li>AMFI Registered - Mutual Fund Distributor</li>
-                        <li>Insurance and Wealth Protection Solutions</li>
-                    </ul>
+                    <div class="credential-item">
+                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>SEBI Registered Research Analyst</span>
+                    </div>
+                    <div class="credential-item">
+                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                        </svg>
+                        <span>AMFI Registered Mutual Fund Distributor</span>
+                    </div>
+                    <div class="credential-item">
+                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
+                        </svg>
+                        <span>Insurance & Wealth Protection</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vision and Mission -->
-    <section class="about-section">
+    <section class="vm-section">
         <div class="container">
-            <div class="vision-mission">
-                <div class="vm-card">
-                    <h3>Our Vision</h3>
-                    <p>To be the most trusted and innovative financial partner, transforming the investment landscape through research excellence, and ethical wealth creation—enabling every client to achieve financial freedom with confidence and clarity.</p>
+            <div class="vm-grid">
+                <div class="vm-card scroll-fade">
+                    <h2>Our Vision</h2>
+                    <p>To be the most trusted and innovative financial partner, transforming the investment landscape through research excellence and ethical wealth creation — enabling every client to achieve financial freedom with confidence and clarity.</p>
                 </div>
-                <div class="vm-card">
-                    <h3>Our Mission</h3>
-                    <p>Our mission is to empower individuals and institutions through research-driven insights and tailor-made financial solutions. We aim to enable smarter decisions, and to elevate wealth-building journeys with ethics, innovation, and long-term perspective.</p>
-                    <p>We believe wealth is not just built — it is crafted with knowledge, discipline, and trust.</p>
+                <div class="vm-card scroll-fade">
+                    <h2>Our Mission</h2>
+                    <p>To empower individuals and institutions through research-driven insights and tailor-made financial solutions. We aim to enable smarter decisions and elevate wealth-building journeys with ethics, innovation, and a long-term perspective.</p>
+                    <p style="margin-top: 1rem; font-style: italic;">We believe wealth is not just built — it is crafted with knowledge, discipline, and trust.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- What Sets Us Apart -->
-    <section class="sets-apart">
+    <section class="diff-section">
         <div class="container">
-            <h2>What Sets Us Apart</h2>
-            <div class="sets-grid">
-                <div class="set-card">
-                    <div class="set-icon">🔍</div>
-                    <h3>Unbiased, Research-Backed Recommendations</h3>
-                    <p>Our investment advice is grounded in thorough, independent research, ensuring you receive objective insights tailored to your financial goals.</p>
+            <div class="section-header">
+                <h2>What Sets Us Apart</h2>
+            </div>
+            <div class="diff-grid">
+                <div class="diff-card scroll-fade">
+                    <div class="diff-icon"><i class="fas fa-search"></i></div>
+                    <h3>Unbiased Research-Backed Recommendations</h3>
+                    <p>Our investment advice is grounded in thorough, independent research, ensuring you receive objective insights tailored to your financial goals without conflicts of interest.</p>
                 </div>
-                <div class="set-card">
-                    <div class="set-icon">🎯</div>
+                <div class="diff-card scroll-fade">
+                    <div class="diff-icon"><i class="fas fa-bullseye"></i></div>
                     <h3>Customized Investment Planning</h3>
-                    <p>We create personalized strategies across various asset classes, adapting to your risk profile and long-term objectives.</p>
+                    <p>We create personalized strategies across various asset classes, adapting to your unique risk profile, time horizon, and long-term objectives for optimal portfolio construction.</p>
                 </div>
-                <div class="set-card">
-                    <div class="set-icon">📚</div>
-                    <h3>Strong Commitment to Investor Education</h3>
-                    <p>We empower our clients with knowledge and awareness, helping you make informed decisions in an ever-changing market.</p>
+                <div class="diff-card scroll-fade">
+                    <div class="diff-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Commitment to Investor Education</h3>
+                    <p>We empower our clients with knowledge and awareness through regular insights, market analysis, and educational resources — helping you make informed, confident decisions.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team-section">
+    <section class="team-section" id="team">
         <div class="container">
-            <div class="team-header">
-                <h2>Meet Our Team</h2>
-                <p>Our experienced professionals bring diverse expertise to guide your financial journey</p>
+            <div class="section-header">
+                <div class="section-badge">Our Team</div>
+                <h2>Meet Our Financial Experts</h2>
+                <p>Passionate professionals driving research, strategy, and growth at Whitestone Capital.</p>
             </div>
-            <div class="team-carousel-wrapper">
-                <button class="team-arrow left" id="teamPrev" aria-label="Previous team member">&#8592;</button>
-                <div class="team-carousel" id="teamCarousel">
+
+            <div class="team-slider">
+                <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="team-track">
                     <div class="team-card">
-                        <img class="team-photo" src="image/aditya.jpg" alt="CA Aditya Patil">
-                        <h3>CA Aditya Patil</h3>
-                        <div class="team-role">Research Analyst</div>
-                        <p>Chartered Accountant | IBBI Registered Valuer - SFA | SEBI Registered Research Analyst. With over 15 years of experience in financial services, Aditya brings expertise in auditing, taxation, valuations, and equity research. His analytical rigor and ethical commitment form the backbone of Whitestone Capital's value philosophy.</p>
+                        <img src="image/adityapatil.JPG" alt="CA Aditya Patil" />
+                        <div class="team-info">
+                            <h3>CA Aditya Patil</h3>
+                            <p class="designation">Research Analyst</p>
+                            <p class="desc">Chartered Accountant | IBBI Registered Valuer - SFA | SEBI Registered Research Analyst</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="image/vijay.JPG" alt="Er. Vijay Khamkar" />
+                        <div class="team-info">
+                            <h3>Er. Vijay Khamkar</h3>
+                            <p class="designation">Director</p>
+                            <p class="desc">IBBI Registered Valuer – Plant & Machinery | Mutual Fund Distributor</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="image/IMG_8053Ashwini.JPG" alt="Pratiksha Shinde" />
+                        <div class="team-info">
+                            <h3>Pratiksha Shinde</h3>
+                            <p class="designation">Research Analyst</p>
+                            <p class="desc">CMA | NISM Certified | Valuation & Taxation Expert</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="image/abhishek.JPG" alt="Abhishek Mhamunkar" />
+                        <div class="team-info">
+                            <h3>Abhishek Mhamunkar</h3>
+                            <p class="designation">Director – Operations</p>
+                            <p class="desc">Market Strategist | Client Engagement Specialist</p>
+                        </div>
                     </div>
                     <div class="team-card">
-                        <img class="team-photo" src="image/vijay.jpg" alt="Er. Vijay Khamkar">
-                        <h3>Er. Vijay Khamkar</h3>
-                        <div class="team-role">Director</div>
-                        <p>B.E. (Mechanical) | IBBI Registered Valuer – Plant & Machinery | Mutual Fund Distributor. With over 20 years of experience, Vijay combines deep technical insight with strategic financial acumen, integrating valuation expertise with equity market research.</p>
+                        <img src="image/ashwini.JPG" alt="Ashwini Salunke" />
+                        <div class="team-info">
+                            <h3>Ashwini Salunke</h3>
+                            <p class="designation">Marketing Head</p>
+                            <p class="desc">MBA – Marketing & International Business</p>
+                        </div>
                     </div>
                     <div class="team-card">
-                        <img class="team-photo" src="image/ashwini.jpg" alt="Ashwini Salunke">
-                        <h3>Ashwini Salunke</h3>
-                        <div class="team-role">Research Analyst</div>
-                        <p>CMA | NISM - Research Analyst (Cleared) | Valuation & Taxation Expert. With over 8 years of experience, Ashwini leads taxation and compliance, ensuring robust financial structuring and strategic tax planning for clients.</p>
-                    </div>
-                    <div class="team-card">
-                        <img class="team-photo" src="image/abhishek.jpg" alt="Abhishek Mhamunkar">
-                        <h3>Abhishek Mhamunkar</h3>
-                        <div class="team-role">Director – Operations & Market Strategist</div>
-                        <p>Business Operations | Client Engagement. With over 5 years of experience in the share market, Abhishek manages operations and ensures seamless service delivery across all verticals.</p>
-                    </div>
-                    <div class="team-card">
-                        <img class="team-photo" src="image/pratiksha.jpg" alt="Pratiksha Shinde">
-                        <h3>Pratiksha Shinde</h3>
-                        <div class="team-role">Marketing Head</div>
-                        <p>MBA – Marketing & International Business. With over 7 years of experience, Pratiksha leads marketing and branding strategies across mutual fund distribution, investment research, and insurance advisory.</p>
+                        <img src="image/IMG_8052.JPG" alt="Amir Nadaf" />
+                        <div class="team-info">
+                            <h3>Amir Nadaf</h3>
+                            <p class="designation">Marketing Head</p>
+                            <p class="desc">MBA – Marketing & International Business</p>
+                        </div>
                     </div>
                 </div>
-                <button class="team-arrow right" id="teamNext" aria-label="Next team member">&#8594;</button>
+
+                <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <div class="team-indicators" id="teamIndicators"></div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Let's Build Your Financial Future Together</h2>
+                <a href="#contact" class="cta-btn">Get In Touch</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-      <footer>
+       <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
@@ -1278,6 +1237,8 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    
 </div>
                 </div>
                 <div class="footer-section">
@@ -1286,7 +1247,6 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="research.html">Research</a></li>
-                        <li><a href="investerCharter.html">investerCharter</a></li>
                         <li><a href="GrievanceRedressal.html">Grievance Redressal</a></li>
                     </ul>
                 </div>
@@ -1296,7 +1256,6 @@
                         <li><a href="research.html">Investment Research</a></li>
                         <li><a href="mutual-funds.html">Mutual Funds</a></li>
                         <li><a href="insurance.html">Insurance</a></li>
-                        <li><a href="Complainttable.html">Complaint table</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1305,9 +1264,16 @@
                         <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
                         <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
-                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                         <li><a href="investerCharter.html">Investor Charter</a></li>
+                        <li><a href="Complainttable.html">Investor Complaint</a></li>
+                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -1316,10 +1282,50 @@
             </div>
         </div>
     </footer>
+    <style> .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }</style>
 
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <button class="fab scroll-top" id="scrollTop">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <a href="#contact" class="fab">
+            <i class="fas fa-comments"></i>
+        </a>
+    </div>
 
     <script>
-        // Header scroll effect
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        // Header Scroll Effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -1329,156 +1335,168 @@
             }
         });
 
-        // Hamburger menu toggle
+        // Mobile Menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
         });
 
-        // Close mobile menu when clicking on a link
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Close menu on link click
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
             });
         });
 
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            }
-        });
-
-        // Enhanced Team Carousel
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('teamCarousel');
-            const prevBtn = document.getElementById('teamPrev');
-            const nextBtn = document.getElementById('teamNext');
-            const indicatorsContainer = document.getElementById('teamIndicators');
-            const cards = carousel.querySelectorAll('.team-card');
-            let current = 1;
-            let isAnimating = false;
-
-            // Create indicators
-            cards.forEach((_, index) => {
-                const indicator = document.createElement('div');
-                indicator.className = 'indicator';
-                indicator.addEventListener('click', () => goToSlide(index));
-                indicatorsContainer.appendChild(indicator);
-            });
-
-            const indicators = indicatorsContainer.querySelectorAll('.indicator');
-
-            function getVisibleCards() {
-                return window.innerWidth < 700 ? 1 : 3;
-            }
-
-            function updateCarousel(animate = true) {
-                if (animate && isAnimating) return;
-                if (animate) isAnimating = true;
-
-                const cardWidth = cards[0].offsetWidth + 50;
-                let visibleCards = getVisibleCards();
-                
-                let offset = current - Math.floor(visibleCards / 2);
-                if (offset < 0) offset = 0;
-                if (offset > cards.length - visibleCards) offset = cards.length - visibleCards;
-                
-                carousel.style.transform = `translateX(${-offset * cardWidth}px)`;
-
-                // Remove all classes
-                cards.forEach(card => {
-                    card.classList.remove('center', 'left', 'right');
-                });
-
-                // Add classes
-                if (visibleCards === 1) {
-                    cards[current].classList.add('center');
-                } else {
-                    cards.forEach((card, idx) => {
-                        if (idx === current) {
-                            card.classList.add('center');
-                        } else if (idx === current - 1) {
-                            card.classList.add('left');
-                        } else if (idx === current + 1) {
-                            card.classList.add('right');
-                        }
-                    });
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            });
+        });
 
-                // Update indicators
-                indicators.forEach((indicator, idx) => {
-                    indicator.classList.toggle('active', idx === current);
-                });
+        // Active Navigation
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
 
-                if (animate) {
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTop = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
+        const animateOnScroll = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.service-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            animateOnScroll.observe(el);
+        });
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
                     setTimeout(() => {
-                        isAnimating = false;
-                    }, 800);
-                }
-            }
-
-            function goToSlide(index) {
-                if (isAnimating) return;
-                current = index;
-                updateCarousel();
-            }
-
-            prevBtn.addEventListener('click', () => {
-                if (current > 0 && !isAnimating) {
-                    current--;
-                    updateCarousel();
+                        entry.target.classList.add('visible');
+                    }, index * 100);
                 }
             });
+        }, observerOptions);
 
-            nextBtn.addEventListener('click', () => {
-                if (current < cards.length - 1 && !isAnimating) {
-                    current++;
-                    updateCarousel();
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowLeft') {
-                    prevBtn.click();
-                } else if (e.key === 'ArrowRight') {
-                    nextBtn.click();
-                }
-            });
-
-            // Touch swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            carousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            carousel.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-
-            function handleSwipe() {
-                if (touchStartX - touchEndX > 50) {
-                    nextBtn.click();
-                }
-                if (touchEndX - touchStartX > 50) {
-                    prevBtn.click();
-                }
-            }
-
-            window.addEventListener('resize', () => {
-                updateCarousel(false);
-            });
-
-            updateCarousel(false);
+        document.querySelectorAll('.scroll-fade').forEach(el => {
+            observer.observe(el);
         });
+
+        document.querySelectorAll('.team-card, .diff-card, .vm-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        const ctaBtn = document.querySelector('.cta-btn');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const icons = document.querySelectorAll('.float-icon');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+
+            icons.forEach((icon, index) => {
+                const speed = (index + 1) * 20;
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                icon.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        const diffCards = document.querySelectorAll('.diff-card');
+        diffCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
+        });
+
+        const track = document.querySelector(".team-track");
+        const prevBtn = document.querySelector(".slider-btn.prev");
+        const nextBtn = document.querySelector(".slider-btn.next");
+
+        let index = 0;
+        const cardWidth = 320;
+
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+                if (index < track.children.length - 3) index++;
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+                if (index > 0) index--;
+                track.style.transform = `translateX(-${index * cardWidth}px)`;
+            });
+        }
     </script>
 </body>
 </html>
