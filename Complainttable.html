@@ -3,471 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disclaimer - Whitestone Capital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Complaint Summary - Whitestone Capital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: rgb(241, 93, 34);
+            --primary-dark: rgb(200, 70, 20);
+            --primary-light: rgba(241, 93, 34, 0.1);
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --text-dark: #1a1a1a;
+            --text-gray: #64748b;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, var(--primary) 0%, #ff6b35 100%);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 20px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f0;
-            color: #222;
+            font-family: 'Inter', sans-serif;
             line-height: 1.7;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            overflow-x: hidden;
         }
+
         .container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 0 24px;
         }
+
+        /* Header */
         header {
-            background: #f5f5f0;
-            padding: 20px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-sm);
         }
+
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 16px;
-            transition: background 0.3s ease;
+            padding: 20px 0;
         }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 20px;
-            font-weight: bold;
+
+        .logo img {
+            width: 160px;
+            height: 77px;
+            object-fit: contain;
         }
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            object-fit: cover;
-            padding: 2px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .logo-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 12px rgba(44, 95, 127, 0.4);
-        }
+
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 40px;
             list-style: none;
+            align-items: center;
         }
+
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
+            color: var(--text-dark);
             font-weight: 500;
+            font-size: 15px;
             transition: color 0.3s;
             position: relative;
-            padding-bottom: 4px;
-            letter-spacing: 0.5px;
         }
+
         .nav-links a::after {
             content: '';
             position: absolute;
-            left: 0; right: 0; bottom: 0;
+            left: 0;
+            bottom: -5px;
+            width: 0;
             height: 2px;
-            background: rgb(241, 93, 34);
-            transform: scaleX(0);
-            transition: transform 0.3s;
+            background: var(--primary);
+            transition: width 0.3s;
         }
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: rgb(241, 93, 34);
-        }
+
         .nav-links a:hover::after,
         .nav-links a.active::after {
-            transform: scaleX(1);
+            width: 100%;
         }
-        .contact-btn {
-            background: white;
-            padding: 10px 24px;
-            border-radius: 6px;
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-primary {
+            padding: 12px 28px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            color: #333;
+            font-weight: 600;
             font-size: 14px;
-            font-weight: 500;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(44,95,127,0.06);
+            box-shadow: 0 4px 15px rgba(241, 93, 34, 0.3);
         }
-        .contact-btn:hover {
-            box-shadow: 0 4px 16px rgba(241,93,34,0.13);
-            color: rgb(241, 93, 34);
-            transform: translateY(-2px) scale(1.04);
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(241, 93, 34, 0.4);
         }
+
         .hamburger {
             display: none;
             flex-direction: column;
-            cursor: pointer;
             gap: 5px;
-            margin-left: 18px;
+            cursor: pointer;
+            padding: 8px;
         }
+
         .hamburger span {
             width: 25px;
             height: 3px;
-            background: #333;
+            background: var(--text-dark);
             transition: all 0.3s;
             border-radius: 3px;
         }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+
+        /* Page Header */
+        .page-header {
+            background-image: url('image/Cover.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 80px 0 60px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 70px;
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
             left: 0;
             right: 0;
-            background: white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            z-index: 99;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            opacity: 0.7;
         }
-        .mobile-menu.active {
-            display: block;
-            max-height: 400px;
-        }
-        .mobile-menu ul {
-            list-style: none;
-            padding: 20px;
-        }
-        .mobile-menu ul li {
-            margin-bottom: 15px;
-        }
-        .mobile-menu ul li a {
-            text-decoration: none;
-            color: #333;
-            font-size: 16px;
-            display: block;
-            padding: 10px;
-            border-radius: 6px;
-            transition: background 0.2s, color 0.2s;
-        }
-        .mobile-menu ul li a:hover,
-        .mobile-menu ul li a.active {
-            background: #e6f0fa;
-            color: rgb(241, 93, 34);
-        }
-        .mobile-contact-btn {
-            margin: 0 20px 20px;
-            display: block;
-            text-align: center;
-        }
-        .section-divider {
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, rgb(241, 93, 34) 0%, #4a8bb3 100%);
-            border-radius: 2px;
-            margin: 32px auto 48px;
-            opacity: 0.18;
-        }
-        .disclaimer-section {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(241,93,34,0.08);
-            margin: 60px 0 40px 0;
-            padding: 48px 32px;
-            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
-        }
-        .disclaimer-box {
-            background: #fff8e1;
-            border: 2px solid #ffd54f;
-            border-radius: 14px;
-            box-shadow: 0 2px 12px rgba(44,95,127,0.07);
-            padding: 32px 24px;
-            margin: 0 auto 40px auto;
-            max-width: 800px;
-            font-size: 18px;
-            color: #7a5a00;
+
+        .page-header-content {
             position: relative;
+            z-index: 1;
         }
-        .disclaimer-box::before {
-            content: "⚠️";
-            font-size: 28px;
-            position: absolute;
-            left: 24px;
-            top: 24px;
-        }
-        .disclaimer-section h1 {
-            font-size: 38px;
-            color: rgb(241, 93, 34);
-            margin-bottom: 18px;
-            text-align: center;
-        }
-        .disclaimer-section p {
+
+        .page-header h1 {
+            font-size: 48px;
+            font-weight: 800;
             margin-bottom: 16px;
+            letter-spacing: -0.5px;
         }
-        .disclaimer-section ul {
-            margin-left: 22px;
-            margin-bottom: 18px;
+
+        .page-header p {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .disclaimer-section li {
-            margin-bottom: 7px;
-        }
-        .disclaimer-section strong {
-            color: rgb(241, 93, 34);
-        }
-        footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 60px 0 30px;
-        }
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 48px;
-            margin-bottom: 40px;
-        }
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 17px;
-            color: #fff;
-        }
-        .footer-section ul {
-            list-style: none;
-        }
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-        .footer-section a {
-            color: #b0c4d4;
-            text-decoration: none;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
-        .footer-section a:hover {
-            color: #fff;
-        }
-        .footer-about p {
-            color: #b0c4d4;
-            margin-top: 18px;
-        }
-        .footer-social {
-            margin-top: 18px;
+
+        .breadcrumb {
             display: flex;
-            gap: 16px;
-        }
-        .footer-social a {
-            color: #b0c4d4;
-            font-size: 22px;
-            transition: color 0.3s;
-        }
-        .footer-social a:hover {
-            color: #fff;
-        }
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #aaa;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
             font-size: 14px;
         }
-        .footer-social a {
-            width: 45px;
-            height: 45px;
-            background: rgba(241, 93, 34, 0.2);
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+        }
+
+        /* Main Content */
+        .complaints-section {
+            padding: 60px 0 80px;
+        }
+
+        /* Table Card */
+        .table-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid var(--bg-light);
+        }
+
+        .table-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .table-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .data-table thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .data-table th {
+            color: white;
+            font-weight: 600;
+            padding: 16px 12px;
+            text-align: center;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .data-table td {
+            padding: 14px 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            color: var(--text-gray);
+        }
+
+        .data-table tbody tr {
+            transition: background 0.2s;
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--primary-light);
+        }
+
+        .data-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table .total-row {
+            background: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .data-table .total-row td {
+            color: var(--primary);
+            border-top: 2px solid var(--primary);
+        }
+
+        .info-note {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .info-note strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-light);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #b0c4d4;
-            font-size: 20px;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 28px;
+            color: var(--primary);
+            margin: 0 auto 20px;
         }
 
-        .footer-social a:hover {
-            background: rgb(241, 93, 34);
-            color: #fff;
-            transform: translateY(-5px) rotate(360deg);
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(40px);}
-            100% { opacity: 1; transform: translateY(0);}
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 500;
         }
-        .animate { opacity: 0; transform: translateY(40px); }
-        .animate.visible {
-            opacity: 1;
-            transform: translateY(0);
-            animation: fadeInUp 0.8s cubic-bezier(.22,1,.36,1);
-        }
-        @media (max-width: 1100px) {
-            .footer-content { gap: 24px; }
-        }
-        @media (max-width: 968px) {
-            .footer-content { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-        }
-        @media (max-width: 800px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-        }
-        @media (max-width: 640px) {
-            .container { padding: 0 10px; }
-            .footer-content { grid-template-columns: 1fr; }
-            .disclaimer-section { padding: 28px 8px; }
-            .disclaimer-section h1 { font-size: 26px; }
-        }
-        @media (max-width: 700px) {
-            .disclaimer-box { padding: 18px 8px; font-size: 16px; }
-            .disclaimer-box::before { left: 8px; top: 12px; }
-        }
-          .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            color: black;
-            position: relative;
-            z-index: 2;
-        }
-        .subtitle {
-            text-align: center;
-            color: #f15d22;
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-            letter-spacing: 0.5px;
-        }
-        .glass-card {
-            background: rgba(30, 34, 44, 0.85);
-            border-radius: 18px;
-            box-shadow: 0 8px 40px 0 rgba(241,93,34,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10);
-            padding: 32px 24px;
-            margin-bottom: 36px;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 1.2s cubic-bezier(.22,1,.36,1);
-        }
-        .glass-card:before {
-            content: "";
-            position: absolute;
-            top: -80px; left: -80px;
-            width: 200px; height: 200px;
-            background: radial-gradient(circle, rgba(241,93,34,0.13) 0%, transparent 70%);
-            z-index: 0;
-            animation: floatGlow 6s infinite alternate;
-        }
-        .glass-card h2 {
-            color: #f15d22;
-            font-size: 1.4rem;
-            margin-bottom: 18px;
-            position: relative;
-            z-index: 2;
-        }
-        .summary-table, .trend-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 18px;
-            background: rgba(255,255,255,0.02);
-            border-radius: 12px;
-            overflow: hidden;
-            font-size: 1rem;
-        }
-        .summary-table th, .trend-table th {
-            background: rgba(241,93,34,0.13);
-            color: #fff;
-            font-weight: 600;
-            padding: 12px 8px;
-            text-align: center;
-            border-bottom: 2px solid #222;
-        }
-        .summary-table td, .trend-table td {
-            padding: 10px 8px;
-            text-align: center;
-            border-bottom: 1px solid #23272f;
+
+         /* Footer */
+        footer {
+            background: var(--dark);
             color: white;
+            padding: 80px 0 30px;
         }
-        .summary-table tr:last-child td,
-        .trend-table tr:last-child td {
-            border-bottom: none;
+
+        body.dark-mode footer {
+            background: #000;
         }
-        .summary-table tr.grand-total td,
-        .trend-table tr.grand-total td {
-            font-weight: bold;
-            color: #f15d22;
-            background: rgba(241,93,34,0.07);
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
         }
-        .info-text {
-            color: #b0b8c9;
-            font-size: 0.98rem;
-            margin-bottom: 18px;
-            margin-top: 8px;
+
+        .footer-section h3 {
+            margin-bottom: 24px;
+            font-size: 18px;
+            font-weight: 700;
         }
-        .animated-gradient {
-            background: linear-gradient(90deg, #f15d22, #ffb347, #f15d22, #181c24);
-            background-size: 300% 300%;
-            animation: gradientMove 6s ease-in-out infinite;
-            height: 4px;
-            border-radius: 2px;
-            margin: 32px auto 48px;
-            width: 80px;
-            opacity: 0.7;
+
+        .footer-section p {
+            color: #94a3b8;
+            line-height: 1.8;
+            margin-bottom: 20px;
         }
-        /* Futuristic Glow Animation */
-        @keyframes floatGlow {
-            0% { filter: blur(0px); transform: scale(1) translateY(0);}
-            100% { filter: blur(2px); transform: scale(1.1) translateY(10px);}
+
+        .footer-section ul {
+            list-style: none;
         }
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(40px);}
-            100% { opacity: 1; transform: translateY(0);}
+
+        .footer-section ul li {
+            margin-bottom: 12px;
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%;}
-            50% { background-position: 100% 50%;}
-            100% { background-position: 0% 50%;}
+
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 15px;
         }
-        /* Futuristic Table Hover */
-        .summary-table tr:hover:not(.grand-total),
-        .trend-table tr:hover:not(.grand-total) {
-            background: rgba(241,93,34,0.08);
-            transition: background 0.2s;
+
+        .footer-section a:hover {
+            color: white;
+            padding-left: 8px;
         }
-        /* Responsive */
-        @media (max-width: 900px) {
-            .container { padding: 18px 4vw 40px 4vw; }
-            .glass-card { padding: 18px 8px; }
-            .summary-table, .trend-table { font-size: 0.95rem; }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
         }
-        @media (max-width: 600px) {
-            .page-title { font-size: 1.5rem; }
-            .glass-card { padding: 12px 2px; }
-            .summary-table th, .trend-table th,
-            .summary-table td, .trend-table td { padding: 7px 2px; font-size: 0.92rem; }
-        }
-        /* Futuristic animated background */
-        .bg-animated {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .circle {
-            position: absolute;
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            opacity: 0.13;
-            filter: blur(2px);
-            animation: moveCircle 12s linear infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
         }
-        .circle1 { width: 320px; height: 320px; background: #f15d22; left: 5vw; top: 10vh; animation-delay: 0s;}
-        .circle2 { width: 180px; height: 180px; background: #ffb347; right: 8vw; top: 30vh; animation-delay: 2s;}
-        .circle3 { width: 220px; height: 220px; background: #f15d22; left: 40vw; bottom: 8vh; animation-delay: 4s;}
-        @keyframes moveCircle {
-            0% { transform: scale(1) translateY(0);}
-            100% { transform: scale(1.08) translateY(30px);}
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 999;
+        }
+
+        .fab {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--gradient-2);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
+        }
+
+        .scroll-top {
+            opacity: 0;
+            pointer-events: none;
+            animation: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-lg);
+            padding: 80px 30px 30px;
+            transition: right 0.3s;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary);
+            padding-left: 12px;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .data-table {
+                font-size: 13px;
+            }
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .page-header h1 {
+                font-size: 36px;
+            }
+            .page-header {
+                padding: 60px 0 40px;
+            }
+            .table-card {
+                padding: 24px 16px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .data-table {
+                font-size: 12px;
+            }
+            .data-table th,
+            .data-table td {
+                padding: 10px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+            .table-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -475,208 +681,273 @@
     <!-- Header -->
     <header>
         <nav class="container">
-          <div class="logo">
-                <a href="index.html">
-                    <img src="image/image-removebg-preview.png" alt="Whitestone Capital Logo"style="height: 77px; object-fit: contain;">
-                </a>
-            </div>
+            <a href="index.html" class="logo">
+                <img src="image/image-removebg-preview.png" alt="Whitestone Capital">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="mutual-funds.html">Mutual Funds</a></li>
                 <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="training.html">Training</a></li> -->
+                <li><a href="contact.html">Contact</a></li>
             </ul>
-            <a href="contact.html" class="contact-btn">Contact Us</a>
+            <a href="contact.html" class="btn-primary">Contact Us</a>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
         </nav>
-        <div class="mobile-menu" id="mobileMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="mutual-funds.html">Mutual Funds</a></li>
-                <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="training.html">Training</a></li> -->
-               <li><a href="investerCharter.html">Investor Charter</a></li>
-            </ul>
-        </div>
     </header>
 
-</head>
-<body>
-    
-    <!-- Futuristic Animated Background -->
-    <div class="bg-animated">
-        <div class="circle circle1"></div>
-        <div class="circle circle2"></div>
-        <div class="circle circle3"></div>
-    </div>
-    <div class="container">
-        <div class="page-title">Monthly Complaint Summary</div>
-        <div class="subtitle">Data for the month ending September 2025.</div>
-        <div class="animated-gradient"></div>
-
-        <div class="glass-card">
-            <h2>Monthly Complaint Summary Table</h2>
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th>Sr. No.</th>
-                        <th>Received from</th>
-                        <th>Pending at the end of last month</th>
-                        <th>Received</th>
-                        <th>Resolved</th>
-                        <th>Total Pending</th>
-                        <th>Pending complaints &gt;3 months</th>
-                        <th>Average Resolution time (days)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Directly from Investors</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>SEBI (SCORES)</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Other Sources (if any)</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                    </tr>
-                    <tr class="grand-total">
-                        <td colspan="2">Grand Total</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="info-text">
-                Average Resolution Time is calculated by dividing the total time taken to resolve each complaint in the current month by the total number of complaints resolved in the same month. This gives us an average time taken to resolve each complaint.
-            </div>
-        </div>
-
-        <div class="glass-card">
-            <h2>Trend of Monthly Disposal of Complaints</h2>
-            <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>Sr. No.</th>
-                        <th>Month</th>
-                        <th>Carried forward from previous month</th>
-                        <th>Received</th>
-                        <th>Resolved*</th>
-                        <th>Pending#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Jun, 2025</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jul, 2025</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                    </tr>
-                    <tr class="grand-total">
-                        <td colspan="2">Grand Total</td>
-                        <td>NIL</td>
-                        <td>NIL</td>
-                        <td>NA</td>
-                        <td>NIL</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="info-text">
-                This month includes complaints resolved in previous months and complaints pending as of the last day of the month.
-            </div>
-        </div>
-
-        <div class="glass-card">
-            <h2>Trend of Annual Disposal of Complaints</h2>
-            <table class="trend-table">
-                <thead>
-                    <tr>
-                        <th>SN</th>
-                        <th>Year</th>
-                        <th>Carried forward from previous year</th>
-                        <th>Received</th>
-                        <th>Resolved*</th>
-                        <th>Pending#</th>
-                        <th>Pending Disposal &gt; 3 months</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2025-26</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>NA</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="info-text">
-                *Inclusive of complaints of previous years resolved in the current year.<br>
-                #Inclusive of complaints pending as on the last day of the year.
-            </div>
-        </div>
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="investerCharter.html">Investor Charter</a></li>
+        </ul>
     </div>
 
- 
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>Monthly Complaint Summary</h1>
+                <p>Data for the month ending September 2025</p>
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span>/</span>
+                    <span>Complaint Summary</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="complaints-section">
+        <div class="container">
+            <!-- Stats Overview -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-inbox"></i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Received</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Total Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value">N/A</div>
+                    <div class="stat-label">Avg Resolution Time</div>
+                </div>
+            </div>
+
+            <!-- Monthly Summary Table -->
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h2>Monthly Complaint Summary</h2>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Received from</th>
+                            <th>Pending at end of last month</th>
+                            <th>Received</th>
+                            <th>Resolved</th>
+                            <th>Total Pending</th>
+                            <th>Pending &gt;3 months</th>
+                            <th>Avg Resolution (days)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Directly from Investors</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>SEBI (SCORES)</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Other Sources</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2"><strong>Grand Total</strong></td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Note:</strong>
+                    Average Resolution Time is calculated by dividing the total time taken to resolve each complaint in the current month by the total number of complaints resolved in the same month.
+                </div>
+            </div>
+
+            <!-- Monthly Disposal Trend -->
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h2>Trend of Monthly Disposal of Complaints</h2>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Month</th>
+                            <th>Carried forward</th>
+                            <th>Received</th>
+                            <th>Resolved*</th>
+                            <th>Pending#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Jun, 2025</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jul, 2025</td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2"><strong>Grand Total</strong></td>
+                            <td>NIL</td>
+                            <td>NIL</td>
+                            <td>N/A</td>
+                            <td>NIL</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Note:</strong>
+                    This month includes complaints resolved in previous months and complaints pending as of the last day of the month.
+                </div>
+            </div>
+
+            <!-- Annual Disposal Trend -->
+            <div class="table-card">
+                <div class="table-header">
+                    <div class="table-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h2>Trend of Annual Disposal of Complaints</h2>
+                </div>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>SN</th>
+                            <th>Year</th>
+                            <th>Carried forward</th>
+                            <th>Received</th>
+                            <th>Resolved*</th>
+                            <th>Pending#</th>
+                            <th>Pending &gt;3 months</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2025-26</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Note:</strong>
+                    *Inclusive of complaints of previous years resolved in the current year.<br>
+                    #Inclusive of complaints pending as on the last day of the year.
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-      <footer>
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
-                     <a href="index.html">
-                    <img src="image/image copy 3.png" alt="Whitestone Capital Logo" style="width: 150px; height: auto;">
-                </a>
+                    <a href="index.html">
+                        <img src="image/image copy 3.png" alt="Whitestone Capital Logo" style="width: 150px; height: auto;">
+                    </a>
                     <p>SEBI Registered Research Analyst<br>AMFI Registered Mutual Fund Distributor<br>Insurance Policy Distributor</p>
-                   <div class="footer-social">
-    <a href="https://www.linkedin.com/company/105713157" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-</div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/company/105713157" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_invite" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://web.telegram.org/k/" class="social-link" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="https://www.facebook.com/share/1CLSm4cNsy/" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -684,7 +955,6 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
                         <li><a href="research.html">Research</a></li>
-                        <li><a href="investerCharter.html">investerCharter</a></li>
                         <li><a href="GrievanceRedressal.html">Grievance Redressal</a></li>
                     </ul>
                 </div>
@@ -694,18 +964,24 @@
                         <li><a href="research.html">Investment Research</a></li>
                         <li><a href="mutual-funds.html">Mutual Funds</a></li>
                         <li><a href="insurance.html">Insurance</a></li>
-                        <li><a href="Complainttable.html">Complaint table</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+91">+91 XXXXX XXXXX</a></li>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
                         <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
-                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="investerCharter.html">Investor Charter</a></li>
+                        <li><a href="Complainttable.html">Investor Complaint</a></li>
+                        <li><a href="TermsAndConditions.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -714,41 +990,130 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
-        // Hamburger menu toggle
+        // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
         });
-        // Close mobile menu when clicking on a link
+
+        menuOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
             });
         });
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
+
+        // Hamburger Animation
+        hamburger.addEventListener('click', () => {
+            const spans = hamburger.querySelectorAll('span');
+            if (hamburger.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(7px, 7px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
             }
         });
-        // Section and card animation on scroll
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate');
-            elements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 80) {
-                    el.classList.add('visible');
+
+        // Scroll to Top
+        const scrollTop = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Header Scroll Effect
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+            } else {
+                header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Smooth Scroll for Internal Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-        }
-        document.addEventListener('scroll', animateOnScroll);
-        document.addEventListener('DOMContentLoaded', () => {
-            animateOnScroll();
+        });
+
+        // Card Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate cards on scroll
+        document.querySelectorAll('.table-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add stagger effect to stat cards
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add stagger effect to table cards
+        document.querySelectorAll('.table-card').forEach((card, index) => {
+            card.style.transitionDelay = `${(index + 4) * 0.1}s`;
+        });
+
+        // Animate table rows on hover
+        document.querySelectorAll('.data-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.01)';
+            });
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
         });
     </script>
 </body>
