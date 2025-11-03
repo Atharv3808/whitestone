@@ -1375,7 +1375,7 @@
                 <div class="hero-text">
                     <div class="hero-badge">
                         <i class="fas fa-star"></i>
-                         SEBI Registered - Research Analyst - INH000020794
+                         SEBI Registered - Research Analyst - INH0000020794
                     </div>
                     <h1>Your Trusted Partner in Financial Growth</h1>
                     <p class="hero-subtitle">SEBI Registered Research Analyst | AMFI Registered Mutual Fund Distributor | Insurance Partner</p>
@@ -1654,6 +1654,7 @@
                     <img src="image/image copy 3.png" alt="Whitestone Capital Logo" style="width: 150px; height: auto;">
                 </a>
                     <p>Address: Office No. 101, Gurukrupa Towers, Sahakar Nagar, Pune - 411009</p>
+                    <p>Contact No.: +91 92260 60600<br>Email: invest@white-stone.co.in</p>
                     <p>AMFI Registration No.: 281897<br>SEBI Research Analyst No.: INH0000020794</p>
                    <div class="footer-social">
     <a href="https://www.linkedin.com/company/105713157" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
@@ -1661,7 +1662,6 @@
     <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_invite" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
     <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    
 </div>
                 </div>
                 <div class="footer-section">
@@ -1685,8 +1685,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+91">+91 92260 60600</a></li>
-                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
+                        <li><a href="mailto:invest@white-stone.co.in">invest@white-stone.co.in</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
@@ -1719,29 +1719,33 @@
     </div>
 
     <script>
-        // Theme Toggle
+        // Theme Toggle (guarded to avoid errors if the elements are not present)
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
+        if (themeToggle && themeIcon) {
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
 
         // Load saved theme
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
+            if (themeIcon) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
         }
 
         // Header Scroll Effect
@@ -1815,7 +1819,6 @@
 
         // Counter Animation
         const counters = document.querySelectorAll('.stat-value');
-        let animated = false;
 
         const animateCounters = () => {
             counters.forEach(counter => {
@@ -1837,18 +1840,8 @@
             });
         };
 
-        const observerOptions = { threshold: 0.5 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !animated) {
-                    animateCounters();
-                    animated = true;
-                }
-            });
-        }, observerOptions);
-
-        const statsSection = document.querySelector('.stats-grid');
-        if (statsSection) observer.observe(statsSection);
+        // Animate counters after page loads
+        setTimeout(animateCounters, 1000);
 
         // Testimonial Slider
         let currentTestimonial = 0;
@@ -1907,6 +1900,7 @@
             el.style.transition = 'all 0.6s ease';
             animateOnScroll.observe(el);
         });
+        
     </script>
 </body>
 </html>
