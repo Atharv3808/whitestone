@@ -65,9 +65,10 @@
         }
 
         .logo img {
-            width: 160px;
-            height: 77px;
-            object-fit: contain;
+                width: 199px;
+    height: 108px;
+    border-radius: 8px;
+    object-fit: cover;
         }
 
         .nav-links {
@@ -128,6 +129,7 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
+            z-index: 1001;
         }
 
         .hamburger span {
@@ -136,6 +138,79 @@
             background: var(--text-dark);
             border-radius: 3px;
             transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-xl);
+            padding: 100px 30px 30px;
+            transition: right 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul li a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 12px 0;
+            transition: all 0.3s;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--primary);
+            padding-left: 12px;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
         }
 
         /* Hero Section */
@@ -149,15 +224,14 @@
         }
 
         .terms-hero::before {
-            content: '';
+             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
-        }
+ background : linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200') center/cover;        }
 
         .terms-hero-content {
             position: relative;
@@ -712,6 +786,10 @@
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
+            .btn-primary{
+                display: none;
+            }
+            
         }
     </style>
 </head>
@@ -738,6 +816,19 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="terms-hero">
@@ -1218,11 +1309,24 @@
             });
         });
 
-        // Hamburger Menu (Mobile)
+        // Mobile Menu Toggle
         const hamburger = document.getElementById('hamburger');
-        
-        hamburger.addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
             hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', toggleMenu);
         });
     </script>
 </body>
