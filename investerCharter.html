@@ -105,11 +105,11 @@
             text-decoration: none;
         }
 
-         .logo img {
-                width: 199px;
-    height: 108px;
-    border-radius: 8px;
-    object-fit: cover;
+        .logo img {
+            width: 199px;
+            height: 108px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -289,11 +289,11 @@
             pointer-events: all;
         }
 
-        /* Hero Section with Background Image */
+        /* Hero Section */
         .hero {
             position: relative;
             padding: 8rem 0 5rem;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%),
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 50%),
                         url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200') center/cover;
             color: white;
             overflow: hidden;
@@ -306,7 +306,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, var(--primary) 0%, transparent 100%);
+     
             opacity: 0.1;
         }
 
@@ -406,7 +406,6 @@
             background: var(--bg-light);
         }
 
-        /* Section Header with Image */
         .section-intro {
             text-align: center;
             margin-bottom: 5rem;
@@ -427,13 +426,11 @@
             margin: 0 auto;
         }
 
-        /* Professional Grid Layout */
         .charter-wrapper {
             display: grid;
             gap: 3rem;
         }
 
-        /* Feature Card with Image Background */
         .feature-section {
             position: relative;
             background: var(--white);
@@ -513,7 +510,6 @@
             padding: 3rem;
         }
 
-        /* Two Column Layout */
         .two-col-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -548,7 +544,6 @@
             font-size: 1.8rem;
         }
 
-        /* Professional List Styling */
         .feature-content ul,
         .content-block ul {
             list-style: none;
@@ -598,7 +593,6 @@
             font-weight: 600;
         }
 
-        /* Info Box with Image */
         .info-box {
             position: relative;
             background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
@@ -641,7 +635,6 @@
             text-decoration: underline;
         }
 
-        /* Nested Section */
         .nested-section {
             margin: 2.5rem 0;
         }
@@ -655,7 +648,6 @@
             border-left: 4px solid var(--primary);
         }
 
-        /* Do's and Don'ts Special Layout */
         .dos-donts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -741,7 +733,7 @@
         .footer-content {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-            gap: 60px;
+            gap: 50px;
             margin-bottom: 50px;
             position: relative;
             z-index: 1;
@@ -774,10 +766,7 @@
             font-size: 15px;
         }
 
-        .footer-section a:hover {
-            color: white;
-            padding-left: 8px;
-        }
+      
 
         .footer-social {
             display: flex;
@@ -795,6 +784,7 @@
             justify-content: center;
             transition: all 0.3s;
             color: #94a3b8;
+            text-decoration: none;
         }
 
         .social-link:hover {
@@ -837,13 +827,7 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
+         
         }
 
         .scroll-top {
@@ -949,10 +933,8 @@
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Header -->
     <header id="header">
         <nav class="container">
             <a href="index.html" class="logo">
@@ -967,10 +949,6 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <!-- <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button> -->
-                <!-- <a href="contact.html" class="btn btn-primary">Get Consultation</a> -->
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -980,7 +958,6 @@
         </nav>
     </header>
 
-    <!-- Mobile Menu -->
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <ul>
@@ -993,7 +970,6 @@
         </ul>
     </div>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="container hero-content">
             <div class="hero-badge">
@@ -1010,7 +986,6 @@
         </div>
     </section>
 
-    <!-- Charter Section -->
     <section class="charter-section">
         <div class="container">
             <div class="charter-wrapper">
@@ -1046,10 +1021,10 @@
                             <li>Publish research reports based on thorough research activities</li>
                             <li>Provide independent and unbiased views on securities</li>
                             <li>Offer recommendations disclosing financial interests</li>
-                            <li>Conduct research based on publicly available information</li>
+                            <li>Conduct research based on publicly available information and known observations</li>
                             <li>Conduct annual audits for compliance</li>
-                            <li>Ensure advertisements adhere to SEBI guidelines</li>
-                            <li>Maintain detailed records of all client interactions</li>
+                            <li>Ensure all advertisements adhere to SEBI Advertisement Code guidelines</li>
+                            <li>Maintain detailed records of all client interactions including prospective clients</li>
                         </ul>
                     </div>
                 </div>
@@ -1075,9 +1050,9 @@
                         <div class="nested-section">
                             <h4>Disclosure to Clients</h4>
                             <ul>
-                                <li>Disclose material information for informed decision-making, including business activities, disciplinary history, and terms of service</li>
+                                <li>Disclose material information for informed decision-making, including business activities, disciplinary history, terms of service, details of associates, and any risks or conflicts of interest</li>
                                 <li>Disclose extent of use of Artificial Intelligence tools in research services</li>
-                                <li>Disclose conflicts of interest when distributing third-party research reports</li>
+                                <li>Disclose any material conflicts of interest when distributing third-party research reports, or provide web address directing to relevant disclosures</li>
                                 <li>Disclose any conflicts between research services and other activities</li>
                             </ul>
                         </div>
@@ -1085,12 +1060,13 @@
                         <div class="nested-section">
                             <h4>Commitments to Clients</h4>
                             <ul>
-                                <li>Distribute research reports without discrimination</li>
+                                <li>Distribute research reports and recommendations without discrimination</li>
                                 <li>Maintain confidentiality until public disclosure</li>
-                                <li>Respect data privacy and protect confidential information</li>
+                                <li>Respect data privacy and protect confidential information from unauthorized use</li>
                                 <li>Disclose and adhere to service timelines</li>
-                                <li>Provide clear guidance for complex and high-risk products</li>
+                                <li>Provide clear guidance and adequate caution for complex and high-risk products</li>
                                 <li>Treat all clients with honesty and integrity</li>
+                                <li>Ensure confidentiality of client information unless required by law or with specific client consent</li>
                             </ul>
                         </div>
                     </div>
@@ -1108,30 +1084,40 @@
                     <div class="feature-content">
                         <div class="nested-section">
                             <h4>Filing Complaints with Research Analyst</h4>
-                            <p>For any grievance, approach the concerned Research Analyst who shall strive to redress the complaint within <strong>21 days</strong> of receipt.</p>
+                            <p>For any grievance, approach the concerned Research Analyst who shall strive to redress the complaint immediately, but not later than <strong>21 days</strong> from receipt of grievance.</p>
                         </div>
 
                         <div class="nested-section">
                             <h4>Filing on SCORES or with RAASB</h4>
                             <div class="info-box">
                                 <strong>SCORES 2.0</strong>
-                                <p>Web-based centralized grievance redressal system of SEBI</p>
+                                <p>Web-based centralized grievance redressal system of SEBI for facilitating effective grievance redressal in time-bound manner</p>
                                 <a href="https://scores.sebi.gov.in" target="_blank">https://scores.sebi.gov.in <i class="fas fa-external-link-alt"></i></a>
                             </div>
                             <ul>
-                                <li><strong>Two-level review process:</strong> First review by designated body (RAASB), followed by second review by SEBI</li>
-                                <li>Email to designated email ID of RAASB for complaints</li>
+                                <li><strong>Two-level review process:</strong> First review by designated body (Research Analyst Administration and Supervisory Body - RAASB), followed by second review by SEBI</li>
+                                <li>Email complaints to designated email ID of RAASB</li>
                             </ul>
                         </div>
 
                         <div class="nested-section">
                             <h4>SMARTODR Platform</h4>
-                            <p>If not satisfied with resolution provided, file complaints on SMARTODR platform for online conciliation or arbitration.</p>
+                            <p>If not satisfied with the resolution provided, file complaints on SMARTODR platform for online conciliation or arbitration.</p>
                         </div>
 
                         <div class="info-box">
                             <strong>Physical Complaints Address</strong>
-                            <p>OAddress: Office No. 101, Gurukrupa Towers, Sahakar Nagar, Pune - 411009</p>
+                            <p>Office of Investor Assistance and Education<br>
+                            Securities and Exchange Board of India<br>
+                            SEBI Bhavan, Plot No. C4-A, 'G' Block<br>
+                            Bandra-Kurla Complex, Bandra (E)<br>
+                            Mumbai - 400 051</p>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>Whitestone Capital Office</strong>
+                            <p>Office No. 101, Gurukrupa Towers<br>
+                            Sahakar Nagar, Pune - 411009</p>
                         </div>
                     </div>
                 </div>
@@ -1155,8 +1141,9 @@
                                     <li>Right to Fair and Equitable Treatment</li>
                                     <li>Right to Adequate Information</li>
                                     <li>Right to Initial and Continuing Disclosure</li>
-                                    <li>Right to Fair & True Advertisement</li>
+                                    <li>Right to Fair and True Advertisement</li>
                                     <li>Right to Service Parameters Awareness</li>
+                                    <li>Right to be informed of timelines for each service</li>
                                 </ul>
                             </div>
                             <div class="content-block">
@@ -1164,11 +1151,11 @@
                                 <ul>
                                     <li>Right to be Heard and Satisfactory Grievance Redressal</li>
                                     <li>Right to Timely Redressal</li>
-                                    <li>Right to Exit from Financial Products</li>
-                                    <li>Right to Clear Guidance on High-Risk Products</li>
-                                    <li>Right to Accessibility for Vulnerable Consumers</li>
-                                    <li>Right to Provide Feedback</li>
-                                    <li>Right Against Coercive Clauses</li>
+                                    <li>Right to Exit from financial products or services per agreed terms</li>
+                                    <li>Right to Clear Guidance on Complex and High-Risk Products</li>
+                                    <li>Right to Accessibility for vulnerable consumers and differently abled</li>
+                                    <li>Right to Provide Feedback on products and services</li>
+                                    <li>Right Against Coercive, unfair, and one-sided clauses</li>
                                 </ul>
                             </div>
                         </div>
@@ -1192,29 +1179,32 @@
                                 <h4><i class="fas fa-check-circle"></i> Do's</h4>
                                 <ul>
                                     <li>Always deal with SEBI registered Research Analysts</li>
-                                    <li>Verify valid registration certificate</li>
-                                    <li>Check SEBI registration number on official website</li>
-                                    <li>Pay attention to disclosures in research reports</li>
-                                    <li>Make payments through banking channels only</li>
-                                    <li>Ask all relevant questions before acting on recommendations</li>
+                                    <li>Ensure the Research Analyst has a valid registration certificate</li>
+                                    <li>Check SEBI registration number on official SEBI website</li>
+                                    <li>Pay attention to disclosures in research reports before investing</li>
+                                    <li>Make payments through banking channels only and maintain signed receipts</li>
+                                    <li>Use Centralized Fee Collection Mechanism (CeFCoM) of RAASB if available</li>
+                                    <li>Check research recommendations before buying or selling securities</li>
+                                    <li>Ask all relevant questions and clear doubts before acting on recommendations</li>
                                     <li>Seek clarifications on complex and high-risk products</li>
-                                    <li>Be aware of your right to exit services</li>
-                                    <li>Provide feedback on services received</li>
-                                    <li>Maintain duly signed receipts of all payments</li>
+                                    <li>Be aware of your right to exit services per agreed terms</li>
+                                    <li>Know your right to provide feedback on services received</li>
+                                    <li>Understand you are not bound by clauses contravening regulatory provisions</li>
+                                    <li>Inform SEBI about Research Analysts offering assured or guaranteed returns</li>
                                 </ul>
                             </div>
 
                             <div class="donts-card">
                                 <h4><i class="fas fa-times-circle"></i> Don'ts</h4>
                                 <ul>
-                                    <li>Don't fall for assured or guaranteed returns</li>
-                                    <li>Don't provide funds for investment to Research Analyst</li>
-                                    <li>Don't fall prey to market rumors or unverified tips</li>
-                                    <li>Don't get attracted to limited period discount offers</li>
-                                    <li>Don't share login credentials or passwords</li>
+                                    <li>Don't provide funds for investment to the Research Analyst</li>
+                                    <li>Don't fall for assured or guaranteed returns promises</li>
+                                    <li>Don't fall prey to luring advertisements or market rumors</li>
+                                    <li>Don't get attracted to limited period discounts or incentive offers</li>
+                                    <li>Don't accept gifts from Research Analysts</li>
+                                    <li>Don't share login credentials or passwords of trading, demat or bank accounts</li>
                                     <li>Don't ignore regulatory warnings and alerts</li>
-                                    <li>Don't engage with unregistered advisors</li>
-                                    <li>Don't make hasty investment decisions under pressure</li>
+                                    <li>Don't engage with unregistered advisors or analysts</li>
                                 </ul>
                             </div>
                         </div>
@@ -1225,7 +1215,7 @@
         </div>
     </section>
 
-        <footer>
+      <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
@@ -1239,8 +1229,7 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_invite" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    
+    <a href="https://www.facebook.com/share/1CLSm4cNsy/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 </div>
                 </div>
                 <div class="footer-section">
@@ -1264,8 +1253,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+91">+91 92260 60600</a></li>
-                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
+                        <li><a href="mailto:invest@white-stone.co.in">invest@white-stone.co.in</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
@@ -1287,7 +1276,6 @@
         </div>
     </footer>
 
-    <!-- Floating Buttons -->
     <div class="floating-buttons">
         <button class="fab scroll-top" id="scrollTop">
             <i class="fas fa-arrow-up"></i>
@@ -1298,32 +1286,31 @@
     </div>
 
     <script>
-        // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
+        if (themeToggle) {
+            const themeIcon = document.getElementById('themeIcon');
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                if (body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
             }
-        });
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
         }
 
-        // Header scroll effect
         const header = document.getElementById('header');
         const progressBar = document.getElementById('progressBar');
 
@@ -1340,7 +1327,6 @@
             progressBar.style.width = scrolled + '%';
         });
 
-        // Mobile Menu
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -1365,7 +1351,6 @@
             });
         });
 
-        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -1383,7 +1368,6 @@
             observer.observe(el);
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1397,7 +1381,6 @@
             });
         });
 
-        // Scroll to Top Button
         const scrollTop = document.getElementById('scrollTop');
 
         window.addEventListener('scroll', () => {
@@ -1412,7 +1395,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Active Navigation
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
 

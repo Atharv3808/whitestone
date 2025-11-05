@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Whitestone Capital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-       * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -42,17 +37,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             overflow-x: hidden;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        body.dark-mode {
-            --text-dark: #e2e8f0;
-            --text-gray: #94a3b8;
-            --white: #1e293b;
-            --bg-light: #0f172a;
-            --dark: #f8fafc;
-            background: #0f172a;
-            color: #e2e8f0;
+            background: #fff;
         }
 
         .container {
@@ -119,15 +104,10 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             transition: all 0.3s;
-        }
-
-        body.dark-mode header {
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         header.scrolled {
@@ -152,11 +132,10 @@
         }
 
         .logo img {
-                width: 199px;
-    height: 108px;
-    border-radius: 8px;
-    object-fit: cover;
-        margin-left: 74px;
+            width: 199px;
+            height: 108px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
         .nav-links {
@@ -201,61 +180,6 @@
             gap: 16px;
         }
 
-        .theme-toggle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-light);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-light);
-            transform: scale(1.1);
-        }
-
-        .btn {
-            padding: 12px 28px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-            font-family: inherit;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: var(--gradient-2);
-            color: white;
-            box-shadow: 0 4px 15px rgba(241, 93, 34, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(241, 93, 34, 0.4);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-dark);
-            border: 2px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-
         .hamburger {
             display: none;
             flex-direction: column;
@@ -272,20 +196,551 @@
             border-radius: 3px;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(7px, 7px);
+        /* Hero Section */
+        .hero-about {
+            padding: 140px 0 100px;
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f2 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .hamburger.active span:nth-child(2) {
+        .hero-about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(241, 93, 34, 0.08) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            animation: fadeInDown 0.6s ease;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-gray);
+            margin-bottom: 48px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .credential-card {
+            background: white;
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .credential-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .credential-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gradient-2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .credential-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .credential-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Vision Mission Section */
+        .vm-section {
+            padding: 100px 0;
+            background: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vm-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(241, 93, 34, 0.05) 50%, transparent 70%);
+            animation: shimmer 15s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 48px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .vm-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 48px 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
             opacity: 0;
+            transform: translateY(50px);
         }
 
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
+        .vm-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        .vm-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
 
-        /* Footer */
+        .vm-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .vm-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(241, 93, 34, 0.3);
+            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
+        }
+
+        .vm-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--gradient-2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .vm-card h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .vm-card p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .vm-card p + p {
+            margin-top: 16px;
+            font-style: italic;
+            border-left: 3px solid var(--primary);
+            padding-left: 16px;
+        }
+
+        /* Differentiators Section */
+        .diff-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #ffffff, #fafafa);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 16px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .diff-card {
+            background: white;
+            padding: 40px 32px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .diff-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diff-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(241, 93, 34, 0.03) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .diff-card:hover::before {
+            opacity: 1;
+        }
+
+        .diff-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .diff-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--gradient-2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(241, 93, 34, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .diff-card:hover .diff-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .diff-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .diff-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+            overflow: hidden;
+        }
+
+        .team-slider-wrapper {
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .team-slider {
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .team-track {
+            display: flex;
+            gap: 32px;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            width: 320px;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .team-img-wrapper {
+            height: 360px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.1) 100%);
+            z-index: 1;
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            padding: 28px 24px;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            color: var(--dark);
+            font-size: 1.3rem;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .designation {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .team-info .desc {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            color: var(--primary);
+            font-size: 20px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-btn.prev {
+            left: -20px;
+        }
+
+        .slider-btn.next {
+            right: -20px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gradient-2);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 16px 48px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+        }
+
+         /* Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -330,10 +785,7 @@
             font-size: 15px;
         }
 
-        .footer-section a:hover {
-            color: white;
-            padding-left: 8px;
-        }
+      
 
         .footer-social {
             display: flex;
@@ -349,13 +801,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
         }
 
-        .social-link:hover {
-            background: var(--primary);
-            transform: translateY(-4px);
-        }
+        
 
         .footer-bottom {
             text-align: center;
@@ -389,14 +837,10 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            transition: all 0.3s;
-            animation: bounce 2s infinite;
+        
         }
 
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
-        }
+     
 
         .scroll-top {
             opacity: 0;
@@ -409,10 +853,7 @@
             pointer-events: all;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
+
 
         /* Mobile Menu */
         .mobile-menu {
@@ -426,10 +867,6 @@
             padding: 80px 30px 30px;
             transition: right 0.3s;
             z-index: 999;
-        }
-
-        body.dark-mode .mobile-menu {
-            background: var(--dark);
         }
 
         .mobile-menu.active {
@@ -479,592 +916,50 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .vm-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .theme-toggle { display: none; }
             .hamburger { display: flex; }
+            .hero-about { padding: 100px 0 60px; }
+            .credentials-grid { grid-template-columns: 1fr; }
+            .diff-grid { grid-template-columns: 1fr; }
             .footer-content { grid-template-columns: 1fr; gap: 40px; }
             .floating-buttons { right: 20px; bottom: 20px; }
+            .slider-btn.prev { left: 0; }
+            .slider-btn.next { right: 0; }
         }
 
         @media (max-width: 480px) {
-            .nav-actions { flex-direction: column; }
+            .logo img { width: 150px; height: auto; }
         }
-
-        /* Original about.html styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: rgb(241, 93, 34);
-            --dark: #0a0a0a;
-            --gray: #666;
-            --light-gray: #f5f5f5;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fff;
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .floating-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .float-icon {
-            position: absolute;
-            opacity: 0.05;
-            font-size: 3rem;
-            animation: float 20s infinite ease-in-out;
-            font-weight: bold;
-        }
-
-        .float-icon:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
-        .float-icon:nth-child(2) { right: 15%; top: 40%; animation-delay: 3s; }
-        .float-icon:nth-child(3) { left: 20%; bottom: 30%; animation-delay: 6s; }
-        .float-icon:nth-child(4) { right: 25%; bottom: 20%; animation-delay: 9s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-30px) rotate(5deg); }
-            50% { transform: translateY(-60px) rotate(-5deg); }
-            75% { transform: translateY(-30px) rotate(5deg); }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #fff 0%, #fef5f1 100%);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 70%;
-            height: 150%;
-            background: radial-gradient(circle, rgba(241, 93, 34, 0.1) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.1); opacity: 0.5; }
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: var(--gray);
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.3s forwards;
-        }
-
-        .credentials {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            opacity: 0;
-            animation: fadeInUp 1s ease 0.6s forwards;
-        }
-
-        .credential-item {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            border: 2px solid rgba(241, 93, 34, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .credential-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(241, 93, 34, 0.2);
-        }
-
-        .credential-icon {
-            width: 24px;
-            height: 24px;
-            color: var(--primary);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .vm-section {
-            padding: 8rem 0;
-            background: var(--dark);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vm-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(241, 93, 34, 0.05) 50%, transparent 70%);
-            animation: shimmer 10s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .vm-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-        }
-
-        .vm-card {
-            padding: 3rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.5s ease;
-        }
-
-        .vm-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .vm-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .vm-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .vm-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(241, 93, 34, 0.3);
-            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
-        }
-
-        .vm-card h2 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .vm-card h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        .vm-card p {
-            color: #ccc;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .diff-section {
-            padding: 8rem 0;
-            background:url('/image/Cover\ \(2\).png') center/cover no-repeat;
-            position: relative;
-        }
-
-        .diff-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.8);
-            z-index: 1;
-        }
-
-        .diff-section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .diff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .diff-card {
-            padding: 3rem 2rem;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            overflow: hidden;
-        }
-
-        .diff-card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .diff-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(241, 93, 34, 0.05) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .diff-card:hover::before {
-            opacity: 1;
-        }
-
-        .diff-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(241, 93, 34, 0.2);
-        }
-
-        .diff-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), #ff6b35);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(241, 93, 34, 0.3);
-            transition: all 0.4s ease;
-        }
-
-     
-
-        .diff-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .diff-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .team-section {
-            background: linear-gradient(135deg, #fff 0%, #fef6f2 100%);
-            padding: 100px 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .section-badge {
-            display: inline-block;
-            background: rgb(241, 93, 34);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-top: 15px;
-            color: #111;
-        }
-
-        .section-header p {
-            color: #555;
-            max-width: 700px;
-            margin: 10px auto 0;
-        }
-
-        .team-slider {
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-
-        .team-track {
-            display: flex;
-            gap: 2rem;
-            transition: transform 0.6s ease;
-        }
-
-        .team-card {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            width: 300px;
-            flex-shrink: 0;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(241, 93, 34, 0.2);
-        }
-
-        .team-card img {
-                width: 102%;
-    height: 397px;
-    object-fit: cover;
-    margin-top: -10px;
-        }
-
-        .team-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .team-info h3 {
-            color: #111;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .team-info .designation {
-            color: rgb(241, 93, 34);
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-        }
-
-        .team-info .desc {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .slider-btn {
-            background: rgb(241, 93, 34);
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        .slider-btn:hover {
-            background: #d04a18;
-            transform: scale(1.1);
-        }
-
-        .slider-btn.prev {
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .slider-btn.next {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .cta-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--primary), #ff6b35);
-            text-align: center;
-        }
-
-        .cta-content h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: #fff;
-            margin-bottom: 2rem;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 1rem 3rem;
-            background: #fff;
-            color: var(--primary);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 768px) {
-            .team-card {
-                width: 260px;
-            }
-            .slider-btn {
-                width: 38px;
-                height: 38px;
-                font-size: 1rem;
-            }
-            .vm-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-           .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100vh;
-            background: white;
-            box-shadow: var(--shadow-xl);
-            padding: 125px 28px 30px;
-
-            transition: right 0.3s;
-            z-index: 999;
-        }
-    @media (max-width: 480px) {
-            .hero h1 { font-size: 28px; }
-            .hero-buttons { flex-direction: column; }
-            .btn { width: 100%; justify-content: center;display: none; }
-            .credentials { flex-direction: column; }
-            .section-header h2 { font-size: 24px; }
-            .logo img { margin-left: 0; }
-        }
-
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <nav class="container">
             <a href="#" class="logo">
                 <img src="image/image-removebg-preview.png" alt="Whitestone Capital">
             </a>
-             <ul class="nav-links">
-                <li><a class="active" href="index.html" aria-current="page">Home</a></li>
-                <li><a href="about.html">About</a></li>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active" href="about.html" aria-current="page">About</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="mutual-funds.html">Mutual Funds</a></li>
                 <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="training.html">Training</a></li> -->
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <!-- <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon" id="themeIcon"></i>
-                </button> -->
-                <!-- <a href="#contact" class="btn btn-primary">Get Consultation</a> -->
                 <div class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
@@ -1078,89 +973,100 @@
     <div class="menu-overlay" id="menuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
         <ul>
-       <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="research.html">Research</a></li>
-                <li><a href="mutual-funds.html">Mutual Funds</a></li>
-                <li><a href="insurance.html">Insurance</a></li>
-                <!-- <li><a href="training.html">Training</a></li> -->
-                <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="mutual-funds.html">Mutual Funds</a></li>
+            <li><a href="insurance.html">Insurance</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </div>
 
-    <div class="floating-bg">
-        <div class="float-icon">$</div>
-        <div class="float-icon">%</div>
-        <div class="float-icon">+</div>
-        <div class="float-icon">#</div>
-    </div>
-
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero-about">
         <div class="container">
             <div class="hero-content">
+                <div class="hero-badge">About Whitestone Capital</div>
                 <h1>Empowering Financial Growth with Research, Integrity & Innovation</h1>
-                <p class="hero-subtitle">At Whitestone Capital, we deliver a diverse basket of investment solutions with a singular goal — helping you build lasting wealth through expert research, personalized strategies, and unwavering ethical standards.</p>
+                <p>We deliver diverse investment solutions with a singular goal — helping you build lasting wealth through expert research, personalized strategies, and unwavering ethical standards.</p>
                 
-                <div class="credentials">
-                    <div class="credential-item">
-                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>SEBI Registered Research Analyst</span>
+                <div class="credentials-grid">
+                    <div class="credential-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>SEBI Registered</h3>
+                        <p>Research Analyst - INH0000020794</p>
                     </div>
-                    <div class="credential-item">
-                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>AMFI Registered Mutual Fund Distributor</span>
+                    <div class="credential-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-landmark"></i>
+                        </div>
+                        <h3>AMFI Registered</h3>
+                        <p>Mutual Fund Distributor - 281897</p>
                     </div>
-                    <div class="credential-item">
-                        <svg class="credential-icon" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"/>
-                        </svg>
-                        <span>Insurance & Wealth Protection</span>
+                    <div class="credential-card">
+                        <div class="credential-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Insurance Services</h3>
+                        <p>Comprehensive Wealth Protection</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Vision Mission Section -->
     <section class="vm-section">
         <div class="container">
             <div class="vm-grid">
                 <div class="vm-card scroll-fade">
+                    <div class="vm-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
                     <h2>Our Vision</h2>
                     <p>To be the most trusted and innovative financial partner, transforming the investment landscape through research excellence and ethical wealth creation — enabling every client to achieve financial freedom with confidence and clarity.</p>
                 </div>
                 <div class="vm-card scroll-fade">
+                    <div class="vm-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
                     <h2>Our Mission</h2>
                     <p>To empower individuals and institutions through research-driven insights and tailor-made financial solutions. We aim to enable smarter decisions and elevate wealth-building journeys with ethics, innovation, and a long-term perspective.</p>
-                    <p style="margin-top: 1rem; font-style: italic;">We believe wealth is not just built — it is crafted with knowledge, discipline, and trust.</p>
+                    <p>We believe wealth is not just built — it is crafted with knowledge, discipline, and trust.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- What Sets Us Apart -->
     <section class="diff-section">
         <div class="container">
             <div class="section-header">
+                <div class="section-badge">Our Differentiators</div>
                 <h2>What Sets Us Apart</h2>
+                <p>Experience the Whitestone advantage through our commitment to excellence and innovation</p>
             </div>
             <div class="diff-grid">
                 <div class="diff-card scroll-fade">
-                    <div class="diff-icon"><i class="fas fa-search"></i></div>
+                    <div class="diff-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
                     <h3>Unbiased Research-Backed Recommendations</h3>
                     <p>Our investment advice is grounded in thorough, independent research, ensuring you receive objective insights tailored to your financial goals without conflicts of interest.</p>
                 </div>
                 <div class="diff-card scroll-fade">
-                    <div class="diff-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="diff-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
                     <h3>Customized Investment Planning</h3>
                     <p>We create personalized strategies across various asset classes, adapting to your unique risk profile, time horizon, and long-term objectives for optimal portfolio construction.</p>
                 </div>
                 <div class="diff-card scroll-fade">
-                    <div class="diff-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="diff-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
                     <h3>Commitment to Investor Education</h3>
                     <p>We empower our clients with knowledge and awareness through regular insights, market analysis, and educational resources — helping you make informed, confident decisions.</p>
                 </div>
@@ -1168,99 +1074,112 @@
         </div>
     </section>
 
-    <section class="team-section" id="team">
+    <!-- Team Section -->
+    <section class="team-section">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge">Our Team</div>
                 <h2>Meet Our Financial Experts</h2>
-                <p>Passionate professionals driving research, strategy, and growth at Whitestone Capital.</p>
+                <p>Passionate professionals driving research, strategy, and growth at Whitestone Capital</p>
             </div>
 
-            <div class="team-slider">
-                <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="team-slider-wrapper">
+                <button class="slider-btn prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
 
-                <div class="team-track">
-                    <div class="team-card">
-                        <img src="image/adityapatil.JPG" alt="CA Aditya Patil" />
-                        <div class="team-info">
-                            <h3>CA Aditya Patil</h3>
-                            <p class="designation">Research Analyst</p>
-                            <p class="desc">Chartered Accountant | IBBI Registered Valuer - SFA | SEBI Registered Research Analyst</p>
+                <div class="team-slider">
+                    <div class="team-track" id="teamTrack">
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/adityapatil.JPG" alt="CA Aditya Patil">
+                            </div>
+                            <div class="team-info">
+                                <h3>CA Aditya Patil</h3>
+                                <span class="designation">Research Analyst</span>
+                                <p class="desc">Chartered Accountant | IBBI Registered Valuer - SFA | SEBI Registered Research Analyst</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="team-card">
-                        <img src="image/vijay.JPG" alt="Er. Vijay Khamkar" />
-                        <div class="team-info">
-                            <h3>Er. Vijay Khamkar</h3>
-                            <p class="designation">Director</p>
-                            <p class="desc">IBBI Registered Valuer – Plant & Machinery | Mutual Fund Distributor</p>
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/vijay.JPG" alt="Er. Vijay Khamkar">
+                            </div>
+                            <div class="team-info">
+                                <h3>Er. Vijay Khamkar</h3>
+                                <span class="designation">Director</span>
+                                <p class="desc">IBBI Registered Valuer – Plant & Machinery | Mutual Fund Distributor</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="team-card">
-                        <img src="image/IMG_8053Ashwini.JPG" alt="Pratiksha Shinde" />
-                        <div class="team-info">
-                            <h3>Pratiksha Shinde</h3>
-                            <p class="designation">Research Analyst</p>
-                            <p class="desc">CMA | NISM Certified | Valuation & Taxation Expert</p>
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/IMG_8053Ashwini.JPG" alt="Pratiksha Shinde">
+                            </div>
+                            <div class="team-info">
+                                <h3>Pratiksha Shinde</h3>
+                                <span class="designation">Marketing Head</span>
+                                <p class="desc">MBA – Marketing & International Business</p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="team-card">
-                        <img src="image/abhishek.JPG" alt="Abhishek Mhamunkar" />
-                        <div class="team-info">
-                            <h3>Abhishek Mhamunkar</h3>
-                            <p class="designation">Director – Operations</p>
-                            <p class="desc">Market Strategist | Client Engagement Specialist</p>
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/abhishek.JPG" alt="Abhishek Mhamunkar">
+                            </div>
+                            <div class="team-info">
+                                <h3>Abhishek Mhamunkar</h3>
+                                <span class="designation">Director – Operations</span>
+                                <p class="desc">Market Strategist | Client Engagement Specialist</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="image/ashwini.JPG" alt="Ashwini Salunke" />
-                        <div class="team-info">
-                            <h3>Ashwini Salunke</h3>
-                            <p class="designation">Marketing Head</p>
-                            <p class="desc">MBA – Marketing & International Business</p>
+
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/ashwini.JPG" alt="Ashwini Salunke">
+                            </div>
+                            <div class="team-info">
+                                <h3>Ashwini Salunke</h3>
+                                <span class="designation">Research Analyst</span>
+                                <p class="desc">CMA | NISM - Research Analyst (Cleared) | Valuation & Taxation Expert</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="team-card">
-                        <img src="image/IMG_8052.JPG" alt="Amir Nadaf" />
-                        <div class="team-info">
-                            <h3>Amir Nadaf</h3>
-                            <p class="designation">Marketing Head</p>
-                            <p class="desc">MBA – Marketing & International Business</p>
+
+                        <div class="team-card">
+                            <div class="team-img-wrapper">
+                                <img src="image/IMG_8052.JPG" alt="Amir Nadaf">
+                            </div>
+                            <div class="team-info">
+                                <h3>Amir Nadaf</h3>
+                                <span class="designation">Marketing Head</span>
+                                <p class="desc">MBA – Marketing & International Business</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
                 <h2>Let's Build Your Financial Future Together</h2>
-                <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" 
-   style="display: inline-block; 
-          background-color: white; 
-          color: black; 
-          padding: 12px 25px; 
-          text-decoration: none; 
-          border-radius: 8px; 
-          font-weight: bold; 
-          font-family: Arial, sans-serif; 
-          font-size: 16px; ">
-   Get In Touch
-</a>
-
+                <p>Partner with us to achieve your wealth creation goals with confidence</p>
+                <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" class="btn-cta">
+                    Get In Touch <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-     <footer>
+       <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
@@ -1274,8 +1193,7 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_invite" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    
+    <a href="https://www.facebook.com/share/1CLSm4cNsy/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 </div>
                 </div>
                 <div class="footer-section">
@@ -1299,8 +1217,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+91">+91 92260 60600</a></li>
-                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
+                        <li><a href="mailto:invest@white-stone.co.in">invest@white-stone.co.in</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
@@ -1333,35 +1251,6 @@
     </div>
 
     <script>
-        // Theme Toggle (guarded to avoid errors if elements are missing)
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const body = document.body;
-
-        if (themeToggle && themeIcon) {
-            themeToggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                if (body.classList.contains('dark-mode')) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-        }
-
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            if (themeIcon) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            }
-        }
-
         // Header Scroll Effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
@@ -1389,7 +1278,6 @@
             menuOverlay.classList.remove('active');
         });
 
-        // Close menu on link click
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -1409,63 +1297,24 @@
             });
         });
 
-        // Active Navigation
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-links a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Scroll to Top Button (guarded)
+        // Scroll to Top Button
         const scrollTop = document.getElementById('scrollTop');
-        if (scrollTop) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
-                    scrollTop.classList.add('visible');
-                } else {
-                    scrollTop.classList.remove('visible');
-                }
-            });
-
-            scrollTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-
-        // Intersection Observer for animations
-        const animateOnScroll = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.service-card, .stat-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-            animateOnScroll.observe(el);
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
         });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1473,7 +1322,7 @@
                 if (entry.isIntersecting) {
                     setTimeout(() => {
                         entry.target.classList.add('visible');
-                    }, index * 100);
+                    }, index * 150);
                 }
             });
         }, observerOptions);
@@ -1482,62 +1331,51 @@
             observer.observe(el);
         });
 
-        document.querySelectorAll('.team-card, .diff-card, .vm-card').forEach(el => {
+        document.querySelectorAll('.vm-card, .diff-card').forEach(el => {
             observer.observe(el);
         });
 
-        const ctaBtn = document.querySelector('.cta-btn');
-        if (ctaBtn) {
-            ctaBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+        // Team Slider
+        const track = document.getElementById('teamTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let currentIndex = 0;
+        const cardWidth = 352; // 320px card + 32px gap
+        const cardsVisible = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+        const maxIndex = Math.max(0, track.children.length - cardsVisible);
+
+        function updateSlider() {
+            const offset = currentIndex * cardWidth;
+            track.style.transform = `translateX(-${offset}px)`;
+            
+            prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+            prevBtn.style.cursor = currentIndex === 0 ? 'not-allowed' : 'pointer';
+            nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
+            nextBtn.style.cursor = currentIndex >= maxIndex ? 'not-allowed' : 'pointer';
         }
 
-        document.addEventListener('mousemove', (e) => {
-            const icons = document.querySelectorAll('.float-icon');
-            const mouseX = e.clientX / window.innerWidth;
-            const mouseY = e.clientY / window.innerHeight;
-
-            icons.forEach((icon, index) => {
-                const speed = (index + 1) * 20;
-                const x = (mouseX - 0.5) * speed;
-                const y = (mouseY - 0.5) * speed;
-                icon.style.transform = `translate(${x}px, ${y}px)`;
-            });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateSlider();
+            }
         });
 
-        const diffCards = document.querySelectorAll('.diff-card');
-        diffCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.15}s`;
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
         });
 
-        const track = document.querySelector(".team-track");
-        const prevBtn = document.querySelector(".slider-btn.prev");
-        const nextBtn = document.querySelector(".slider-btn.next");
+        // Update on window resize
+        window.addEventListener('resize', () => {
+            currentIndex = 0;
+            updateSlider();
+        });
 
-        let teamIndex = 0;
-        const cardWidth = 320;
-
-        if (track) {
-            const maxIndex = Math.max(0, track.children.length - 3);
-            if (nextBtn) {
-                nextBtn.addEventListener("click", () => {
-                    if (teamIndex < maxIndex) teamIndex++;
-                    track.style.transform = `translateX(-${teamIndex * cardWidth}px)`;
-                });
-            }
-
-            if (prevBtn) {
-                prevBtn.addEventListener("click", () => {
-                    if (teamIndex > 0) teamIndex--;
-                    track.style.transform = `translateX(-${teamIndex * cardWidth}px)`;
-                });
-            }
-        }
+        updateSlider();
     </script>
 </body>
 </html>

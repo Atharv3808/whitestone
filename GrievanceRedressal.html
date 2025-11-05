@@ -232,8 +232,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%),
-                        url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200') center/cover;
+            background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200') center/cover;
+            opacity: 50%;
         }
 
         .hero-content {
@@ -501,17 +501,21 @@
             line-height: 1.6;
         }
 
-        /* Footer */
+      /* Footer */
         footer {
             background: var(--dark);
             color: white;
             padding: 80px 0 30px;
         }
 
+        body.dark-mode footer {
+            background: #000;
+        }
+
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 60px;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
             margin-bottom: 50px;
         }
 
@@ -542,19 +546,15 @@
             font-size: 15px;
         }
 
-        .footer-section a:hover {
-            color: white;
-            padding-left: 8px;
-        }
+      
 
         .footer-social {
             display: flex;
             gap: 12px;
             margin-top: 20px;
-            flex-wrap: wrap;
         }
 
-        .footer-social a {
+        .social-link {
             width: 40px;
             height: 40px;
             background: rgba(255,255,255,0.1);
@@ -563,14 +563,9 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            padding: 0;
         }
 
-        .footer-social a:hover {
-            background: var(--primary);
-            transform: translateY(-4px);
-            padding-left: 0;
-        }
+      
 
         .footer-bottom {
             text-align: center;
@@ -588,7 +583,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            z-index: 998;
+            z-index: 999;
         }
 
         .fab {
@@ -604,23 +599,7 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .fab:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(241, 93, 34, 0.4);
-        }
-
-        .scroll-top {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            pointer-events: all;
+          
         }
 
         /* Responsive Design */
@@ -757,6 +736,9 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+            .mobile{
+                display: none;
             }
         }
 
@@ -925,32 +907,40 @@
             .info-table {
                 min-width: 480px;
             }
+           
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header>
+     <header id="header">
         <nav class="container">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <img src="image/image-removebg-preview.png" alt="Whitestone Capital">
             </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+             <ul class="nav-links">
+                <li><a href="index.html" >Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="mutual-funds.html">Mutual Funds</a></li>
                 <li><a href="insurance.html">Insurance</a></li>
+                <!-- <li><a href="training.html">Training</a></li> -->
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <!-- <a href="contact.html" class="btn-primary">Contact Us</a> -->
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <!-- <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button> -->
+                <!-- <a href="#contact" class="btn btn-primary">Get Consultation</a> -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </nav>
     </header>
+
 
     <!-- Mobile Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay"></div>
@@ -1000,6 +990,7 @@
             </div>
 
             <!-- Compliance Officer Details -->
+        <div class="mobile">
             <div class="content-grid">
                 <div class="card">
                     <div class="card-header">
@@ -1036,6 +1027,7 @@
                     </div>
                 </div>
             </div>
+        </div>   
 
             <!-- Two Column Grid -->
             <div class="two-col-grid">
@@ -1146,7 +1138,7 @@
     </section>
 
     <!-- Footer -->
-     <footer>
+      <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-about">
@@ -1160,8 +1152,7 @@
     <a href="https://api.whatsapp.com/send/?phone=919226060600&text&type=phone_number&app_absent=0" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
     <a href="https://www.instagram.com/whitestonecapitals?igsh=cWk5MmFiZTE0czlt&utm_source=ig_contact_invite" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="https://web.telegram.org/k/" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    <a href="https://www.facebook.com/WhitestoneCapital/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    
+    <a href="https://www.facebook.com/share/1CLSm4cNsy/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
 </div>
                 </div>
                 <div class="footer-section">
@@ -1185,8 +1176,8 @@
                 <div class="footer-section">
                     <h3>Contact</h3>
                     <ul>
-                        <li><a href="tel:+91">+91 92260 60600</a></li>
-                        <li><a href="mailto:info@whitestonecapital.com">info@whitestonecapital.com</a></li>
+                        <li><a href="tel:+919226060600">+91 92260 60600</a></li>
+                        <li><a href="mailto:invest@white-stone.co.in">invest@white-stone.co.in</a></li>
                         <li><a href="PrivacyPolicy.html">Privacy Policy</a></li>
                         <li><a href="Disclaimer.html">Disclaimer</a></li>
                         <li><a href="Refundpolicy.html">Refund Policy</a></li>
